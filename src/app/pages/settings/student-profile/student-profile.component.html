@@ -1,0 +1,49 @@
+<div class="card-box">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h4 class="m-t-0 header-title"><b>Student Profile</b></h4>
+                        </div>
+                    </div>
+</div>
+<nb-card-body>
+    <div class="row show-grid">
+      <div class="col-md-4">
+        <label for="userName">Batch
+          <span class="text-danger">*</span>
+        </label>
+        <div style="width:250px;left: 60px;">
+          <select class="form-control">
+            <option>Please select the batch</option>
+            <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4" style="margin-left: -8%;">
+        <label for="userName">Course
+          <span class="text-danger">*</span>
+        </label>
+        <div style="width:250px;">
+          <select class="form-control">
+            <option>Please select the course</option>
+            <option [value]="course.id" *ngFor="let course of courseList">{{course.CourseName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4" style="margin-left: -8%;">
+        <label for="userName">Program Study
+          <span class="text-danger">*</span>
+        </label>
+        <div style="width:250px;">
+          <select class="form-control">
+            <option>Please select the Program Study</option>
+            <option [value]="programstudy.ProgramStudyId" *ngFor="let programstudy of ProgramStudyList">{{programstudy.ProgramStudyName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="shape-container" style="width:250px;margin-top: 25px">
+          <div style="margin-left: 350%;margin-top: -28%;">
+            <button class="btn btn-success btn-semi-round btn-demo">SHOW DETAILS</button>
+          </div>
+      </div>
+    </div>
+  </nb-card-body>

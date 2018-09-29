@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header> 
+      <!-- <button type="button" class="btn btn-success float-right" (click)="btnClickForNewForm()">Add Form</button>   -->
+      <div class="row show-grid">
+          <div class="col-md-4">
+            <label for="userName">Batch
+              <span class="text-danger">*</span>
+            </label>
+            <div style="width:250px;left: 60px;">
+              <select class="form-control">
+                <option>Please select the batch</option>
+                <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+              </select>
+            </div>
+          </div>          
+          <div class="shape-container" style="width:250px;margin-top: 25px;margin-left: -8%;">
+              <div style="margin-left: 20%;margin-top: 1%;">
+                  <a [routerLink]="['/pages/admission/admission-form']"> <button class="btn btn-success">New</button></a>    
+              </div>
+          </div>
+        </div>      
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

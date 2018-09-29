@@ -1,0 +1,59 @@
+<div class="card-box">
+    <div class="row">
+      <div class="col-lg-4">        
+          <h6 class="m-t-0 header-title"><b>Manage Batch</b></h6>
+      </div>
+    </div>
+  </div>
+  <nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-4">
+      <label for="userName">Batch
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control">
+          <option>Please select the batch</option>
+          <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="shape-container" class="col-md-2" style="width:250px;margin-top: 25px;margin-left: 4%;">
+      <div style="margin-left: -76%;margin-top: 1%;">
+        <button class="btn btn-success btn-semi-round btn-demo">Go</button>
+      </div>
+    </div>
+    <div class="shape-container" class="col-md-2" style="width:250px;margin-left: 50%;">
+      <div style="margin-left: -84%;margin-top: -29%;">
+        <button class="btn btn-primary btn-semi-round btn-demo">ADD New Create Batch</button>
+      </div>
+    </div>
+  </div>
+</nb-card-body>
+<nb-card>
+  <nb-card-header>
+    Assigned Program Study
+    <div class="row show-grid">
+      <div class="col-lg-4 pull-right">
+          <div class="shape-container" style="width:405px;margin-top: 55px">
+          <div style="margin-left: 180%;margin-top: -18%;">
+            <button class="btn btn-hero-info btn-demo ">Assign Program Study</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 pull-right">
+          <div class="shape-container" style="width:250px;margin-top: 25px">
+              <div style="margin-left:245%;margin-top: -18%;">
+                <button type="button" class="btn btn-outline-danger btn-icon">
+                  <i class="nb-trash"></i>
+                </button>
+              </div>
+            </div>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source.data" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

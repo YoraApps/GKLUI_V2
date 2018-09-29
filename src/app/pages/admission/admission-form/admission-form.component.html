@@ -1,0 +1,414 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card style="background-color:lightskyblue">
+      <nb-card-header>
+        <div class="text-center ng-scope" ng-if="regType == 1">
+          <h3 class="ng-binding"><strong>REGISTRATION FORM OF NEW STUDENTS</strong></h3>
+          <small style="color:#141a19" class="ng-binding">Academic Year 2018/2019</small><br>
+          <h3 class="ng-binding"><b>GENERAL CATEGORY ADMISSION FORM</b></h3>
+          <br>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 style="text-align:center;color:yellow;"><strong class="ng-binding">Personal
+                Details</strong><span class="text-danger"></span></h4><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+              </span>
+              <select id="fldGender" class="form-control ng-pristine ng-valid ng-valid-required ng-touched"
+                data-ng-model="modAdmissionsmObj.Title" ng-required="fldRequired" ng-options="fps.LookUpValue as fps.LookUpName for fps in stdtitle"
+                name="Title">
+                <option value="" disabled="" selected="" class="ng-binding">Mr/Mrs/Miss</option>
+                <option value="0" label="Miss">Miss</option>
+                <option value="1" label="Mr">Mr</option>
+                <option value="2" label="Mrs">Mrs</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3 form-group">
+            <input type="text" placeholder="Enter First Name Here.." class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+              data-ng-model="modAdmissionsmObj.FirstName" required="" name="FirstName">
+          </div>
+          <div class="col-sm-4 form-group">
+            <input type="text" placeholder="Enter Middle Name Here.." class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+              data-ng-model="modAdmissionsmObj.MiddleName" required="" name="MiddleName">
+          </div>
+          <div class="col-sm-3 form-group">
+            <input type="text" placeholder="Enter Last Name Here.." class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+              data-ng-model="modAdmissionsmObj.LastName" required="" name="LastName">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 form-group">
+            <div class="input-group ng-isolate-scope" moment-picker="modAdmissionsmObj.DateofBirth" format="DD-MM-YYYY">
+              <span class="input-group-addon ng-scope">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+              <input class="form-control ng-pristine ng-valid ng-scope moment-picker-input ng-touched" placeholder="Select a date"
+                ng-model="modAdmissionsmObj.DateofBirth" ng-model-options="{ updateOn: 'blur' }" tabindex="0">
+            </div>
+          </div>
+          <div class="form-group col-sm-2">
+            <select id="fldGender" class="form-control ng-pristine ng-valid ng-valid-required ng-touched" data-ng-model="modAdmissionsmObj.Gender"
+              ng-required="fldRequired" ng-options="fps.LookUpValue as fps.LookUpName for fps in Gender" name="gender">
+              <option value="" disabled="" selected="" class="ng-binding">Gender</option>
+              <option value="0" label="Female">Female</option>
+              <option value="1" label="Male">Male</option>
+            </select>
+          </div>
+          <div class="col-lg-2">
+            <select id="fldBloodGroup" class="form-control ng-pristine ng-valid ng-touched" data-ng-model="modAdmissionsmObj.BloodGroup"
+              ng-options="fps.LookUpValue as fps.LookUpName for fps in BloodGroup">
+              <option value="" disabled="" selected="" class="ng-binding">Blood Group</option>
+              <option value="0" label="A-">A-</option>
+              <option value="1" label="A+">A+</option>
+              <option value="2" label="AB-">AB-</option>
+              <option value="3" label="AB+">AB+</option>
+              <option value="4" label="B-">B-</option>
+              <option value="5" label="B+">B+</option>
+              <option value="6" label="O-">O-</option>
+              <option value="7" label="O+">O+</option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <select id="fldReligion" class="form-control ng-pristine ng-valid ng-touched" data-ng-model="modAdmissionsmObj.Religion"
+              ng-options="fps.LookUpValue as fps.LookUpName for fps in Religion">
+              <option value="" disabled="" selected="" class="ng-binding">Religion</option>
+              <option value="0" label="Buddhism">Buddhism</option>
+              <option value="1" label="Confucianism ">Confucianism </option>
+              <option value="2" label="Hinduism">Hinduism</option>
+              <option value="3" label="Islam ">Islam </option>
+              <option value="4" label="Roman Catholicism ">Roman Catholicism </option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group">
+            <select id="MaritalStatus" class="form-control ng-pristine ng-valid ng-touched" data-ng-model="modAdmissionsmObj.MaritalStatus"
+              ng-options="fps.LookUpValue as fps.LookUpName for fps in MStatus">
+              <option value="" disabled="" selected="" class="ng-binding">MaritalStatus</option>
+              <option value="0" label="Married">Married</option>
+              <option value="1" label="Single">Single</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 form-group">
+            <select id="JobStatus" class="form-control ng-pristine ng-untouched ng-valid" data-ng-model="modAdmissionsmObj.JobStatus"
+              ng-options="fps.LookUpValue as fps.LookUpName for fps in JStatus">
+              <option value="" disabled="" selected="" class="ng-binding">Working/NotWorking</option>
+              <option value="0" label="Not Working">Not Working</option>
+              <option value="1" label="Working">Working</option>
+            </select>
+          </div>
+          <div class="col-sm-3 form-group" ng-class="{ 'has-error' : addAdmissionForm.email.$invalid &amp;&amp; !addAdmissionForm.email.$pristine }">
+            <input type="text" placeholder="Enter Your Email Id Here" class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+              required="" data-ng-model="modAdmissionsmObj.EmailId" name="email">
+
+          </div>
+          <div class="col-sm-3 form-group">
+            <input type="text" placeholder="Enter Home Telephone Number.." class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+              data-ng-model="modAdmissionsmObj.LandLineNumber" required="">
+
+          </div>
+          <div class="col-sm-3 form-group">
+            <input type="text" placeholder="Enter Your Mobile Number.." class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+              data-ng-model="modAdmissionsmObj.MobileNumber" required="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label style="color: #dfdfd8">Home Address<span class="text-danger">*</span></label>
+            <textarea placeholder="Enter Home Address Here.." rows="3" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+              data-ng-model="modAdmissionsmObj.HomeAddress" required=""></textarea>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label style="color: #dfdfd8">Hobby<span class="text-danger">*</span></label>
+            <textarea placeholder="Enter Hobbies Here.." rows="3" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+              ng-required="fldRequired" data-ng-model="modAdmissionsmObj.Hobby"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <hr>
+          <h4 style="text-align:center;background-color: #333;color: #ffffff;"><strong class="ng-binding">Parents
+              Details</strong><span class="text-danger"></span></h4><br>
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <input type="text" placeholder="Enter Fathers Name Here.." class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.FathersName" required="">
+            </div>
+            <div class="col-sm-3 form-group">
+              <input type="text" placeholder="Enter Mothers Name Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.MothersName" required="">
+            </div>
+            <div class="col-sm-3 form-group">
+              <input type="text" placeholder="Enter Fathers Occupation Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.FathersOccupation" required="">
+            </div>
+            <div class="col-sm-3 form-group">
+              <input type="text" placeholder="Enter Mothers Occupation Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.MothersOccupation" required="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <label style="color: #dfdfd8">Current Address</label>
+              <textarea type="text" rows="3" placeholder="Enter Current Address Here" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                ng-required="fldRequired" data-ng-model="modAdmissionpdObj.GuardianAddress"></textarea>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label style="color: #dfdfd8">Permanent Address</label>
+              <textarea type="text" rows="3" placeholder="Enter Permanent Address Here" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                ng-required="fldRequired" data-ng-model="modAdmissionpdObj.GuardianTown"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group">
+              <input type="text" placeholder="Enter Phone Number Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.GuardianTelephone" required="">
+            </div>
+            <div class="col-sm-4 form-group">
+              <input type="text" placeholder="Enter Alternative Telephone Number Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.GuardianHPNO" required="">
+            </div>
+            <div class="col-sm-4 form-group">
+              <select id="fldGuardianAddressBeyond" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                data-ng-model="modAdmissionpdObj.GuardianAddressBeyond" ng-required="fldRequired" ng-options="fps1.ProvinceName as fps1.ProvinceName for fps1 in provienceList">
+                <option value="" disabled="" selected="" class="ng-binding">Enter the province here if you are Outside
+                  the Central Kalimantan</option>
+                <option value="0" label="Aceh">Aceh</option>
+                <option value="1" label="Bali">Bali</option>
+                <option value="2" label="Bangka Belitung Islands">Bangka Belitung Islands</option>
+                <option value="3" label="Banten">Banten</option>
+                <option value="4" label="Bengkulu">Bengkulu</option>
+                <option value="5" label="Central Java">Central Java</option>
+                <option value="6" label="Central Kalimantan">Central Kalimantan</option>
+                <option value="7" label="Central Sulawesi">Central Sulawesi</option>
+                <option value="8" label="East Java">East Java</option>
+                <option value="9" label="East Kalimantan">East Kalimantan</option>
+                <option value="10" label="East Nusa Tenggara">East Nusa Tenggara</option>
+                <option value="11" label="Gorontalo">Gorontalo</option>
+                <option value="12" label="Jakarta Special Capital Region">Jakarta Special Capital Region</option>
+                <option value="13" label="Jambi">Jambi</option>
+                <option value="14" label="Lampung">Lampung</option>
+                <option value="15" label="Maluku">Maluku</option>
+                <option value="16" label="North Kalimantan">North Kalimantan</option>
+                <option value="17" label="North Maluku">North Maluku</option>
+                <option value="18" label="North Sulawesi">North Sulawesi</option>
+                <option value="19" label="North Sumatra">North Sumatra</option>
+                <option value="20" label="Special Region of Papua">Special Region of Papua</option>
+                <option value="21" label="Riau">Riau</option>
+                <option value="22" label="Riau Islands">Riau Islands</option>
+                <option value="23" label="Southeast Sulawesi">Southeast Sulawesi</option>
+                <option value="24" label="South Kalimantan">South Kalimantan</option>
+                <option value="25" label="South Sulawesi">South Sulawesi</option>
+                <option value="26" label="South Sumatra">South Sumatra</option>
+                <option value="27" label="West Java">West Java</option>
+                <option value="28" label="West Kalimantan">West Kalimantan</option>
+                <option value="29" label="West Nusa Tenggara">West Nusa Tenggara</option>
+                <option value="30" label="Special Region of West Papua">Special Region of West Papua</option>
+                <option value="31" label="West Sulawesi">West Sulawesi</option>
+                <option value="32" label="West Sumatra">West Sumatra</option>
+                <option value="33" label="Special Region of Yogyakarta">Special Region of Yogyakarta</option>
+                <option value="34" label="Others">Others</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <hr>
+          <h4 style="text-align:center;background-color: #333;color: #ffffff;"><strong class="ng-binding">Last
+              Education <small style="color: #ffffff;" class="ng-binding">Graduate of SMA/SMK/MAN/Diploma</small><span
+                class="text-danger"></span></strong></h4>
+          <div class="row">
+            <div class="col-sm-4 form-group">
+              <select id="fldLastEducation" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                data-ng-model="modAdmissionsspObj.EducationType" ng-required="fldRequired" ng-options="fps.LookUpValue as fps.LookUpName for fps in LastEducation">
+                <option value="" disabled="" selected="" class="ng-binding">Last Education</option>
+                <option value="0" label="Diploma">Diploma</option>
+                <option value="1" label="MAN">MAN</option>
+                <option value="2" label="SMA">SMA</option>
+                <option value="3" label="SMK">SMK</option>
+              </select>
+            </div>
+            <div class="col-sm-4 form-group">
+              <input type="text" placeholder="Enter Graduation Year Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.PassedYear" required="">
+
+            </div>
+            <div class="col-sm-4 form-group">
+              <input type="text" placeholder="Enter Home Town Here" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                data-ng-model="modAdmissionpdObj.Address" required="">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <select id="fldAddressIfBeyond" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                data-ng-model="modAdmissionsmObj.AddressIfBeyond" ng-required="fldRequired" ng-options="fps1.ProvinceName as fps1.ProvinceName for fps1 in provienceList">
+                <option value="" disabled="" selected="" class="ng-binding">Enter Province here if you are beyond the
+                  Middle East</option>
+                <option value="0" label="Aceh">Aceh</option>
+                <option value="1" label="Bali">Bali</option>
+                <option value="2" label="Bangka Belitung Islands">Bangka Belitung Islands</option>
+                <option value="3" label="Banten">Banten</option>
+                <option value="4" label="Bengkulu">Bengkulu</option>
+                <option value="5" label="Central Java">Central Java</option>
+                <option value="6" label="Central Kalimantan">Central Kalimantan</option>
+                <option value="7" label="Central Sulawesi">Central Sulawesi</option>
+                <option value="8" label="East Java">East Java</option>
+                <option value="9" label="East Kalimantan">East Kalimantan</option>
+                <option value="10" label="East Nusa Tenggara">East Nusa Tenggara</option>
+                <option value="11" label="Gorontalo">Gorontalo</option>
+                <option value="12" label="Jakarta Special Capital Region">Jakarta Special Capital Region</option>
+                <option value="13" label="Jambi">Jambi</option>
+                <option value="14" label="Lampung">Lampung</option>
+                <option value="15" label="Maluku">Maluku</option>
+                <option value="16" label="North Kalimantan">North Kalimantan</option>
+                <option value="17" label="North Maluku">North Maluku</option>
+                <option value="18" label="North Sulawesi">North Sulawesi</option>
+                <option value="19" label="North Sumatra">North Sumatra</option>
+                <option value="20" label="Special Region of Papua">Special Region of Papua</option>
+                <option value="21" label="Riau">Riau</option>
+                <option value="22" label="Riau Islands">Riau Islands</option>
+                <option value="23" label="Southeast Sulawesi">Southeast Sulawesi</option>
+                <option value="24" label="South Kalimantan">South Kalimantan</option>
+                <option value="25" label="South Sulawesi">South Sulawesi</option>
+                <option value="26" label="South Sumatra">South Sumatra</option>
+                <option value="27" label="West Java">West Java</option>
+                <option value="28" label="West Kalimantan">West Kalimantan</option>
+                <option value="29" label="West Nusa Tenggara">West Nusa Tenggara</option>
+                <option value="30" label="Special Region of West Papua">Special Region of West Papua</option>
+                <option value="31" label="West Sulawesi">West Sulawesi</option>
+                <option value="32" label="West Sumatra">West Sumatra</option>
+                <option value="33" label="Special Region of Yogyakarta">Special Region of Yogyakarta</option>
+                <option value="34" label="Others">Others</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <hr>
+          <h4 style="text-align:center;background-color: #333;color: #ffffff;" class="ng-binding">Select Study Program<span
+              class="text-danger"></span></h4>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="heard" class="ng-binding">Choice 1</label>
+              <select id="fldStudentProgramStudyChoice1Id" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                data-ng-model="modAdmissionsspObj.StudentProgramstudyChoice1Id" ng-required="fldRequired" ng-options="fps1.ProgramStudyId as fps1.ProgramStudyName for fps1 in Program">
+                <option value="" disabled="" selected="" class="ng-binding">Please select the Program Study</option>
+              </select>
+
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="heard" class="ng-binding">Choice 2</label>
+              <select id="fldStudentProgramStudyChoice2Id" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                data-ng-model="modAdmissionsspObj.StudentProgramstudyChoice2Id" ng-required="fldRequired" ng-options="fps2.ProgramStudyId as fps2.ProgramStudyName for fps2 in Program">
+                <option value="" disabled="" selected="" class="ng-binding">Please select the Program Study</option>
+              </select>              
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <hr>
+          <h4 style="text-align:center;background-color: #333;color: #ffffff;" class="ng-binding">Upload Documents<span
+              class="text-danger"></span></h4>
+          <div class="row">
+            <div class="col-md-4">
+              <select class="form-control ng-pristine ng-untouched ng-valid" ng-model="DocumentType" ng-change="DocumentDropdownSelect()">
+                <option value="? number:0 ?"></option>
+                <option value="" disabled="" selected="" class="ng-binding">Document Type</option>
+                <option value="2" class="ng-binding">Others</option>
+              </select>
+            </div>
+            <div class="col-md-4" style="margin-top: -8px;">
+              <div class="kv-avatar">
+                <div class="file-loading">
+                  <input type="file" id="file" name="file" onchange="angular.element(this).scope().setDocumentFile(this)"
+                    class="btn btn-primary" style="margin-top: 3%;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <table id="datatablem" class="table table-bordered table-colored table-inverse" style="background-color:azure">
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="heard" class="ng-binding">Information About UM Palangkaraya<span class="text-danger">*</span></label>
+                <select id="fldinfoAbout" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                  data-ng-model="modAdmissionsspObj.infoAbout" ng-required="fldRequired" ng-options="fps.LookUpValue as fps.LookUpName for fps in InfoAboutUMP">
+                  <option value="" disabled="" selected="" class="ng-binding">Please select the Value</option>
+                  <option value="0" label="Friend">Friend</option>
+                  <option value="1" label="Parents">Parents</option>
+                  <option value="2" label="Promote Socialization">Promote Socialization</option>
+                  <option value="3" label="RRI">RRI</option>
+                  <option value="4" label="Studio 21">Studio 21</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="heard" class="ng-binding">Registration Path<span class="text-danger">*</span></label>
+                <select id="fldRegistrationPath" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                  data-ng-model="modAdmissionsspObj.RegistrationPath" ng-required="fldRequired" ng-options="fps.LookUpValue as fps.LookUpName for fps in RegistrationPath">
+                  <option value="" disabled="" selected="" class="ng-binding">Please select the Registration Path</option>
+                  <option value="0" label="Invitation">Invitation</option>
+                  <option value="1" label="PDM">PDM</option>
+                  <option value="2" label="Regular">Regular</option>
+                  <option value="3" label="Socialization">Socialization</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="heard" class="ng-binding">Charity Donation<span class="text-danger">*</span></label>
+                <input type="text" placeholder="Enter Charity Donation Here.." class="form-control ng-pristine ng-untouched ng-valid ng-valid-required"
+                  ng-required="fldRequired" data-ng-model="modAdmissionsspObj.BigInfaq">
+              </div>
+              <div class="row" style="color: #d5d7d9;padding-left:20px;">
+                <p><strong>Thus the form is acctually filled to be used as it should be unnecessary strikethrough</strong></p><br>
+                <h6>*) Cross the unnecessary ones <span class="ng-binding"></span> </h6><br>
+                <p>*) Charity Donation ()</p><br>
+              </div>
+              <div class="row">
+                <div class=" form-group col-sm-4">
+                  <div class="kv-avatar">
+                    <div>
+                      <div class="row" style="margin-left: 13px;">
+                        <img style="height:150px;width:120px">
+                      </div>
+                      <input type="file" id="file" name="file" onchange="angular.element(this).scope().setFile(this)"
+                        class="btn btn-primary" style="margin-left: 13px;">
+                    </div>
+                  </div>
+                  <div class="kv-avatar-hint"><small style="color: #dfdfd8;margin-left: 13px;" class="ng-binding">Select
+                      file &lt; 1500 KB</small></div>
+                </div>
+                <div class="form-group col-sm-4">
+
+                </div>
+                <div class="form-group col-sm-4" style="color: #dfdfd8;">
+                  <p>Palangka Raya,<span class="ng-binding"><input type="text">2018</span></p><br>
+                  <p>yang menda</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <hr>
+          <div class="form-group m-b-0 text-right">
+            <br><br><button type="button" class="btn btn-info ng-binding" data-ng-click="getAdmissionNumber()">Submit</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

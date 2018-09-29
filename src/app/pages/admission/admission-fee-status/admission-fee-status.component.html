@@ -1,0 +1,39 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-4">
+      <label for="userName">Batch <span class="text-danger">*</span></label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control">  
+          <option >Please Select The Batch</option> 
+        <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>  
+      </select>
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">
+        <label for="userName">Program Study
+          <span class="text-danger">*</span>
+        </label>
+        <div style="width:250px;left: 60px;">
+          <select class="form-control">
+            <option>Please select the Program Study</option>
+            <option [value]="ProgramStudy.ProgramStudyId" *ngFor="let ProgramStudy of ProgramStudyList">{{ProgramStudy.ProgramStudyName}}</option>
+          </select>
+        </div>
+      </div>
+    <div class="shape-container" style="width:250px;margin-top: 25px;margin-left:13%;">
+      <div style="margin-left: -30%;margin-top: 1%;">
+        <button class="btn btn-success btn-semi-round btn-demo">Go</button>
+      </div>
+    </div>
+  </div>
+</nb-card-body>
+
+<nb-card>
+  <nb-card-header>
+    Admission Fees Status
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

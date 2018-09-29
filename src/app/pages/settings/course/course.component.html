@@ -1,0 +1,36 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">CourseType
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+          <select class="form-control" [(ngModel)]="selectobj"  (change)="filterChanged(selectobj)">  
+                <option [value]="obj.CourseTypeId" *ngFor="let obj of CourseList">{{obj.CourseType}}</option>  
+         </select> 
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">            
+        <div style="width:250px;margin-top: 25px;">
+            <button type="submit" (click)="getcourseGrid(selectobj)"  class="btn btn-success">GO</button> 
+        </div>
+      </div>
+  </div>
+</nb-card-body>
+
+<nb-card>
+  <!-- <nb-card-header>
+    Course
+    <div class="form-group row">
+      <div class="offset-sm-3 col-sm-9">
+        <button type="submit" (click)="onClick()"  class="btn btn-success float-right" style="right: 0px;margin-top: -3%;">ADD COURSE</button>
+      </div>
+  </div>
+  </nb-card-header> -->
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onSaveConfirm($event)"
+      (createConfirm)="onCreateConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

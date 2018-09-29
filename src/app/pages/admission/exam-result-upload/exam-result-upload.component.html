@@ -1,0 +1,53 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">Batch
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control">
+          <option>Please select the batch</option>
+          <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">
+        <label for="userName">Program Study
+          <span class="text-danger">*</span>
+        </label>
+        <div style="width:250px;left: 60px;">
+          <select class="form-control">
+            <option>Please select the Program Study</option>
+            <option [value]="ProgramStudy.ProgramStudyId" *ngFor="let ProgramStudy of ProgramStudyList">{{ProgramStudy.ProgramStudyName}}</option>
+          </select>
+        </div>
+      </div>
+  </div>
+</nb-card-body>
+
+<nb-card>
+<div class="col-md-3">
+  <br>
+      <nb-card-header>Entrance Result Upload</nb-card-header>
+    </div>
+      <br>
+      <div class="card-body">
+
+          <div class="row">
+              <div class="col-md-6">
+                  <input type="file" name="file" class="form-control" id="filexl" onchange="angular.element(this).scope().UploadFile(this.files)">
+              </div>
+
+              <div class="col-md-3">
+                  <button class="btn btn-primary btn-ef btn-ef-3 btn-ef-3c mb-10 ng-isolate-scope" ng-click="download()" excel-export="" export-data="exportData" file-name="report">Export to Excel <i class="fa fa-download"></i></button>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <input type="button" value="Import" class="btn btn-success" ng-disabled="!SelectedFileForUpload" ng-click="ParseExcelDataAndSave()" onclick="document.getElementById('filexl').value=''" disabled="disabled">
+          </div>
+      </div>
+      <span style="color:red" class="ng-binding">
+          
+      </span>
+    </nb-card>

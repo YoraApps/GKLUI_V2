@@ -1,0 +1,59 @@
+<div class="card-box">
+  <div class="row">
+    <div class="col-lg-4">
+      <h4 class="m-t-0 header-title"><b>Manage Semester</b></h4>
+    </div>
+  </div>
+</div>
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-4">
+      <label for="userName">Batch
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control">
+          <option>Please select Faculty/Department</option>
+          <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4" style="margin-left: -8%;">
+      <label for="userName">Program Study
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;">
+        <select class="form-control">
+          <option>Please select the Program Study</option>
+          <option [value]="programstudy.ProgramStudyId" *ngFor="let programstudy of ProgramStudyList">{{programstudy.ProgramStudyName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4" style="margin-left: -8%;">
+      <label for="userName">Semester
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;">
+        <select class="form-control">
+          <option>Please select Semester</option>
+          <option [value]="semester.id" *ngFor="let semester of semisterList">{{semester.CourseName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="shape-container" class="col-md-2" style="width:250px;margin-left: 50%;">
+      <div style="margin-left: 180%;margin-top: -29%;">
+        <button class="btn btn-success btn-semi-round btn-demo">Go</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <nb-card>
+    <nb-card-header>
+      Manage Semester 
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source.data" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>

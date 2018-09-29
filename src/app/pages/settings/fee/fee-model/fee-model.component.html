@@ -1,0 +1,74 @@
+<nb-card>
+    <nb-card-header>
+      Add New EXAM-TYPE 
+      <button class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </nb-card-header>
+<nb-card-body>
+<div class="col-lg-12">    
+  <div class="row full-name-inputs">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="Fee_code">Fee Label<span class="text-danger">*</span></label><br />
+        <input type="text" style="height: 50px;" placeholder="Enter Fee Label" class="form-control" />
+      </div>
+    </div>    
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="Fee_code">Currency</label><br />
+        <select class="form-control" style="height: 48px;">
+            <option display:none> -- -- Select Currency -- -- </option>
+            <option>USD</option>
+            <option>RUPEE</option>
+          </select>
+      </div>
+    </div>  
+  </div>
+  <br>
+  <div class="row full-name-inputs">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Fee_code">Fee Type<span class="text-danger">*</span></label><br />
+          <select class="form-control" style="height: 48px;">
+            <option display:none> -- -- Select Fee Type -- -- </option>
+            <option>R (Refundable)</option>
+            <option>NA (Non Refundable)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Fee_code">Fee Category<span class="text-danger">*</span></label><br />
+          <select class="form-control" style="height: 48px;">
+            <option display:none> -- -- Select Fee Category -- -- </option>
+            <option>Admission Fee</option>
+            <option>Academics Fee</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <br />
+  <div class="row full-name-inputs">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Fee_code">Description<span class="text-danger">*</span></label><br />
+          <input type="text" style="height: 50px;" placeholder="Enter Description" class="form-control" />
+        </div>
+      </div>  
+  </div>  
+</div>
+<nb-card-footer> 
+       
+      <div> 
+          <button (click)="closeModal()"  style="right: 0px;" class="btn btn-danger btn-rectangle btn-demo float-right">CLOSE</button>
+      </div>
+        <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-success float-right" style="right: 0px;">ADD DETAILS</button>
+            </div>
+        </div>    
+</nb-card-footer>     
+  </nb-card-body>
+ </nb-card>
+ 

@@ -1,0 +1,7 @@
+{
+    "/api":{
+        "target":"http://gurukulapi.yoratechnologies.in/index.php/",
+        "secure":false,
+        "changeOrigin":true
+    }
+}

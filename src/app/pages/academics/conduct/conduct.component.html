@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <nb-card>
+    <nb-tabset>
+      <nb-tab tabTitle="Student Character Supervision">
+        <nb-card-body>
+          <ng2-smart-table [settings]="settings" [source]="source.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Merit/Demerits">
+        <nb-card-body>
+          <ng2-smart-table [settings]="conductsettings" [source]="_source.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Loss and Found">
+        <nb-card-body>
+          <ng2-smart-table [settings]="LossAndFoundsettings" [source]="LossAndFoundsource.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Letter of Permission">
+        <nb-card-body>
+          <ng2-smart-table [settings]="LetterPermissionsettings" [source]="LetterPermissionsource.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card>
+</div>

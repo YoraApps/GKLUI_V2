@@ -1,0 +1,53 @@
+<div class="col-md-12">
+  <nb-card size="small">
+    <nb-tabset>
+      <nb-tab tabTitle=" Employee Pay Details" style="overflow:unset;"><br><br>
+        <nb-card-header> Manage Employee </nb-card-header>
+        <br><br><br><br>
+        <div class="form-group row">
+          <label for="inputEmail3" style="margin-left:50px;margin-top: 13px;" class="col-md-3 form-control-label">Employee
+            Number
+          </label>
+          <div class="col-md-3">
+            <input type="email" style="margin-left:-102px" class="form-control" id="inputEmail3" placeholder="Employee Number">
+          </div>
+          <button type="submit" style="margin-left: -70px;" class="btn btn-warning">Employee Details</button>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle=" Salary Data Upload">
+        <br><br><br><br>
+        <div class="input-group" style="margin-left:43px;width:45%;height:10%">
+          <input type="text" class="form-control" placeholder="Upload file ....">
+          <span class="input-group-append">
+            <button class="btn btn-danger input-group-text">
+              Browse
+            </button>
+          </span>
+          <a href="" download="" style="margin-top:24px;" class="ng-binding">
+            Download Template
+          </a>
+        </div><br>
+        <br><br>
+        <div style="margin-left:40px;">
+          <input type="button" value="Import" class="btn btn-success" ng-disabled="!SelectedFileForUpload" ng-click="ParseExcelDataAndSave()"
+            onclick="document.getElementById('filexl').value=''" disabled="disabled">
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle=" Payroll Control" style="overflow:unset;">
+        <br><br><br><br>
+        <div class="form-group row">
+          <label for="inputEmail3" style="margin-left:20px;margin-top: 13px;" class="col-md-4 form-control-label">Employee
+            Number
+          </label>
+          <div class="col-md-3" style="margin-left:-185px">
+            <select class="form-control">
+              <option display:none>Select Payroll Area</option>
+            </select>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab tabTitle=" Payroll Leave Deduction">
+      </nb-tab>
+    </nb-tabset>
+  </nb-card>
+</div>

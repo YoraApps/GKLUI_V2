@@ -1,0 +1,48 @@
+<div class="col-md-12">
+  <nb-card>
+    <nb-tabset>
+      <nb-tab tabTitle="Add Employee">
+        <br/>
+        <nb-card-header>
+
+        </nb-card-header>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settingsstuddata" [source]="source1.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Manage Employee">
+        <nb-card-header>
+          <button class="btn btn-success float-right">Add Employee</button>
+        </nb-card-header>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settingsstuddata" [source]="source2.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Employee Approval">
+        <br/>
+        <nb-card-header>
+
+        </nb-card-header>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settingsstuddata" [source]="source3.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+      <nb-tab tabTitle="Employee Approval Status">
+        <nb-card-header>
+          <select class="btn-success">
+            <option>select</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </nb-card-header>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settingsstuddata" [source]="source4.data" (deleteConfirm)="onDeleteConfirm($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card>
+</div>

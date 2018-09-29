@@ -1,0 +1,215 @@
+<div class="row" ng-show="feesList != null" style="">
+
+
+  <div class="row" style="width:1000px;height:300px;overflow:auto;">
+    <div class="col-sm-7">
+
+      <div class="=panel">
+        <div class="panel-heading" style="background-color: #f3f3f3;height:30px;color: black;font-size: large;font-weight: bold;">
+          Academics Fee [Batch + Program Study + Semester]
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fee Name</th>
+                  <th>Description</th>
+                  <th>Fee Type</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+                <tr ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'" class="ng-scope">
+                  <td class="ng-binding">Tuition Fee</td>
+                  <td class="ng-binding">Tuition Fee</td>
+                  <td class="ng-binding">NR</td>
+                  <td> <input type="number" class="form-control ng-pristine ng-untouched ng-valid" ng-model="fee.Amount"
+                      valid-number=""> </td>
+
+                </tr><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+                <tr ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'" class="ng-scope">
+                  <td class="ng-binding">Laboratory Fee</td>
+                  <td class="ng-binding">Laboratory Fee</td>
+                  <td class="ng-binding">NR</td>
+                  <td> <input type="number" class="form-control ng-pristine ng-untouched ng-valid" ng-model="fee.Amount"
+                      valid-number=""> </td>
+
+                </tr><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+                <tr ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'" class="ng-scope">
+                  <td class="ng-binding">Miscellaneous</td>
+                  <td class="ng-binding">Miscellaneous</td>
+                  <td class="ng-binding">RE</td>
+                  <td> <input type="number" class="form-control ng-pristine ng-untouched ng-valid" ng-model="fee.Amount"
+                      valid-number=""> </td>
+
+                </tr><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="panel">
+        <div class="panel-heading" style="background-color: #f3f3f3;height:30px;color: black;font-size: large;font-weight: bold;">
+          Academics Fee Details
+        </div>
+        <div class="panel-body">
+
+
+
+          <!-- ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+          <div class="row ng-scope" ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'">
+            <div class="col-sm-8 ng-binding">
+              Tuition Fee:-
+            </div>
+            <div class="col-sm-4 ng-binding">
+              10,000
+            </div>
+
+
+          </div><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+          <div class="row ng-scope" ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'">
+            <div class="col-sm-8 ng-binding">
+              Laboratory Fee:-
+            </div>
+            <div class="col-sm-4 ng-binding">
+              2,000
+            </div>
+
+
+          </div><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+          <div class="row ng-scope" ng-repeat="fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId'">
+            <div class="col-sm-8 ng-binding">
+              Miscellaneous:-
+            </div>
+            <div class="col-sm-4 ng-binding">
+
+            </div>
+
+
+          </div><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 2 }:true|orderBy : 'FeeId' -->
+
+          <div class="row">
+            <div class="col-sm-8">
+              <h4><b>Total Fees:</b></h4>
+            </div>
+            <div class="col-sm-4">
+              <h4><b class="ng-binding"> 12,000</b></h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row" style="width:1000px;height:300px;overflow:auto;">
+    <div class="col-sm-7">
+
+      <div class="panel">
+        <div class="panel-heading" style="background-color: #f3f3f3;height:30px;color: black;font-size: large;font-weight: bold;">
+          Admission Fee [Batch + Program Study]
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fee Name</th>
+                  <th>Description</th>
+                  <th>Fee Type</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+                <tr ng-repeat="fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId'" class="ng-scope">
+                  <td class="ng-binding">Application Form Fee</td>
+                  <td class="ng-binding">Application Form Fee</td>
+                  <td class="ng-binding">NR</td>
+                  <td> <input type="number" class="form-control ng-pristine ng-untouched ng-valid" ng-model="fee.Amount"
+                      valid-number=""> </td>
+
+                </tr><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+                <tr ng-repeat="fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId'" class="ng-scope">
+                  <td class="ng-binding">Entrance Exam Fee</td>
+                  <td class="ng-binding">Entrance Exam Fee</td>
+                  <td class="ng-binding">NR</td>
+                  <td> <input type="number" class="form-control ng-pristine ng-untouched ng-valid" ng-model="fee.Amount"
+                      valid-number=""> </td>
+
+                </tr><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="panel">
+        <div class="panel-heading" style="background-color: #f3f3f3;height:30px;color: black;font-size: large;font-weight: bold;">
+          Admission Fee Details
+        </div>
+        <div class="panel-body">
+
+
+
+          <!-- ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+          <div class="row ng-scope" ng-repeat="fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId'">
+            <div class="col-sm-8 ng-binding">
+              Application Form Fee:-
+            </div>
+            <div class="col-sm-4 ng-binding">
+              1,000
+            </div>
+
+
+          </div><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+          <div class="row ng-scope" ng-repeat="fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId'">
+            <div class="col-sm-8 ng-binding">
+              Entrance Exam Fee:-
+            </div>
+            <div class="col-sm-4 ng-binding">
+              500
+            </div>
+
+
+          </div><!-- end ngRepeat: fee in feesList|filter:{ FeeCategoryId: 1 }:true|orderBy : 'FeeId' -->
+
+          <div class="row">
+            <div class="col-sm-8">
+              <h4><b>Total Fees:</b></h4>
+            </div>
+            <div class="col-sm-4">
+              <h4><b class="ng-binding"> 1,500</b></h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <button class="btn btn-info btn-bordered waves-light waves-effect w-xs  m-b-2 ng-binding" type="button" style="margin-top:0px;"
+        data-ng-click="saveFeeAssociation()">
+        Save
+      </button>
+    </div>
+  </div>
+
+
+</div>

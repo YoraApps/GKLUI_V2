@@ -1,0 +1,66 @@
+<div class="col-md-12">
+    <nb-card>
+      <nb-tabset>
+        <nb-tab tabTitle="STUDENT SELECTION">
+            <nb-card-body>
+              <!-- <ng2-smart-table [settings]="settingsdata" [source]="source.data" (deleteConfirm)="onDeleteConfirm($event)">
+              </ng2-smart-table> -->
+              <div class="row show-grid">
+                  <div class="col-md-3">
+                    <label for="userName">Batch
+                      <span class="text-danger">*</span>
+                    </label>
+                    <div style="width:175px;left: 60px;">
+                      <select class="form-control">
+                        <option>Please select the batch</option>
+                        <option [value]="batch.id" *ngFor="let batch of batchList">{{batch.BatchName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3" >
+                      <label for="userName">Program Study
+                        <span class="text-danger">*</span>
+                      </label>
+                      <div style="width:175px;">
+                        <select class="form-control">
+                          <option>Please select the Program Study</option>
+                          <option [value]="ProgramStudy.ProgramStudyId" *ngFor="let ProgramStudy of ProgramStudyList">{{ProgramStudy.ProgramStudyName}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  <div class="col-md-3" >
+                    <label for="userName">Semester
+                      <span class="text-danger">*</span>
+                    </label>
+                    <div style="width:175px;">
+                      <select class="form-control">
+                        <option>Please select Semester</option>
+                        <option [value]="course.id" *ngFor="let course of courseList">{{course.CourseName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3" style="margin-top: 0px;margin-right: -25px;width:150px;">          
+                      <label for="userName">Student
+                          <span class="text-danger">*</span>
+                        </label>
+                        <div style="width:175px;">
+                          <select class="form-control">
+                            <option>Please select Student</option>
+                            <option [value]="course.id" *ngFor="let course of courseList">{{course.CourseName}}</option>
+                          </select>
+                        </div>          
+                  </div>   
+                  <div class="offset-sm-3 col-sm-9" style="margin-top: 25px;">
+                      <button type="submit" (click)="onClick()"  class="btn btn-success float-right" style="right: 0px;">SHOW DETAILS</button>
+                    </div>
+                </div>
+            </nb-card-body>    
+          </nb-tab>
+        <nb-tab tabTitle="GENERATE ID CARD">
+            <nb-card-body>
+                
+              </nb-card-body>
+        </nb-tab>                
+      </nb-tabset>
+    </nb-card>
+  </div>

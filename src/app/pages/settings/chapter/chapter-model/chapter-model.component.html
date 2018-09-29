@@ -1,0 +1,61 @@
+<nb-card>
+    <nb-card-header>
+        Add Driver Master
+      <button class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="col-lg-12">
+        <div class="row full-name-inputs">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Fee_code">Chapter Number<span class="text-danger">*</span></label><br />
+              <input type="text" style="height: 50px;" placeholder="Enter Chapter Number" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Fee_code">Chapter Title<span class="text-danger">*</span></label><br />
+              <input type="text" style="height: 50px;" placeholder="Enter Chapter Title" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row full-name-inputs">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Fee_code">Mode of Teaching<span class="text-danger">*</span></label><br />
+              <input type="text" style="height: 50px;" placeholder="Enter Mode of Teaching" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Fee_code">Chapter Details<span class="text-danger">*</span></label><br />
+              <input type="text" style="height: 50px;" placeholder="Enter Chapter Details" class="form-control" />
+            </div>
+          </div>
+        </div>
+      <br>
+      <div class="row full-name-inputs">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Fee_code">SKS<span class="text-danger">*</span></label><br />
+              <input type="text" style="height: 50px;" placeholder="Enter SKS" class="form-control" />
+            </div>
+          </div>
+        </div>
+        </div>
+        <nb-card-footer>
+  
+          <div>
+            <button (click)="closeModal()" style="right: 0px;" class="btn btn-danger btn-rectangle btn-demo float-right">CLOSE</button>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-success float-right" style="right: 0px;">ADD DETAILS</button>
+            </div>
+          </div>
+        </nb-card-footer>
+    </nb-card-body>
+  </nb-card>
