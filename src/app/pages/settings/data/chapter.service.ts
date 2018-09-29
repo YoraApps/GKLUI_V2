@@ -6,51 +6,34 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ChapterService {
 
-   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://testyora-001-site1.itempurl.com';
+  constructor(private http: HttpClient) { }
+  baseUrl: string = 'http://localhost:53312';
 
   getData() {
-    return this.http.get<ChapterObject>(this.baseUrl + '/api/ChapterMasters/Get');
+    return this.http.get<ChapterObject>(this.baseUrl + '/api/Chapter/Get');
   }
 
   saveData(data) {
     debugger
-    this.http.post(this.baseUrl + "/api/ChapterMasters/Save", data)
+    this.http.post(this.baseUrl + "/api/Chapter", data)
       .subscribe(
-      data1 => {
-        console.log('POST Request is successful ' + data1);
-      },
-      error => {
-        console.log('Error' + error);
-      },
-    );
-  }
-
-   removeData(ChapterId) {
-    this.http.post(this.baseUrl + '/api/ChapterMasters/Delete?ChapterId=' + ChapterId, null)
-      .subscribe(
-      data => {
-        console.log('PUT Request is successful ' + data);
-      },
-      error => {
-        console.log('Error' + error);
-      },
+        data1 => {
+          console.log('POST Request is successful ' + data1);
+        },
+        error => {
+          console.log('Error' + error);
+        },
     );
   }
 
 }
 
-export interface chapter{
-        ChapterId: number;
-        ChapterNumber: string;
-        ChapterTitle: string;
-        ModeOfTeaching: string;
-        ChapterDetails: string;
-        SKS: number;
-        UniversityId?: any;
-        active?: any;
-        lastupdateddt?: any;
-        lastupdatedby?: any
+export interface chapter {
+  SetAction?: any;
+  ChapterId: number;
+  ChapterCode: string;
+  ChapterName: string;
+  Active: boolean;
 
 }
 
