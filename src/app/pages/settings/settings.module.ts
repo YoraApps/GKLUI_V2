@@ -41,6 +41,7 @@ import { BatchProgramService } from './data/batch-program.service';
 import { ProgramBranchService } from './data/program-branch.service';
 import { BranchSemesterService } from './data/branch-semester-service';
 import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
+import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
 
 @NgModule({
   imports: [
@@ -66,6 +67,7 @@ import { BranchSemesterAssociationComponent } from './branch-semester-associatio
     AcademicSetupComponent,
     AcademicSetupComponent,
     BranchSemesterAssociationComponent,
+    CourseChapterAssociationComponent,
   ],
   providers: [
     DegreeTypeService,
