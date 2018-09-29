@@ -35,6 +35,17 @@ export class CourseComponent implements OnInit {
         title: 'Course Name',
         type: 'string',
       },
+      Active: {
+        title: 'IsActive',
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'Active',
+            false: 'InActive',
+            resetText: 'clear',
+          },
+        },
+      },
     },
   };
 
