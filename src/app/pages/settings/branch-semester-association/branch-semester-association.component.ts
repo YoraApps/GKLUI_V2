@@ -23,6 +23,7 @@ export class BranchSemesterAssociationComponent implements OnInit {
      private modalService: NgbModal,
      private batchService: BatchService, 
      private programBranchService: ProgramBranchService) { }
+
   activeBatchList = [];
   batchProgramMappedList = [];
   programbranchMappedList = [];
@@ -31,9 +32,16 @@ export class BranchSemesterAssociationComponent implements OnInit {
   branchSemesterMappedList = [];
   isdatathere: boolean;
   batchId: number = 0;
-  ProgramId: number = 0;
+  branchId: number = 0;
+  programId: number = 0;
   SemesterId: number = 0;
+  IsSelected = false;
+  objSem = {};
+  selSemList = [];
+  SemesterIds: string = '';
+  selSemArr = [];
   public data: any
+
   ngOnInit() {
     this.batchService.getActiveBatches()
       .subscribe(data => {
@@ -57,26 +65,68 @@ export class BranchSemesterAssociationComponent implements OnInit {
     
     })
   }
-  programselOnChange(Obj) {
-    this.programBranchService.getMappedBranchByProgram(Obj)
+
+  programselOnChange(data) {
+    this.programId = data;
+    this.programBranchService.getMappedBranchByProgram(this.programId)
       .subscribe(data => {
         this.programbranchMappedList = data.results;
       })
   }
+
   branchselOnChange(Obj) {
-    this.branchSemesterService.getMappedSemesterByBranch(Obj)
+    this.branchId = Obj;
+    this.branchSemesterService.getMappedSemesterByBranch(this.branchId)
       .subscribe(data => {
         this.branchSemesterMappedList = data.results;
       })
+      if(this.branchId > 0){
+        this.branchSemesterService.setSelectedBranchId(this.branchId);
+        } 
   }
+  
   getSemesterGrid() {
     debugger
+    this.branchSemesterService.getMappedSemesterByBranch(this.branchId)
+    .subscribe(data => {
+      this.branchSemesterMappedList = data.results;
+    
+    })
     if (this.branchSemesterMappedList.length > 0) {
       this.isdatathere = true;
     }
   }
+
+  IscheckedSemesters(obj){
+    debugger
+    if(obj.IsSelected == true) {
+      this.SemesterIds = obj.SemesterId
+      this.selSemArr.push(this.SemesterIds);
+    }
+    else if (obj.IsSelected == false) {
+      var array = this.selSemArr;
+      this.selSemArr.forEach(function (value,key) {
+        console.log(value);
+        if(value == obj.SemesterId){
+          array.splice(key, 1);
+        }
+      }); 
+      this.selSemArr = array;
+    }
+    this.SemesterIds = this.selSemArr.toString();
+  }
+
+  getUpdatedList(dataList) {
+    this.branchSemesterMappedList = dataList;
+  }
   onClick() {
+    if(this.branchId > 0){
     const activeModal = this.modalService.open(BranchSemesterModelComponent, { size: 'lg', container: 'nb-layout' });
     activeModal.componentInstance.modalHeader = 'Large Modal';
   }
+
+else{
+  window.confirm('Please Select a Branch')
+}
+}
 }
