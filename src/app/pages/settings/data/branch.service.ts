@@ -24,7 +24,7 @@ export class BranchService {
       },
     );
   }
-
+ 
 }
 
 export interface Branch {

@@ -9,6 +9,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { SmartTableService } from '../../@core/data/smart-table.service';
 import { TreeModule } from 'angular-tree-component';
 
+import {DataTableModule} from "angular-6-datatable";
+
 import { BranchService } from './data/branch.service';
 import { BatchService } from './data/batch.service';
 import { PopupService } from './data/popup.service';
@@ -37,7 +39,8 @@ import { BatchProgramAssociationComponent } from './batch-program-association/ba
 import { AcademicSetupComponent } from './academic-setup/academic-setup.component';
 import { BatchProgramService } from './data/batch-program.service';
 import { ProgramBranchService } from './data/program-branch.service';
-import {DataTableModule} from "angular-6-datatable";
+import { BranchSemesterService } from './data/branch-semester-service';
+import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
 
 @NgModule({
   imports: [
@@ -61,7 +64,8 @@ import {DataTableModule} from "angular-6-datatable";
     ProgramBranchAssociationComponent,
     BatchProgramAssociationComponent,
     AcademicSetupComponent,
-    AcademicSetupComponent, 
+    AcademicSetupComponent,
+    BranchSemesterAssociationComponent,
   ],
   providers: [
     DegreeTypeService,
@@ -84,6 +88,7 @@ import {DataTableModule} from "angular-6-datatable";
     SemesterService,
     BatchProgramService,
     ProgramBranchService,
+    BranchSemesterService,
   ],
   entryComponents: [
   ],

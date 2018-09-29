@@ -68,7 +68,6 @@ export class ProgramBranchAssociationComponent implements OnInit {
     }
   }
   getBranchGrid() {
-    debugger
     if(this.progarmBranchMappedList.length > 0 && this.batchId > 0){
       this.isdatathere = true;
     }

@@ -1,0 +1,55 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">Batch
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectobj" (change)="batchselOnChange(selectobj)">
+          <option [value]="branch.BatchId" *ngFor="let branch of activeBatchList">{{branch.AcademicYear}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">
+      <label for="userName">Program
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;">
+        <select class="form-control" aria-placeholder="Select Program" [(ngModel)]="selectobjProgram" (change)="programselOnChange(selectobjProgram)">
+          <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">
+      <label for="userName">Branch 
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;">
+        <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectobjBranch" (change)="branchselOnChange(selectobjBranch)">
+          <option [value]="branch.BranchId" *ngFor="let branch of programbranchMappedList">{{branch.BranchName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="shape-container col-md-3" style="width:100px;margin-top: 25px;margin-left: 550px;margin-top: -50px;">
+      <div style="margin-left: 305px;margin-top: 1%;">
+        <button class="btn btn-outline-success btn-icon" (click)="getSemesterGrid()"><i _ngcontent-c19="" style="font-size: 2rem;font-weight: bold;"
+            class="nb-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</nb-card-body>
+<br/>
+<br/>
+<div>
+  <div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div  class="col-md-4">
+      <button class="btn btn-primary btn-round btn-demo float-right" (click)="onClick()">
+        ASSIGN 
+      </button>
+      <button class="btn btn-success float-right" style='margin-right:16px' (click)="removeProgramfrmMapping()" *ngIf="isdatathere">REMOVE</button>
+    </div>
+  </div>
+</div>

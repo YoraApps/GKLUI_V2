@@ -41,6 +41,7 @@ import { ClassRoomModelComponent } from './pages/settings/classroom/class-room-m
 import { BatchProgramModelComponent } from './pages/settings/batch-program-association/batch-program-model/batch-program-model.component';
 import { ProgramBranchModelComponent } from './pages/settings/program-branch-association/program-branch-model/program-branch-model.component';
 import { FeeAssociationModelComponent } from './pages/settings/fee-association/fee-association-model/fee-association-model.component';
+import { BranchSemesterModelComponent } from './pages/settings/branch-semester-association/branch-semester-model/branch-semester-model.component';
 
 @NgModule({
   declarations: [AppComponent, 
@@ -67,6 +68,7 @@ import { FeeAssociationModelComponent } from './pages/settings/fee-association/f
     ClassRoomModelComponent,
     BatchProgramModelComponent,
     ProgramBranchModelComponent,
+    BranchSemesterModelComponent,
     FeeAssociationModelComponent,
   ],
   imports: [
@@ -111,6 +113,7 @@ import { FeeAssociationModelComponent } from './pages/settings/fee-association/f
     ClassRoomModelComponent,
     BatchProgramModelComponent,
     ProgramBranchModelComponent,
+    BranchSemesterModelComponent,
     FeeAssociationModelComponent,
   ],
 })

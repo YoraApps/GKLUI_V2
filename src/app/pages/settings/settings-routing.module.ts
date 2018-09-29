@@ -28,6 +28,7 @@ import { ProgramComponent } from './program/program.component';
 import { ProgramBranchAssociationComponent } from './program-branch-association/program-branch-association.component';
 import { BatchProgramAssociationComponent } from './batch-program-association/batch-program-association.component';
 import { AcademicSetupComponent } from './academic-setup/academic-setup.component';
+import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
 
 const routes: Routes = [{
   path: '',
@@ -107,6 +108,10 @@ const routes: Routes = [{
   }, {
     path: 'batch-program-association',
     component: BatchProgramAssociationComponent,
+  },
+  {
+    path: 'branch-semester-association',
+    component: BranchSemesterAssociationComponent,
   },
    {
     path: 'popupbranch',
