@@ -53,6 +53,7 @@ export class DegreeCategoryComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
     data;
     SetAction: string;
+    DegreeCategoryId :number;
   constructor(private service: DegreeCategoryService) {
     
    }
@@ -91,6 +92,7 @@ export class DegreeCategoryComponent implements OnInit {
 
   onCreateConfirm(event): void {
     event.confirm.resolve(event.newData);
+    event.newData.DegreeCategoryId = this.DegreeCategoryId;
     event.newData.SetAction = 'INSERT';
     this.service.updateData(event.newData);
   }
