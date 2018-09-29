@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BatchProgramModelComponent } from './batch-program-model/batch-program-model.component';
 import { BatchService } from '../data/batch.service';
 import { BatchProgramService } from '../data/batch-program.service';
+
 @Component({
   selector: 'ngx-batch-program-association',
   templateUrl: './batch-program-association.component.html',
@@ -78,7 +79,6 @@ export class BatchProgramAssociationComponent implements OnInit {
       "BatchId":this.batchId
     }
     this.batchprogramService.AssignOrRemoveProgram(this.objPrgm);
-    this.batchselOnChange(this.batchId);
   }
 
   getUpdatedList(dataList) {
