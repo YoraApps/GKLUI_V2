@@ -104,7 +104,6 @@ export class CourseComponent implements OnInit {
   }
 
    onCreateConfirm(event): void {
-     debugger
      if(this.CourseTypeId > 0){
       event.confirm.resolve(event.newData);
       event.newData.CourseTypeId = this.CourseTypeId;

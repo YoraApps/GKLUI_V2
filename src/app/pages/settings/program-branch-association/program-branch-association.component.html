@@ -1,37 +1,38 @@
 <nb-card-body>
     <div class="row show-grid">
         <div class="col-md-3">
-          <label for="userName">Batch
-            <span class="text-danger">*</span>
-          </label>
-          <div style="width:250px;left: 60px;">
-              <select class="form-control" aria-placeholder="Select Batch" [(ngModel)]="selectobj"  (change)="batchselOnChange(selectobj)">
-                  <option [value]="batch.BatchId" *ngFor="let batch of activeBatchList">{{batch.AcademicYear}}</option>
-              </select>
-          </div>
+            <label for="userName">Batch
+                <span class="text-danger">*</span>
+            </label>
+            <div style="width:250px;left: 60px;">
+                <select class="form-control" aria-placeholder="Select Batch" [(ngModel)]="selectobj" (change)="batchselOnChange(selectobj)">
+                    <option [value]="batch.BatchId" *ngFor="let batch of activeBatchList">{{batch.AcademicYear}}</option>
+                </select>
+            </div>
         </div>
         <div class="col-md-3" style="margin-left: 1%;">
             <label for="userName">Program
-              <span class="text-danger">*</span>
+                <span class="text-danger">*</span>
             </label>
             <div style="width:250px;">
-             <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectProgramobj"  (change)="programselOnChange(selectProgramobj)">
-                <option [value]="Program.ProgramId" *ngFor="let Program of programList">{{Program.ProgramName}}</option>
-             </select>             
+                <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectProgramobj" (change)="programselOnChange(selectProgramobj)">
+                    <option [value]="Program.ProgramId" *ngFor="let Program of programList">{{Program.ProgramName}}</option>
+                </select>
             </div>
         </div>
         <div class="shape-container col-md-3" style="width:100px;margin-top: 25px;margin-left: 550px;margin-top: -50px;">
             <div style="margin-left: 1%;margin-top: 1%;">
-              <button class="btn btn-outline-success btn-icon" (click)="getBranchGrid()" ><i _ngcontent-c19="" style="font-size: 2rem;font-weight: bold;" class="nb-arrow-right"></i></button>
+                <button class="btn btn-outline-success btn-icon" (click)="getBranchGrid()"><i _ngcontent-c19="" style="font-size: 2rem;font-weight: bold;"
+                        class="nb-arrow-right"></i></button>
             </div>
         </div>
-      </div>
-  </nb-card-body>
-  <br/>
-  <br/>
+    </div>
+</nb-card-body>
+<br />
+<br />
 
-  <style> 
-  table {
+<style>
+    table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 100%;
@@ -52,42 +53,43 @@
   </style>
 <div *ngIf="isdatathere">
     <div class="row">
-      <div class="col-md-8">
+        <div class="col-md-8">
 
-      </div>
-      <div  class="col-md-4">
-        <button class="btn btn-success float-right" (click)="onClick()">
-          ASSIGN
-        </button>
-        <button class="btn btn-success float-right" (click)="removeBranchfrmMapping()" *ngIf="isdatathere" style='margin-right:16px'>REMOVE</button>       
-      </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-success float-right" (click)="onClick()">
+                ASSIGN
+            </button>
+            <button class="btn btn-success float-right" (click)="removeBranchfrmMapping()" 
+            *ngIf="isdatathere" style='margin-right:16px'>REMOVE</button>
+        </div>
     </div>
-    <br/>
+    <br />
     <div class="row" style="margin-left: 1px;margin-right: -1px;">
-      <table>
-        <thead class="col-md-12" style="background-color: #FF9800;">
-          <th>
-              BranchCode
-          </th>
-          <th>
-              BranchName
-          </th>
-          <th>
-             <input type="checkbox">Select All
-         </th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let branch of progarmBranchMappedList">
-              <td> {{branch.BranchCode}}</td>
-              <td> {{branch.BranchName}}</td>
-              <td><input type="checkbox" [(ngModel)]="branch.IsSelected"
-                (change)="IscheckedBranches(branch)"></td>
-          </tr>          
-        </tbody>
-     </table>
+        <table>
+            <thead class="col-md-12" style="background-color: #FF9800;">
+                <th>
+                    BranchCode
+                </th>
+                <th>
+                    BranchName
+                </th>
+                <th>
+                    <input type="checkbox">Select All
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let branch of progarmBranchMappedList">
+                    <td> {{branch.BranchCode}}</td>
+                    <td> {{branch.BranchName}}</td>
+                    <td><input type="checkbox" [(ngModel)]="branch.IsSelected" (change)="IscheckedBranches(branch)"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 
-  <!-- </div> 
+<!-- </div> 
    <br/>
    <br/>
    <br/>
