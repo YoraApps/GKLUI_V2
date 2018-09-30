@@ -59,12 +59,14 @@ export class BranchSemesterModelComponent implements OnInit {
       "SemesterIds":this.SemesterIds,
       "BranchId":this.BranchId
     }
-    this.branchSemesterService.AssignOrRemoveSemester(this.objSem);
+    this.branchSemesterService.AssignOrRemoveSemester(this.objSem)
+    .subscribe(data => {
+      this.branchSemesterService.setresponseList(data.results);
+    })
     this.activeModal.close();
   }
-  closeModal() {
+  closeModal(){
     this.activeModal.close();
   }
  
 }
- 

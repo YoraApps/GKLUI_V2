@@ -92,7 +92,7 @@ export class BranchSemesterAssociationComponent implements OnInit {
       this.branchSemesterMappedList = data.results;
     
     })
-    if (this.branchSemesterMappedList.length > 0) {
+    if (this.branchSemesterMappedList.length > 0 && this.branchId > 0) {
       this.isdatathere = true;
     }
   }
@@ -115,6 +115,27 @@ export class BranchSemesterAssociationComponent implements OnInit {
     }
     this.SemesterIds = this.selSemArr.toString();
   }
+  removeSemesterfrmMapping() {
+    debugger
+    this.objSem  = {};
+    this.objSem = {
+      "SetAction":"DELETE",
+      "SemesterIds":this.SemesterIds,
+      "BranchId":this.branchId
+    }
+    this.branchSemesterService.AssignOrRemoveSemester(this.objSem)
+    .subscribe(data => {
+      console.log(data.results); 
+    })
+    var array = this.branchSemesterMappedList
+    this.branchSemesterMappedList.forEach(function (value,key) {
+      console.log(value);
+      if(value.IsSelected == true){
+        array.splice(key, 1);
+      }
+    });
+    this.branchSemesterMappedList = array;
+  }
 
   getUpdatedList(dataList) {
     this.branchSemesterMappedList = dataList;
@@ -123,6 +144,10 @@ export class BranchSemesterAssociationComponent implements OnInit {
     if(this.branchId > 0){
     const activeModal = this.modalService.open(BranchSemesterModelComponent, { size: 'lg', container: 'nb-layout' });
     activeModal.componentInstance.modalHeader = 'Large Modal';
+    activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+      console.log(emmitedValue);
+      this.branchSemesterMappedList = emmitedValue;
+    });
   }
 
 else{
