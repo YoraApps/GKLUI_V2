@@ -29,6 +29,7 @@ import { ProgramBranchAssociationComponent } from './program-branch-association/
 import { BatchProgramAssociationComponent } from './batch-program-association/batch-program-association.component';
 import { AcademicSetupComponent } from './academic-setup/academic-setup.component';
 import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
+import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
 import { SemesterCourseAssociationComponent } from './semester-course-association/semester-course-association.component';
 
 const routes: Routes = [{
@@ -113,6 +114,10 @@ const routes: Routes = [{
   {
     path: 'branch-semester-association',
     component: BranchSemesterAssociationComponent,
+  },
+  {
+    path: 'course-chapter-association',
+    component: CourseChapterAssociationComponent,
   },
   {
     path: 'semester-course-association',
