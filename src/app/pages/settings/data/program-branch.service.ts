@@ -15,16 +15,7 @@ export class ProgramBranchService {
       return this.http.get<ProgramBranchObject>(this.baseUrl + '/GetProgramBranchNotMapped?ProgramId='+ ProgramId);
     }
     AssignOrRemoveBranch(data) {
-        debugger
-        this.http.post(this.baseUrl + "/UpdateProgramBranchAssociation", data)
-        .subscribe(
-        success => {
-            console.log('POST Request is successful ' + success);
-        },
-        error => {
-            console.log('Error' + error);
-        },
-        );
+       return this.http.post<ProgramBranchObject>(this.baseUrl + "/UpdateProgramBranchAssociation", data);       
     }    
     setSelectedProgramId(id) {
         this.ProgramId = id;

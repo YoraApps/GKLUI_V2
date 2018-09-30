@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProgramBranchService } from '../../data/program-branch.service';
 
@@ -16,7 +16,8 @@ export class ProgramBranchModelComponent implements OnInit {
   BranchIds: string = '';
   selBrcArr = [];
 
- 
+  @Output() emitService : EventEmitter<any[]> = new EventEmitter();
+
 
   constructor(private activeModal: NgbActiveModal,
               private programbranchService:ProgramBranchService) { }
@@ -57,6 +58,7 @@ export class ProgramBranchModelComponent implements OnInit {
   }
 
   saveDetails() {   
+    debugger
     this.objBrc  = {};
     this.ProgramId = this.programbranchService.getSelectedProgramId();
     this.objBrc = {
@@ -64,7 +66,10 @@ export class ProgramBranchModelComponent implements OnInit {
       "BranchIds":this.BranchIds,
       "ProgramId":this.ProgramId
     }
-    this.programbranchService.AssignOrRemoveBranch(this.objBrc);
+    this.programbranchService.AssignOrRemoveBranch(this.objBrc)
+    .subscribe(data => {
+      this.emitService.next(data.results);
+    })    
     this.activeModal.close();
   }
 
