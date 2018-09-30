@@ -78,7 +78,18 @@ export class BatchProgramAssociationComponent implements OnInit {
       "ProgramIds":this.ProgramIds,
       "BatchId":this.batchId
     }
-    this.batchprogramService.AssignOrRemoveProgram(this.objPrgm);
+    this.batchprogramService.AssignOrRemoveProgram(this.objPrgm)
+    .subscribe(data => {
+      console.log(data.results); 
+    })
+    var array = this.batchProgramMappedList
+    this.batchProgramMappedList.forEach(function (value,key) {
+      console.log(value);
+      if(value.IsSelected == true){
+        array.splice(key, 1);
+      }
+    });
+    this.batchProgramMappedList = array;
   }
 
   getUpdatedList(dataList) {
