@@ -13,9 +13,11 @@ import { BatchProgramService } from '../data/batch-program.service';
 })
 export class ProgramBranchAssociationComponent implements OnInit {
 
-  constructor(private modalService: NgbModal,private batchService : BatchService,
-  private programService:ProgramService,private programBranchService:ProgramBranchService,
-   private batchprogramService:BatchProgramService) { }
+  constructor(private modalService: NgbModal,
+  private batchService : BatchService,
+  private programService:ProgramService,
+  private programBranchService:ProgramBranchService,
+  private batchprogramService:BatchProgramService) { }
   activeBatchList = [];
   programList=[];
   progarmBranchMappedList = [];
