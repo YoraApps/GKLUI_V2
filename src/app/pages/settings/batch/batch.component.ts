@@ -62,6 +62,10 @@ export class BatchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.academicYearOnload();
+  }
+
+  academicYearOnload() {
     this.service.getAllBatch()
     .subscribe(data => {
       debugger

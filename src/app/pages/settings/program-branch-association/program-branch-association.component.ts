@@ -31,12 +31,7 @@ export class ProgramBranchAssociationComponent implements OnInit {
     this.batchService.getActiveBatches()
     .subscribe(data => {
       this.activeBatchList = data.results;
-    });
-    this.programService.getData()
-    .subscribe(data => { 
-      debugger     
-      this.programList = data.results;
-    }); 
+    });   
   //   this.data = [
   //   {'name':'Anil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
   //   {'name':'Sunil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
@@ -55,21 +50,30 @@ export class ProgramBranchAssociationComponent implements OnInit {
     .subscribe(data => {
       this.batchProgramMappedList = data.results;    
     })
+    this.programService.getData()
+    .subscribe(data => { 
+      debugger     
+      this.programList = data.results;
+    }); 
   }
   
   programselOnChange(Id) {
     this.ProgramId=Id;
-    this.programBranchService.getMappedBranchByProgram(this.ProgramId)
-    .subscribe(data => {
-      this.progarmBranchMappedList = data.results;
-    })
+    // this.programBranchService.getMappedBranchByProgram(this.ProgramId)
+    // .subscribe(data => {
+    //   this.progarmBranchMappedList = data.results;
+    // })
     if(this.ProgramId > 0){
     this.programBranchService.setSelectedProgramId(this.ProgramId);
     }
   }
   getBranchGrid() {
     debugger
-    if(this.progarmBranchMappedList.length > 0 && this.batchId > 0){
+    this.programBranchService.getMappedBranchByProgram(this.ProgramId)
+    .subscribe(data => {
+      this.progarmBranchMappedList = data.results;    
+    })
+    if(this.progarmBranchMappedList.length > 0){
       this.isdatathere = true;
     }
   }
@@ -93,18 +97,42 @@ export class ProgramBranchAssociationComponent implements OnInit {
   }
 
   removeBranchfrmMapping() {
+    debugger
     this.objBrc  = {};
     this.objBrc = {
-      "SetAction":"DELETE",
+      "SetAction":"DELETE",  
       "BranchIds":this.BranchIds,
       "ProgramId":this.ProgramId
-    }
-    this.programBranchService.AssignOrRemoveBranch(this.objBrc);
-    this.programselOnChange(this.ProgramId);
+    }    
+    this.programBranchService.AssignOrRemoveBranch(this.objBrc)    
+    .subscribe(data => {
+      console.log(data.results);
+    })
+    var array = this.progarmBranchMappedList;
+    this.progarmBranchMappedList.forEach(function (value,key) {
+      console.log(value);
+      if(value.IsSelected == true){
+        array.splice(key, 1);
+      }
+    });
+    this.progarmBranchMappedList= array;
+  }
+  getUpdatedList(dataList) {
+    this.progarmBranchMappedList = dataList;    
   }
   onClick() {
+    if(this.ProgramId>0){
     const activeModal = this.modalService.open(ProgramBranchModelComponent, { size: 'lg', container: 'nb-layout' });
 
+    activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+      this.progarmBranchMappedList = emmitedValue;
+    });
+
     activeModal.componentInstance.modalHeader = 'Large Modal';
+    }
+    else{
+       window.confirm('Please Select a Batch')
+    }
+    
   }
 }
