@@ -144,6 +144,10 @@ export class BranchSemesterAssociationComponent implements OnInit {
     if(this.branchId > 0){
     const activeModal = this.modalService.open(BranchSemesterModelComponent, { size: 'lg', container: 'nb-layout' });
     activeModal.componentInstance.modalHeader = 'Large Modal';
+    activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+      console.log(emmitedValue);
+      this.branchSemesterMappedList = emmitedValue;
+    });
   }
 
 else{
