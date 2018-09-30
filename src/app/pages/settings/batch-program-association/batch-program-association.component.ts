@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BatchProgramModelComponent } from './batch-program-model/batch-program-model.component';
 import { BatchService } from '../data/batch.service';
 import { BatchProgramService } from '../data/batch-program.service';
@@ -14,6 +14,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   constructor(private modalService: NgbModal,
               private batchService : BatchService,
               private batchprogramService:BatchProgramService) { }
+
   activeBatchList = [];
   batchProgramMappedList = [];
   batchProgramNotMappedList = [];
@@ -23,23 +24,23 @@ export class BatchProgramAssociationComponent implements OnInit {
   selPrgmArr = [];
   objPrgm  = {};
 
+  //InIt Func
   ngOnInit() {
+    this.onLoadBatchList();
+  }
+  //Page Load Func Batch Drop Down List 
+  onLoadBatchList() {
     this.batchService.getActiveBatches()
     .subscribe(data => {
       this.activeBatchList = data.results;
     });
   }
-
+  //Batch Drop Down Selection Event Call
   batchselOnChange(id) {
-    debugger
-    this.batchId = id;   
-    if(this.batchId > 0){
-      this.batchprogramService.setSelectedBatchId(this.batchId);
-    }
+    this.batchId = id;
   }
-
-  getProgramGrid() {
-    debugger
+  //Get Associated Program List In Grid For Above Selected Batch..
+  getProgramListOnGrid() {
     this.batchprogramService.getMappedProgramByBatch(this.batchId)
     .subscribe(data => {
       this.batchProgramMappedList = data.results;
@@ -49,9 +50,8 @@ export class BatchProgramAssociationComponent implements OnInit {
       this.isdatathere = true;
     }
   }
-
+  //CheckBox Func Goes Here....
   IscheckedPrograms(obj){
-    debugger
     if(obj.IsSelected == true) {
       this.ProgramIds = obj.ProgramId;
       this.selPrgmArr.push(this.ProgramIds);
@@ -67,11 +67,9 @@ export class BatchProgramAssociationComponent implements OnInit {
       this.selPrgmArr = array;
     }
     this.ProgramIds = this.selPrgmArr.toString();
-    // this.objPrgm = obj;
-    // this.selPrgmList.push(obj);
   }
-
-  removeProgramfrmMapping() {
+  //Remove Program From Associated Batch
+  removeProgramFrmMapping() {
     this.objPrgm  = {};
     this.objPrgm = {
       "SetAction":"DELETE",
@@ -80,25 +78,21 @@ export class BatchProgramAssociationComponent implements OnInit {
     }
     this.batchprogramService.AssignOrRemoveProgram(this.objPrgm)
     .subscribe(data => {
-      console.log(data.results); 
+      debugger
+      this.batchProgramMappedList = data.results; 
     })
-    var array = this.batchProgramMappedList
-    this.batchProgramMappedList.forEach(function (value,key) {
-      console.log(value);
-      if(value.IsSelected == true){
-        array.splice(key, 1);
-      }
-    });
-    this.batchProgramMappedList = array;
   }
-
-  getUpdatedList(dataList) {
-    this.batchProgramMappedList = dataList;
-  }
-
+  //Modal Events Goes Here...
   onClick() {
     if(this.batchId > 0){
-      const activeModal = this.modalService.open(BatchProgramModelComponent, { size: 'lg', container: 'nb-layout' });
+      const activeModal = this.modalService.open(BatchProgramModelComponent, { size: 'lg', container: 'nb-layout'});
+
+      activeModal.componentInstance.BatchId = this.batchId;
+
+      activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+        console.log(emmitedValue);
+        this.batchProgramMappedList = emmitedValue;
+      });
 
       activeModal.componentInstance.modalHeader = 'Large Modal';
     }

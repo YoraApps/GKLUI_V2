@@ -22,14 +22,6 @@ export class BatchProgramService {
     AssignOrRemoveProgram(data) {
         debugger
         return this.http.post<BatchProgramObject>(this.baseUrl + "/UpdateProgramBatchAssociation", data);
-        // .subscribe(
-        // success => {
-        //     console.log('POST Request is successful ' + success);
-        // },
-        // error => {
-        //     console.log('Error' + error);
-        // },
-        // );
     }
     
     setSelectedBatchId(id) {

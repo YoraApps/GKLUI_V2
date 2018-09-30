@@ -22,22 +22,14 @@ td, th {
 </style>
  <table>
    <thead class="col-md-12" style="background-color: #3f5163;">
-     <th>
-       SL
-     </th>
-     <th>
-          ProgramCode
-     </th>
-     <th>
-         ProgramName
-     </th>
-     <th>
-        <input type="checkbox">Select All
-    </th>
+    <th> SL </th>
+    <th> ProgramCode </th>
+    <th> ProgramName </th>
+    <th> Action </th>
    </thead> 
    <tbody>
     <tr *ngFor="let batch of batchProgramNotMappedList;let i = index;">
-      <td> {{i}} </td>
+      <td> {{i+1}} </td>
       <td> {{batch.ProgramCode}} </td>
       <td> {{batch.ProgramName}} </td>
       <td><input type="checkbox" [(ngModel)]="batch.IsSelected" 

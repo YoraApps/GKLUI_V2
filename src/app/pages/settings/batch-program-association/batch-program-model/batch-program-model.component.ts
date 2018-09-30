@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BatchProgramService } from '../../data/batch-program.service';
 
@@ -9,7 +9,7 @@ import { BatchProgramService } from '../../data/batch-program.service';
 })
 export class BatchProgramModelComponent implements OnInit {
 
-  BatchId: number = 0;
+ // BatchId: number = 0;
   batchProgramNotMappedList = [];
   batchProgramNotMappedmodalList = [];
   IsSelected = false;
@@ -19,16 +19,17 @@ export class BatchProgramModelComponent implements OnInit {
   selPrgmArr = [];
   batchProgramMappedList = [];
 
+  @Input() BatchId;
+  @Output() emitService : EventEmitter<any[]> = new EventEmitter();
+
   constructor(private activeModal: NgbActiveModal,
               private batchprogramService:BatchProgramService) { }
-             
+  //InIt Func          
   ngOnInit() {
-   this.BatchId = this.batchprogramService.getSelectedBatchId();
-   console.log(this.BatchId);
+   debugger
    this.getProgramsNotMappedYet(this.BatchId); 
-    
   }
-
+  //Get Program List Not Associated With The Selected Batch
   getProgramsNotMappedYet(id) {
     this.batchprogramService.getNotMappedProgramByBatch(id)
     .subscribe(data=>{
@@ -37,9 +38,8 @@ export class BatchProgramModelComponent implements OnInit {
       }
     });
   }
-   
+  //CheckBox Func...
   IscheckedPrograms(obj){
-    debugger
     if(obj.IsSelected == true) {
       this.ProgramIds = obj.ProgramId;
       this.selPrgmArr.push(this.ProgramIds);
@@ -55,14 +55,10 @@ export class BatchProgramModelComponent implements OnInit {
       this.selPrgmArr = array;
     }
     this.ProgramIds = this.selPrgmArr.toString();
-    // this.objPrgm = obj;
-    // this.selPrgmList.push(obj);
   }
-
+  //Save The Programs Which Are Selected Above 
   saveDetails() {
-    debugger
     this.objPrgm  = {};
-    this.BatchId = this.batchprogramService.getSelectedBatchId();
     this.objPrgm = {
       "SetAction":"INSERT",
       "ProgramIds":this.ProgramIds,
@@ -70,11 +66,11 @@ export class BatchProgramModelComponent implements OnInit {
     }
     this.batchprogramService.AssignOrRemoveProgram(this.objPrgm)
     .subscribe(data => {
-      this.batchprogramService.setresponseList(data.results);
+      this.emitService.next(data.results);
     })
     this.activeModal.close();
   }
-
+  //Modal Close Func...
   closeModal() {
     this.activeModal.close();
   }
