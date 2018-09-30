@@ -14,6 +14,7 @@ import { AcademicsDataModule } from '../pages/academics/data/academics-data.modu
 import { AccountDataModule } from '../pages/account/data/account-data.module';
 import { HumanResourceDataModule } from '../pages/human-resource/data/human-resource-data.module';
 import { ManageSettingsDataModule } from '../pages/manage-settings/data/manage-settings.module';
+import { AuthDataModule } from '../pages/auth/data/auth-data.module';
 
 const socialLinks = [
   {
@@ -49,6 +50,7 @@ export const NB_CORE_PROVIDERS = [
   ...AccountDataModule.forRoot().providers,
   ...HumanResourceDataModule.forRoot().providers,
   ...ManageSettingsDataModule.forRoot().providers,
+  ...AuthDataModule.forRoot().providers,
   ...NbAuthModule.forRoot({
 
     strategies: [
