@@ -11,6 +11,10 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
+      path: 'auth',
+      loadChildren: './auth/auth.module#AuthModule',
+    },
+    {
       path: 'settings',
       loadChildren: './settings/settings.module#SettingsModule',
     }, {

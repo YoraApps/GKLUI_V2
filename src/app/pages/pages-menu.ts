@@ -282,4 +282,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
       
     ],
   },
+  {
+    title: 'Auth',
+    icon: 'nb-bar-chart',
+    children: [
+      {
+        title: 'role',
+        link: '/pages/auth/role',
+      },
+    ],
+  },
 ];
