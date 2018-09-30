@@ -20,17 +20,22 @@ export class ProgramBranchAssociationComponent implements OnInit {
   programList=[];
   progarmBranchMappedList = [];
   batchProgramMappedList = [];
+  selBrcArr = [];
+  objBrc={};
   isdatathere: boolean;
   batchId: number = 0;
   ProgramId:number = 0;
-  BranchIds:string;
-  selBrcArr = [];
-  objBrc={};
+  BranchIds:string;  
   //public data : any
   ngOnInit() {
     this.batchService.getActiveBatches()
     .subscribe(data => {
       this.activeBatchList = data.results;
+    });
+    this.programService.getData()
+    .subscribe(data => { 
+      debugger     
+      this.programList = data.results;
     }); 
   //   this.data = [
   //   {'name':'Anil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
@@ -50,11 +55,6 @@ export class ProgramBranchAssociationComponent implements OnInit {
     .subscribe(data => {
       this.batchProgramMappedList = data.results;    
     })
-    this.programService.getData()
-    .subscribe(data => { 
-      debugger     
-      this.programList = data.results;
-    });
   }
   
   programselOnChange(Id) {
@@ -107,6 +107,4 @@ export class ProgramBranchAssociationComponent implements OnInit {
 
     activeModal.componentInstance.modalHeader = 'Large Modal';
   }
-  
-
 }

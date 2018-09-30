@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class ProgramBranchService {
 
   constructor(private http: HttpClient) { }
   baseUrl: string = 'http://localhost:53312/api/ProgramBranchAssociation';
   ProgramId:number = 0;
+  ProgramBranchObjectList=[];
     getMappedBranchByProgram(ProgramId) {
         return this.http.get<ProgramBranchObject>(this.baseUrl + '/GetProgramByBranch?ProgramId='+ProgramId);
     }
@@ -32,6 +33,16 @@ export class ProgramBranchService {
     getSelectedProgramId() {
         return this.ProgramId;
     }
+    setresponseList(dataList) {
+        this.ProgramBranchObjectList = dataList;
+        if(this.ProgramBranchObjectList.length > 0){
+            this.getUpdatedList();
+        }
+    }
+
+    getUpdatedList() {
+        return this.ProgramBranchObjectList
+    }
 
 }
 
@@ -48,3 +59,8 @@ export interface programbranch {
   export interface ProgramBranchObject {
     results: programbranch[];
   }
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
