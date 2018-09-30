@@ -6,12 +6,30 @@ export class CourseChapterService {
 
     constructor(private http: HttpClient) { }
     baseUrl: string = 'http://localhost:53312/api/CourseChapterAssociation';
-    ChapterId = 0;
+    CourseId:number = 0;
     getMappedChapterByCourse(CourseId) {
         return this.http.get<CourseChapterObject>(this.baseUrl + '/GetChapterByCourse?CourseId=' + CourseId);
     }
-    setSelectedChapterId(Id) {
-        this.ChapterId = Id;
+    getNotMappedChapterByCourse(CourseId) {
+        return this.http.get<CourseChapterObject>(this.baseUrl + '/GetProgramBatchNotMapped?CourseId='+ CourseId);
+    }
+    AssignOrRemoveCourse(data) {
+        debugger
+        this.http.post(this.baseUrl + "/UpdateCourseChapterAssociation", data)
+        .subscribe(
+        success => {
+            console.log('POST Request is successful ' + success);
+        },
+        error => {
+            console.log('Error' + error);
+        },
+        );
+    }   
+    setSelectedCourseId(Id) {
+        this.CourseId = Id;
+    }
+    getSelectedCourseId() {
+        return this.CourseId;
     }
 
 }
