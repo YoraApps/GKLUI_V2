@@ -44,6 +44,8 @@ import { BranchSemesterAssociationComponent } from './branch-semester-associatio
 import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
 import { CourseChapterService } from './data/course-chapter.service';
 import { CourseChapterModelComponent } from './course-chapter-association/course-chapter-model/course-chapter-model.component';
+import { SemesterCourseAssociationComponent } from './semester-course-association/semester-course-association.component';
+import { SemesterCourseModelComponent } from './semester-course-association/semester-course-model/semester-course-model.component';
 
 @NgModule({
   imports: [
@@ -71,6 +73,8 @@ import { CourseChapterModelComponent } from './course-chapter-association/course
     BranchSemesterAssociationComponent,
     CourseChapterAssociationComponent,
     CourseChapterModelComponent,
+    SemesterCourseAssociationComponent,
+    SemesterCourseModelComponent,
   ],
   providers: [
     DegreeTypeService,

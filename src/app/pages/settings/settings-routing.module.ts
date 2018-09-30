@@ -30,6 +30,7 @@ import { BatchProgramAssociationComponent } from './batch-program-association/ba
 import { AcademicSetupComponent } from './academic-setup/academic-setup.component';
 import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
 import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
+import { SemesterCourseAssociationComponent } from './semester-course-association/semester-course-association.component';
 
 const routes: Routes = [{
   path: '',
@@ -118,11 +119,16 @@ const routes: Routes = [{
     path: 'course-chapter-association',
     component: CourseChapterAssociationComponent,
   },
+  {
+    path: 'semester-course-association',
+    component: SemesterCourseAssociationComponent,
+  },
    {
     path: 'popupbranch',
     component: PopupbranchComponent,
   }],
 }];
+
 
 @NgModule({
   imports: [

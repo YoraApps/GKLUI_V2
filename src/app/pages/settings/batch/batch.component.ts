@@ -40,16 +40,17 @@ export class BatchComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data;
   SetAction: string;
-
+  AcademicYearId:number=0;
   constructor(private service: BatchService,private modalService: NgbModal) {
   }  
   onClick() {
     const activeModal = this.modalService.open(BatchModalComponent, { size: 'sm', container: 'nb-layout' });
 
-    activeModal.componentInstance.modalHeader = 'Large Modal';
+    //activeModal.componentInstance.modalHeader = 'Large Modal';
   }
 
    onDeleteConfirm(event): void {
+     debugger
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve(event.data);
       event.data.SetAction = 'DELETE';
@@ -61,8 +62,9 @@ export class BatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getData()
+    this.service.getAllBatch()
     .subscribe(data => {
+      debugger
       this.data = data.results;
       this.source.load(this.data);
     });
@@ -81,9 +83,15 @@ export class BatchComponent implements OnInit {
   }
 
   onCreateConfirm(event): void {
+    debugger
     event.confirm.resolve(event.newData);
     event.newData.SetAction = 'INSERT';
     this.service.updateData(event.newData);
+  }
+
+  getresBatchList() {
+   this.data = this.service.getresArray(); 
+   this.source.load(this.data);
   }
 
 }

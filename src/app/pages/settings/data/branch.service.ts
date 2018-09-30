@@ -14,7 +14,7 @@ export class BranchService {
 
   saveData(data) {
     debugger
-    this.http.post(this.baseUrl + "/api/Branch", data)
+    this.http.post(this.baseUrl + '/api/Branch/UpdateBranch', data)
       .subscribe(
       data1 => {
         console.log('POST Request is successful ' + data1);

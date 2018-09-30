@@ -36,12 +36,12 @@ td, th {
   </th>
  </thead> 
  <tbody>
-  <tr *ngFor="let semester of branchSemesterMappedList;let i = index;">
+  <tr *ngFor="let branch of branchSemesterMappedList;let i = index;">
     <td> {{i}} </td>
-    <td> {{semester.SemesterCode}} </td>
-    <td> {{semester.SemesterName}} </td>
-    <td><input type="checkbox" [(ngModel)]="semester.IsSelected" 
-        (change)="IscheckedPrograms(batch)"></td> 
+    <td> {{branch.SemesterCode}} </td>
+    <td> {{branch.SemesterName}} </td>
+    <td><input type="checkbox" [(ngModel)]="branch.IsSelected" 
+        (change)="IscheckedSemesters(branch)"></td> 
 </tr>
  </tbody>
 </table> 

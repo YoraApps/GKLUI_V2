@@ -35,6 +35,17 @@ export class CourseComponent implements OnInit {
         title: 'Course Name',
         type: 'string',
       },
+      Active: {
+        title: 'IsActive',
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'Active',
+            false: 'InActive',
+            resetText: 'clear',
+          },
+        },
+      },
     },
   };
 
@@ -104,7 +115,6 @@ export class CourseComponent implements OnInit {
   }
 
    onCreateConfirm(event): void {
-     debugger
      if(this.CourseTypeId > 0){
       event.confirm.resolve(event.newData);
       event.newData.CourseTypeId = this.CourseTypeId;

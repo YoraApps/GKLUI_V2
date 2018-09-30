@@ -33,18 +33,30 @@ export class BranchComponent implements OnInit {
         title: 'Branch Name',
         type: 'string',
       },
+      Active: {
+        title: 'IsActive',
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'Active',
+            false: 'InActive',
+            resetText: 'clear',
+          },
+        },
+      },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
   data;
   SetAction: string;
+  BranchId:number=0;
   constructor(private service: BranchService) {   
    }
 
    onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.data.SetAction = "REMOVE";   
+      event.data.SetAction = "DELETE";   
       this.service.saveData(event.data);  
     } else {
       event.confirm.reject();
@@ -75,6 +87,7 @@ export class BranchComponent implements OnInit {
     onCreateConfirm(event): void {
       debugger
       event.confirm.resolve(event.newData);
+      event.newData.BranchId=this.BranchId;
       event.newData.SetAction = "INSERT";
     this.service.saveData(event.newData);
   }
