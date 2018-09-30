@@ -37,7 +37,7 @@ td, th {
  </thead> 
  <tbody>
   <tr *ngFor="let branch of branchSemesterMappedList;let i = index;">
-    <td> {{i}} </td>
+    <td> {{i+1}} </td>
     <td> {{branch.SemesterCode}} </td>
     <td> {{branch.SemesterName}} </td>
     <td><input type="checkbox" [(ngModel)]="branch.IsSelected" 
