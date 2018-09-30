@@ -6,12 +6,19 @@ export class BatchService {
 
   constructor(private http: HttpClient) { }
   baseUrl: string = 'http://localhost:53312';
+  AcademicYearId:number=0;
+  resBatchList = [];
 
     getData() {
         return this.http.get<BatchObject>(this.baseUrl + '/api/Batch/GetAcademicYear');
     }
 
+    getAllBatch() {
+        return this.http.get<BatchObject>(this.baseUrl + '/api/Batch/GetBatch');
+    }
+
     updateData(data) {
+        debugger
         this.http.post(this.baseUrl + "/api/Batch/UpdateBatch", data)
             .subscribe(
             data1 => {
@@ -22,8 +29,23 @@ export class BatchService {
             },
             );
     }
+
     getActiveBatches() {
         return this.http.get<BatchObject>(this.baseUrl + '/api/Batch/GetActiveBatch');
+    }
+
+    saveBatchCreated(dataObj) {
+        debugger
+        return this.http.post<BatchObject>(this.baseUrl + '/api/Batch/UpdateBatch', dataObj);
+    }
+
+    setresArray(arr) {
+        this.resBatchList = arr;
+        this.getresArray()
+    }
+
+    getresArray() {
+       return this.resBatchList;
     }
 }
 
@@ -31,7 +53,7 @@ export interface batch {
   SetAction?: any;
   BatchId: number;
   AcademicYearId: number;
-  AcademicYear: string;
+  AcademicYear: string; 
 }
 
 export interface BatchObject {

@@ -38,6 +38,17 @@ export class DegreeTypeComponent {
         title: 'DegreeType Name',
         type: 'string',
       },
+      Active: {
+        title: 'IsActive',
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'Active',
+            false: 'InActive',
+            resetText: 'clear',
+          },
+        },
+      },
     },
   };
   source: LocalDataSource = new LocalDataSource();

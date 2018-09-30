@@ -37,6 +37,17 @@ export class SemesterComponent implements OnInit {
         title: 'Semester Name',
         type: 'string',
       },
+      Active: {
+        title: 'IsActive',
+        filter: {
+          type: 'checkbox',
+          config: {
+            true: 'Active',
+            false: 'InActive',
+            resetText: 'clear',
+          },
+        },
+      },
     },
   };
 
