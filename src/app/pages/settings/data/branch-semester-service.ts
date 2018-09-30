@@ -5,13 +5,38 @@ import { HttpClient } from '@angular/common/http';
 export class BranchSemesterService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:53312/api/BranchSemesterAssociation';
-  SemesterId=0;
+  baseUrl: string = 'http://localhost:53312/api/BranchSemesterAssociation';  
+  BranchId : number = 0;
+  BranchSemesterObjectList = [];
+  
     getMappedSemesterByBranch(BranchId) {
         return this.http.get<BranchSemesterObject>(this.baseUrl + '/GetSemesterByBranch?BranchId='+BranchId);
     }
-    setSelectedSemesterId(Id){
-      this.SemesterId=Id;
+    getNotMappedSemesterByBranch(BranchId) {
+        return this.http.get<BranchSemesterObject>(this.baseUrl + '/GetBranchSemesterNotMapped?BranchId='+ BranchId);
+    }
+   
+    AssignOrRemoveSemester(data) {
+        debugger
+        return this.http.post<BranchSemesterObject>(this.baseUrl + "/UpdateBranchSemesterAssociation", data);
+        
+    }
+    setSelectedBranchId(Id){
+        this.BranchId=Id;
+      }
+      getSelectedBranchId() {
+        return this.BranchId;
+    }
+
+    setresponseList(dataList) {
+        this.BranchSemesterObjectList = dataList;
+        if(this.BranchSemesterObjectList.length > 0){
+            this.getUpdatedList();
+        }
+    }
+
+    getUpdatedList() {
+        return this.BranchSemesterObjectList
     }
 
 }
@@ -24,7 +49,7 @@ export class BranchSemesterService {
       ProgramIds?: any;
       SemesterCode: string;
       SemesterName: string;
-      Active: boolean;
+      Active: boolean; 
   }
 
   export interface BranchSemesterObject {
