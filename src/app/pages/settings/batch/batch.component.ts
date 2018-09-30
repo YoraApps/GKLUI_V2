@@ -89,7 +89,7 @@ export class BatchComponent implements OnInit {
     this.service.updateData(event.newData);
   }
 
-  getresBatchList() {
+  getresBatchList()  {
    this.data = this.service.getresArray(); 
    this.source.load(this.data);
   }

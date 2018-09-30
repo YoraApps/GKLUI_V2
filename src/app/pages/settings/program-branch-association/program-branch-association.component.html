@@ -51,7 +51,7 @@
     background-color: white;
   }
   </style>
-<div *ngIf="isdatathere">
+<div>
     <div class="row">
         <div class="col-md-8">
 
@@ -65,9 +65,12 @@
         </div>
     </div>
     <br />
-    <div class="row" style="margin-left: 1px;margin-right: -1px;">
+    <div class="row" style="margin-left: 1px;margin-right: -1px;" *ngIf="isdatathere">
         <table>
             <thead class="col-md-12" style="background-color: #FF9800;">
+                <th> 
+                    SL
+                </th>
                 <th>
                     BranchCode
                 </th>
@@ -79,7 +82,8 @@
                 </th>
             </thead>
             <tbody>
-                <tr *ngFor="let branch of progarmBranchMappedList">
+                <tr *ngFor="let branch of progarmBranchMappedList;let i = index">
+                        <td>{{i+1}}</td>
                     <td> {{branch.BranchCode}}</td>
                     <td> {{branch.BranchName}}</td>
                     <td><input type="checkbox" [(ngModel)]="branch.IsSelected" (change)="IscheckedBranches(branch)"></td>
