@@ -17,6 +17,7 @@ export class BatchProgramModelComponent implements OnInit {
   selPrgmList = [];
   ProgramIds: string = '';
   selPrgmArr = [];
+  batchProgramMappedList = [];
 
   constructor(private activeModal: NgbActiveModal,
               private batchprogramService:BatchProgramService) { }
@@ -28,7 +29,6 @@ export class BatchProgramModelComponent implements OnInit {
     
   }
 
-  
   getProgramsNotMappedYet(id) {
     this.batchprogramService.getNotMappedProgramByBatch(id)
     .subscribe(data=>{
@@ -68,7 +68,10 @@ export class BatchProgramModelComponent implements OnInit {
       "ProgramIds":this.ProgramIds,
       "BatchId":this.BatchId
     }
-    this.batchprogramService.AssignOrRemoveProgram(this.objPrgm);
+    this.batchprogramService.AssignOrRemoveProgram(this.objPrgm)
+    .subscribe(data => {
+      this.batchprogramService.setresponseList(data.results);
+    })
     this.activeModal.close();
   }
 
