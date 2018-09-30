@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class SemesterCourseService {
 
   constructor(private http: HttpClient) { }
-
+  SemesterId:number=0;
   baseUrl: string = 'http://localhost:53312/api/SemesterCourseAssociation';
   ProgramId:number = 0;
     getMappedSemesterByCourse(SemesterId) {
@@ -16,6 +16,27 @@ export class SemesterCourseService {
     getNotMappedSemesterByCourse(SemesterId) {
       return this.http.get<CourseSemesterObject>(this.baseUrl + '/GetSemesterCourseNotMapped?SemesterId='+ SemesterId);
     }
+
+    AssignOrRemoveCourse(data) {
+      debugger
+      this.http.post(this.baseUrl + "/UpdateSemesterCourseAssociation", data)
+      .subscribe(
+      success => {
+          console.log('POST Request is successful ' + success);
+      },
+      error => {
+          console.log('Error' + error);
+      },
+      );
+  }    
+
+    setSelectedSemesterId(id) {
+      this.SemesterId = id;
+  }
+
+  getSelectedSemesterId() {
+      return this.SemesterId;
+  }
 
 }
 
