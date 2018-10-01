@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseChapterService } from '../../data/course-chapter.service';
 
@@ -9,56 +9,58 @@ import { CourseChapterService } from '../../data/course-chapter.service';
   styleUrls: ['./course-chapter-model.component.scss']
 })
 export class CourseChapterModelComponent implements OnInit {
-  CourseId: number = 0;
-  courseChapterMappedList = [];
+  CourseNotMappedList = [];
   CourseIds: string;
-  selCouArr = []; 
+  selCouArr = [];
   objCou = {};
 
-  constructor(private activeModal: NgbActiveModal,private courseChapterService:CourseChapterService) { }
+  @Input() CourseId;
+  @Output() emitService: EventEmitter<any[]> = new EventEmitter();
+
+  constructor(private activeModal: NgbActiveModal, private courseChapterService: CourseChapterService) { }
 
   ngOnInit() {
-    this.CourseId = this.courseChapterService.getSelectedCourseId();
-   console.log(this.CourseId);
-   this.getCourseNotMappedYet(this.CourseId);
+    this.getCourseNotMappedYet(this.CourseId);
   }
   getCourseNotMappedYet(id) {
     debugger
     this.courseChapterService.getNotMappedChapterByCourse(id)
-    .subscribe(data=>{
-      if(data.results.length > 0){
-        this.courseChapterMappedList = data.results; 
-      }
-    });
+      .subscribe(data => {
+        if (data.results.length > 0) {
+          this.CourseNotMappedList = data.results;
+        }
+      });
   }
-  IscheckedCourses(obj){
+  IscheckedCourses(obj) {
     debugger
-    if(obj.IsSelected == true) {
+    if (obj.IsSelected == true) {
       this.CourseIds = obj.CourseId;
       this.selCouArr.push(this.CourseIds);
     }
     else if (obj.IsSelected == false) {
       var array = this.selCouArr;
-      this.selCouArr.forEach(function (value,key) {
+      this.selCouArr.forEach(function (value, key) {
         console.log(value);
-        if(value == obj.CourseId){
+        if (value == obj.CourseId) {
           array.splice(key, 1);
         }
-      }); 
+      });
       this.selCouArr = array;
     }
-    this.CourseIds = this.selCouArr.toString();   
+    this.CourseIds = this.selCouArr.toString();
   }
   saveDetails() {
     debugger
-    this.objCou  = {};
-    this.CourseId = this.courseChapterService.getSelectedCourseId();
+    this.objCou = {};
     this.objCou = {
-      "SetAction":"INSERT",
-      "CourseIds":this.CourseIds,
-      "CourseId":this.CourseId
+      "SetAction": "INSERT",
+      "CourseIds": this.CourseIds,
+      "CourseId": this.CourseId
     }
-    this.courseChapterService.AssignOrRemoveCourse(this.objCou);
+    this.courseChapterService.AssignOrRemoveCourse(this.objCou)
+      .subscribe(data => {
+        this.emitService.next(data.results);
+      })
     this.activeModal.close();
   }
   closeModal() {

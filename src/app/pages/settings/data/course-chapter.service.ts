@@ -15,15 +15,7 @@ export class CourseChapterService {
     }
     AssignOrRemoveCourse(data) {
         debugger
-        this.http.post(this.baseUrl + "/UpdateCourseChapterAssociation", data)
-        .subscribe(
-        success => {
-            console.log('POST Request is successful ' + success);
-        },
-        error => {
-            console.log('Error' + error);
-        },
-        );
+        return this.http.post<CourseChapterObject>(this.baseUrl + "/UpdateCourseChapterAssociation", data)
     }   
     setSelectedCourseId(Id) {
         this.CourseId = Id;
@@ -35,14 +27,13 @@ export class CourseChapterService {
 }
 
 export interface coursechapter {
-    CourseChapterAssociationId: number;
     CourseId: number;
     ChapterId: number;
     SetAction?: any;
-    ChapterIds?: any;
+    CourseCode: string;
     ChapterCode: string;
     ChapterName: string;
-    Active: boolean;
+    CourseName: string;
 }
 
 export interface CourseChapterObject {
