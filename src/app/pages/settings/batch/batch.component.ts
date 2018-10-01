@@ -45,10 +45,12 @@ export class BatchComponent implements OnInit {
   }  
   onClick() {
     const activeModal = this.modalService.open(BatchModalComponent, { size: 'sm', container: 'nb-layout' });
-
-    //activeModal.componentInstance.modalHeader = 'Large Modal';
+    activeModal.componentInstance.emitService.subscribe((emmitedValue) => {      
+      this.data = emmitedValue;
+      this.source.load(this.data);
+    });
+    activeModal.componentInstance.modalHeader = 'Large Modal';
   }
-
    onDeleteConfirm(event): void {
      debugger
     if (window.confirm('Are you sure you want to delete?')) {
@@ -93,9 +95,9 @@ export class BatchComponent implements OnInit {
     this.service.updateData(event.newData);
   }
 
-  getresBatchList()  {
-   this.data = this.service.getresArray(); 
-   this.source.load(this.data);
-  }
+  // getresBatchList()  {
+  //  this.data = this.service.getresArray(); 
+  //  this.source.load(this.data);
+  // }
 
 }

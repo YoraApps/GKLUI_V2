@@ -52,6 +52,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   }
   //CheckBox Func Goes Here....
   IscheckedPrograms(obj){
+    this.ProgramIds = '';
     if(obj.IsSelected == true) {
       this.ProgramIds = obj.ProgramId;
       this.selPrgmArr.push(this.ProgramIds);
@@ -80,6 +81,8 @@ export class BatchProgramAssociationComponent implements OnInit {
     .subscribe(data => {
       debugger
       this.batchProgramMappedList = data.results; 
+      this.ProgramIds = '';
+      this.selPrgmArr = [];
     })
   }
   //Modal Events Goes Here...

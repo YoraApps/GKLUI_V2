@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProgramBranchService } from '../../data/program-branch.service';
 
@@ -9,22 +9,20 @@ import { ProgramBranchService } from '../../data/program-branch.service';
 })
 export class ProgramBranchModelComponent implements OnInit {
  
-  ProgramId: number = 0;
+  //ProgramId: number = 0;
   BranchNotMappedList = []; 
   IsSelected = false;
   objBrc = {};  
   BranchIds: string = '';
   selBrcArr = [];
-
+  @Input() ProgramId;
   @Output() emitService : EventEmitter<any[]> = new EventEmitter();
 
 
   constructor(private activeModal: NgbActiveModal,
               private programbranchService:ProgramBranchService) { }
              
-  ngOnInit() {
-   this.ProgramId = this.programbranchService.getSelectedProgramId();
-   console.log(this.ProgramId);
+  ngOnInit() {   
    this.getBranchNotMappedYet(this.ProgramId); 
     
   }
@@ -59,8 +57,7 @@ export class ProgramBranchModelComponent implements OnInit {
 
   saveDetails() {   
     debugger
-    this.objBrc  = {};
-    this.ProgramId = this.programbranchService.getSelectedProgramId();
+    this.objBrc  = {};   
     this.objBrc = {
       "SetAction":"INSERT",
       "BranchIds":this.BranchIds,

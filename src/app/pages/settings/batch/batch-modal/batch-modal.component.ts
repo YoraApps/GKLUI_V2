@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output ,Input} from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BatchService } from '../../data/batch.service';
 @Component({
@@ -14,15 +14,14 @@ export class BatchModalComponent implements OnInit {
   batch = { };
   reponseArray = [];
 
-  constructor(private activeModal: NgbActiveModal,private service: BatchService)  { }
+  @Output() emitService : EventEmitter<any[]> = new EventEmitter();
 
-  @Output()
-  public childEvent = new EventEmitter<any>();
-  
+  constructor(private activeModal: NgbActiveModal,private service: BatchService)  { }
 
   ngOnInit() {
     this.service.getData()
     .subscribe(data => {
+      debugger
       this.data = data.results;
       this.batchList = this.data;
     });
@@ -37,8 +36,8 @@ export class BatchModalComponent implements OnInit {
     debugger
     this.batch = { "AcademicYearId" : this.AcademicYearId,"SetAction":"INSERT"};
     this.service.saveBatchCreated(this.batch)
-    .subscribe(data=> { 
-      this.childEvent.next("parentCall");
+    .subscribe(data => {
+      this.emitService.next(data.results);
     })
   }
 
