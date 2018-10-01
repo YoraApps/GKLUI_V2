@@ -24,25 +24,6 @@ export class BatchProgramService {
         return this.http.post<BatchProgramObject>(this.baseUrl + "/UpdateProgramBatchAssociation", data);
     }
     
-    setSelectedBatchId(id) {
-        this.BatchId = id;
-    }
-
-    getSelectedBatchId() {
-        return this.BatchId;
-    }
-
-    setresponseList(dataList) {
-        this.BatchProgramObjectList = dataList;
-        if(this.BatchProgramObjectList.length > 0){
-            this.getUpdatedList();
-        }
-    }
-
-    getUpdatedList() {
-        return this.BatchProgramObjectList
-    }
-
 }
 
 export interface batchprogram {

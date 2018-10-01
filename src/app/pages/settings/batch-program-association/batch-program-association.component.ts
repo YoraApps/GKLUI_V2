@@ -41,6 +41,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   }
   //Get Associated Program List In Grid For Above Selected Batch..
   getProgramListOnGrid() {
+    debugger
     this.batchprogramService.getMappedProgramByBatch(this.batchId)
     .subscribe(data => {
       this.batchProgramMappedList = data.results;
