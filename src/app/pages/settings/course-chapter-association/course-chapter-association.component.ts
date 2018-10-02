@@ -7,6 +7,10 @@ import { BranchSemesterService } from '../data/branch-semester-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseChapterModelComponent } from './course-chapter-model/course-chapter-model.component';
 import { SemesterCourseService } from '../data/semester-course.service';
+import { ProgramService } from '../data/program.service';
+import { CourseService } from '../data/course.service';
+import { SemesterService } from '../data/semester.service';
+import { BranchService } from '../data/branch.service';
 
 @Component({
   selector: 'ngx-course-chapter-association',
@@ -17,6 +21,10 @@ export class CourseChapterAssociationComponent implements OnInit {
 
   constructor(private courseChapterService: CourseChapterService,
     private batchService: BatchService,
+    private programService: ProgramService,
+    private branchService: BranchService,
+    private courseservice: CourseService,
+    private semesterService: SemesterService,
     private batchprogramService: BatchProgramService,
     private programBranchService: ProgramBranchService,
     private branchSemesterService: BranchSemesterService,
@@ -37,6 +45,10 @@ export class CourseChapterAssociationComponent implements OnInit {
   branchSemesterMappedList = [];
   semestercourseMappedList = [];
   courseChapterMappedList = [];
+  programList =[];
+  branchList =[];
+  semesterList = [];
+  courseList = [];
   selCouArr = [];
   objCou = {};
   public data: any
@@ -49,6 +61,7 @@ export class CourseChapterAssociationComponent implements OnInit {
   }
 
   batchselOnChange(id) {
+    debugger
     this.batchId = id;
     this.batchprogramService.getMappedProgramByBatch(this.batchId)
     .subscribe(data => {
@@ -57,14 +70,12 @@ export class CourseChapterAssociationComponent implements OnInit {
     })
   }
   programselOnChange(Id) {
+    debugger
     this.ProgramId=Id;
     this.programBranchService.getMappedBranchByProgram(this.ProgramId)
       .subscribe(data => {
         this.programbranchMappedList = data.results;
-      })
-    if(this.ProgramId > 0){
-    this.programBranchService.setSelectedProgramId(this.ProgramId);
-    }
+      })   
   }
   
   branchselOnChange(Id) {
@@ -72,43 +83,39 @@ export class CourseChapterAssociationComponent implements OnInit {
     this.branchSemesterService.getMappedSemesterByBranch(this.BranchId)
       .subscribe(data => {
         this.branchSemesterMappedList = data.results;
-      })
-      if(this.BranchId > 0){
-        // this.branchSemesterService.setSelectedBranchId(this.BranchId);
-      }
+      })  
   }
 
-  // semesterselOnChange(Id) {
-  //   this.SemesterId=Id;
-  //   this.semesterCourseService.getMappedSemesterByCourse(this.SemesterId)
-  //   .subscribe(data => {
-  //     this.semestercourseMappedList = data.results;
-  //   })
-  //   if(this.SemesterId > 0){
-  //     this.semesterCourseService.setSelectedSemesterId(this.SemesterId);
-  //   }
-  // }
+  semesterselOnChange(Id) {
+    debugger
+    this.SemesterId=Id;
+    this.semesterCourseService.getMappedSemesterByCourse(this.SemesterId)
+    .subscribe(data => {
+      this.semestercourseMappedList = data.results;
+    })
+ 
+  }
 
   courseselOnChange(Id) {
     this.CourseId=Id;
-    this.courseChapterService.getMappedChapterByCourse(this.CourseId)
-    .subscribe(data => {
-      this.courseChapterMappedList = data.results;
-    })
-    if(this.CourseId > 0){
-      this.courseChapterService.setSelectedCourseId(this.CourseId);
-    }
+    
   }
 
   
   getCourseGrid() {
     debugger
-    if (this.courseChapterMappedList.length > 0 && this.SemesterId >  0) {
+    if (this.CourseId >  0) {
+      this.courseChapterService.getMappedChapterByCourse(this.CourseId)
+      .subscribe(data => {
+        this.courseChapterMappedList = data.results;
+      })
+      if(this.courseChapterMappedList.length>0){
       this.isdatathere = true;
+      }
     }
   }
 
-  IscheckedCourses(obj){
+  IscheckedChapters(obj){
     debugger
     if(obj.IsSelected == true) {
       this.CourseIds = obj.CourseId;
@@ -133,12 +140,25 @@ export class CourseChapterAssociationComponent implements OnInit {
       "CourseIds":this.CourseIds,
       "CourseId":this.CourseId
     }
-    this.courseChapterService.AssignOrRemoveCourse(this.objCou);
-    this.programselOnChange(this.CourseId);
+    this.courseChapterService.AssignOrRemoveCourse(this.objCou)
+    .subscribe(data=>{ 
+      this.courseChapterMappedList = data.results;
+    })
   }
   onClick() {
-    const activeModal = this.modalService.open(CourseChapterModelComponent, { size: 'lg', container: 'nb-layout' });
-    activeModal.componentInstance.modalHeader = 'Large Modal';
-  }
+    if(this.CourseId > 0){
+      const activeModal = this.modalService.open(CourseChapterModelComponent, { size: 'lg', container: 'nb-layout'});
 
+      activeModal.componentInstance.CourseId = this.CourseId;
+
+      activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+        console.log(emmitedValue);
+        this.courseChapterMappedList = emmitedValue;
+      });
+      activeModal.componentInstance.modalHeader = 'Large Modal';
+    }
+    else{
+      window.confirm('Please Select a Course')
+    }
+  }
 }
