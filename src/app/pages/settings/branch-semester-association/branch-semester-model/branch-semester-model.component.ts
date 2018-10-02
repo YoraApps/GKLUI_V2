@@ -7,7 +7,7 @@ import { BranchSemesterService } from '../../data/branch-semester-service';
   styleUrls: ['./branch-semester-model.component.scss']
 })
 export class BranchSemesterModelComponent implements OnInit {
-  //BranchId: number = 0;
+  
   branchSemesterMappedList = [];
   branchSemesterNotMappedmodalList = [];
   IsSelected = false;
@@ -15,15 +15,13 @@ export class BranchSemesterModelComponent implements OnInit {
   selSemList = [];
   SemesterIds: string = '';
   selSemArr = [];
-  
+
   @Input() BranchId;
   @Output() emitService : EventEmitter<any[]> = new EventEmitter();
 
   constructor(private activeModal: NgbActiveModal, private branchSemesterService:BranchSemesterService) { }
 
   ngOnInit() {
-  //  this.BranchId = this.branchSemesterService.getSelectedBranchId();
-  //  console.log(this.BranchId);
    this.getSemesterNotMappedYet(this.BranchId); 
   }
   getSemesterNotMappedYet(id) {
@@ -38,7 +36,7 @@ export class BranchSemesterModelComponent implements OnInit {
   IscheckedSemesters(obj){
     debugger
     if(obj.IsSelected == true) {
-      this.SemesterIds = obj.SemesterId
+      this.SemesterIds = obj.SemesterId;
       this.selSemArr.push(this.SemesterIds);
     }
     else if (obj.IsSelected == false) {

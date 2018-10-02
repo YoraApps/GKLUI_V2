@@ -72,6 +72,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   }
   //Remove Program From Associated Batch
   removeProgramFrmMapping() {
+    debugger
     if(this.ProgramIds!=null){
     this.objPrgm  = {};
     this.objPrgm = {
