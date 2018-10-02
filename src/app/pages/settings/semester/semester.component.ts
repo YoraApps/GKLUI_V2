@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from "ng2-smart-table";
 import { SemesterService } from "../data/semester.service";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SemesterModelComponent } from './semester-model/semester-model.component';
 
 @Component({
   selector: 'ngx-semester',
@@ -55,16 +53,9 @@ export class SemesterComponent implements OnInit {
   data;
   dataArray: any = [];
 
-  constructor(private service: SemesterService,private modalService: NgbModal) {
+  constructor(private service: SemesterService) {
 
    }
-
-   onClick() {
-    const activeModal = this.modalService.open(SemesterModelComponent, { size: 'lg', container: 'nb-layout' });
-
-    activeModal.componentInstance.modalHeader = 'Large Modal';
-  }
-
     onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve(event.data);

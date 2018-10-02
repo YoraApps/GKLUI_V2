@@ -25,7 +25,7 @@
             </label>
             <div style="width:250px;">
                 <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectProgramobj" (change)="programselOnChange(selectProgramobj)">
-                    <option [value]="Program.ProgramId" *ngFor="let Program of programList">{{Program.ProgramName}}</option>
+                    <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramName}}</option>
                 </select>
             </div>
         </div>

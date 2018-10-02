@@ -1,11 +1,6 @@
 <nb-card>
   <nb-card-header>
-    <h2>Semester</h2>
-    <div class="form-group row">
-      <div class="offset-sm-3 col-sm-9">
-        <button type="submit" (click)="onClick()"  class="btn btn-success float-right" style="right: 0px;margin-top: -3%;">ADD NEW SEMESTER</button>
-      </div>
-  </div>
+    <h2>Semester</h2>   
   </nb-card-header>
   <nb-card-body>
     <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
