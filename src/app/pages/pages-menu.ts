@@ -28,6 +28,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/admission/examresultupload',
       },
       {
+        title: 'Admission Criteria',
+        link: '/pages/admission/admission-criteria',
+      }, 
+      {
         title: 'Applicant Course Fee',
         link: '/pages/admission/applicant-course-fee-status',
       },

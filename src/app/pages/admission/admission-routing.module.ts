@@ -11,6 +11,7 @@ import { ReviewandApproveComponent} from './reviewand-approve/reviewand-approve.
 import { ScheduleExaminationComponent } from './scheduleexamination/scheduleexamination.component';
 import { IdCardComponent } from './id-card/id-card.component';
 import { ExamResultUploadComponent } from './exam-result-upload/exam-result-upload.component';
+import { AdmissionCriteriaComponent } from './admission-criteria/admission-criteria.component';
 
 
 const routes: Routes = [{
@@ -25,6 +26,9 @@ const routes: Routes = [{
   }, {
     path: 'counselling',
     component: CounsellingComponent,
+  }, {
+    path: 'admission-criteria',
+    component: AdmissionCriteriaComponent,
   }, {
     path: 'reviewand-approve',
     component: ReviewandApproveComponent,
@@ -69,4 +73,5 @@ export const routedComponents = [
   AdmissionFeeStatusComponent,
   ScheduleExaminationComponent,
   ExamResultUploadComponent,
+  AdmissionCriteriaComponent
 ];

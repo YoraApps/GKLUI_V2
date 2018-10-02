@@ -23,6 +23,7 @@ import { ProgramStudyService } from "../settings/data/program-study.service";
 import { ScheduleExaminationComponent } from './scheduleexamination/scheduleexamination.component';
 import { IdCardComponent } from './id-card/id-card.component';
 import { ExamResultUploadComponent } from './exam-result-upload/exam-result-upload.component';
+import { AdmissionCriteriaComponent } from './admission-criteria/admission-criteria.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ExamResultUploadComponent } from './exam-result-upload/exam-result-uplo
     ScheduleExaminationComponent,
     IdCardComponent,
     ExamResultUploadComponent,
+    AdmissionCriteriaComponent,
   ],
   entryComponents: [
     ApplicantDetailModelComponent

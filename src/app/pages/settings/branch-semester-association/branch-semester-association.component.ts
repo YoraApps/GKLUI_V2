@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramService } from '../data/program.service';
 import { BatchProgramService } from '../data/batch-program.service';
 import { BatchService } from '../data/batch.service';
 import { BranchSemesterService } from '../data/branch-semester-service';
 import { ProgramBranchService } from '../data/program-branch.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BranchSemesterModelComponent } from './branch-semester-model/branch-semester-model.component';
-import { BranchService } from '../data/branch.service';
 
 @Component({
   selector: 'ngx-branch-semester-association',
@@ -15,9 +13,7 @@ import { BranchService } from '../data/branch.service';
 })
 export class BranchSemesterAssociationComponent implements OnInit {
 
-  constructor(private branchSemesterService: BranchSemesterService,
-     private branchService: BranchService,
-     private programService: ProgramService,
+  constructor(private branchSemesterService: BranchSemesterService,  
      private batchprogramService: BatchProgramService,
      private modalService: NgbModal,
      private batchService: BatchService, 
@@ -32,11 +28,12 @@ export class BranchSemesterAssociationComponent implements OnInit {
   branchId: number = 0;
   programId: number = 0;
   SemesterId: number = 0;
-  IsSelected = false;
   objSem = {};
-  SemesterIds: string = '';
+  SemesterIds: string ;
   selSemArr = [];
-  public data: any
+  selectobj ={};
+  selectobjProgram ={};
+  selectobjBranch = {};    
 
   ngOnInit() {
     this.onLoadBatchList();      
@@ -82,8 +79,9 @@ export class BranchSemesterAssociationComponent implements OnInit {
 
   IscheckedSemesters(obj){
     debugger
+    this.SemesterIds = '';    
     if(obj.IsSelected == true) {
-      this.SemesterIds = obj.SemesterId
+      this.SemesterIds = obj.SemesterId;
       this.selSemArr.push(this.SemesterIds);
     }
     else if (obj.IsSelected == false) {
@@ -100,6 +98,7 @@ export class BranchSemesterAssociationComponent implements OnInit {
   }
   removeSemesterfrmMapping() {
     debugger
+    if(this.SemesterIds!=null){
     this.objSem  = {};
     this.objSem = {
       "SetAction":"DELETE",
@@ -109,8 +108,14 @@ export class BranchSemesterAssociationComponent implements OnInit {
     this.branchSemesterService.AssignOrRemoveSemester(this.objSem)
     .subscribe(data => {
       this.branchSemesterMappedList = data.results; 
+      this.SemesterIds = '';
+      this.selSemArr=[];
     })
   }
+  else{
+    window.confirm('Please Select a semester')
+  }
+}
   onClick() {
     if(this.branchId > 0){
     const activeModal = this.modalService.open(BranchSemesterModelComponent, { size: 'lg', container: 'nb-layout' });
