@@ -7,10 +7,6 @@ import { BranchSemesterService } from '../data/branch-semester-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseChapterModelComponent } from './course-chapter-model/course-chapter-model.component';
 import { SemesterCourseService } from '../data/semester-course.service';
-import { ProgramService } from '../data/program.service';
-import { CourseService } from '../data/course.service';
-import { SemesterService } from '../data/semester.service';
-import { BranchService } from '../data/branch.service';
 
 @Component({
   selector: 'ngx-course-chapter-association',
@@ -21,10 +17,6 @@ export class CourseChapterAssociationComponent implements OnInit {
 
   constructor(private courseChapterService: CourseChapterService,
     private batchService: BatchService,
-    private programService: ProgramService,
-    private branchService: BranchService,
-    private courseservice: CourseService,
-    private semesterService: SemesterService,
     private batchprogramService: BatchProgramService,
     private programBranchService: ProgramBranchService,
     private branchSemesterService: BranchSemesterService,
@@ -39,22 +31,26 @@ export class CourseChapterAssociationComponent implements OnInit {
   BranchId: number = 0;
   SemesterId: number = 0;
   CourseId: number = 0;
-  CourseIds: string;
+  ChapterIds: string;
   batchProgramMappedList = [];
-  programbranchMappedList = [];
+  progarmBranchMappedList = [];
   branchSemesterMappedList = [];
   semestercourseMappedList = [];
   courseChapterMappedList = [];
-  programList =[];
-  branchList =[];
+  programList = [];
+  branchList = [];
   semesterList = [];
   courseList = [];
   selCouArr = [];
   objCou = {};
-  public data: any
+  selectobj = {};
+  selectProgramobj = {};
+  selectobjBranch = {};
+  selectSemesterobj = {};
+  selectcourseobj = {};
 
   ngOnInit() {
-      this.batchService.getActiveBatches()
+    this.batchService.getActiveBatches()
       .subscribe(data => {
         this.activeBatchList = data.results;
       });
@@ -64,91 +60,93 @@ export class CourseChapterAssociationComponent implements OnInit {
     debugger
     this.batchId = id;
     this.batchprogramService.getMappedProgramByBatch(this.batchId)
-    .subscribe(data => {
-      this.batchProgramMappedList = data.results;
-    
-    })
+      .subscribe(data => {
+        this.batchProgramMappedList = data.results;
+
+      })
   }
   programselOnChange(Id) {
     debugger
-    this.ProgramId=Id;
+    this.ProgramId = Id;
     this.programBranchService.getMappedBranchByProgram(this.ProgramId)
       .subscribe(data => {
-        this.programbranchMappedList = data.results;
-      })   
+        this.progarmBranchMappedList = data.results;
+      })
   }
-  
+
   branchselOnChange(Id) {
-    this.BranchId=Id;
+    this.BranchId = Id;
     this.branchSemesterService.getMappedSemesterByBranch(this.BranchId)
       .subscribe(data => {
         this.branchSemesterMappedList = data.results;
-      })  
+      })
   }
 
   semesterselOnChange(Id) {
     debugger
-    this.SemesterId=Id;
+    this.SemesterId = Id;
     this.semesterCourseService.getMappedSemesterByCourse(this.SemesterId)
-    .subscribe(data => {
-      this.semestercourseMappedList = data.results;
-    })
- 
+      .subscribe(data => {
+        this.semestercourseMappedList = data.results;
+      })
   }
-
   courseselOnChange(Id) {
-    this.CourseId=Id;
-    
+    this.CourseId = Id;
   }
 
-  
-  getCourseGrid() {
-    debugger
-    if (this.CourseId >  0) {
-      this.courseChapterService.getMappedChapterByCourse(this.CourseId)
+  getChaptereGrid() {
+    this.courseChapterService.getMappedChapterByCourse(this.CourseId)
       .subscribe(data => {
         this.courseChapterMappedList = data.results;
       })
-      if(this.courseChapterMappedList.length>0){
+    if (this.courseChapterMappedList.length > 0) {
       this.isdatathere = true;
-      }
     }
+
   }
 
-  IscheckedChapters(obj){
+  IscheckedChapters(obj) {
     debugger
-    if(obj.IsSelected == true) {
-      this.CourseIds = obj.CourseId;
-      this.selCouArr.push(this.CourseIds);
+    this.ChapterIds = '';
+    if (obj.IsSelected == true) {
+      this.ChapterIds = obj.ChapterId;
+      this.selCouArr.push(this.ChapterIds);
     }
     else if (obj.IsSelected == false) {
       var array = this.selCouArr;
-      this.selCouArr.forEach(function (value,key) {
+      this.selCouArr.forEach(function (value, key) {
         console.log(value);
-        if(value == obj.CourseId){
+        if (value == obj.ChapterId) {
           array.splice(key, 1);
         }
-      }); 
+      });
       this.selCouArr = array;
     }
-    this.CourseIds = this.selCouArr.toString();   
+    this.ChapterIds = this.selCouArr.toString();
   }
   removeCoursefrmMapping() {
-    this.objCou  = {};
+    if(this.ChapterIds!=null){
+    this.objCou = {};
     this.objCou = {
-      "SetAction":"DELETE",
-      "CourseIds":this.CourseIds,
-      "CourseId":this.CourseId
+      "SetAction": "DELETE",
+      "CourseId": this.CourseId,
+      "ChapterIds": this.ChapterIds
     }
     this.courseChapterService.AssignOrRemoveCourse(this.objCou)
-    .subscribe(data=>{ 
-      this.courseChapterMappedList = data.results;
-    })
+      .subscribe(data => {
+        this.courseChapterMappedList = data.results;
+        this.ChapterIds = '';
+        this.selCouArr = [];
+      })
   }
+  else{
+    window.confirm('Please Select a Chapter')
+  }
+}
   onClick() {
-    if(this.CourseId > 0){
-      const activeModal = this.modalService.open(CourseChapterModelComponent, { size: 'lg', container: 'nb-layout'});
-
+    debugger
+    if (this.CourseId > 0) {
+      const activeModal = this.modalService.open(CourseChapterModelComponent, { size: 'lg', container: 'nb-layout' });
       activeModal.componentInstance.CourseId = this.CourseId;
 
       activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
@@ -157,7 +155,7 @@ export class CourseChapterAssociationComponent implements OnInit {
       });
       activeModal.componentInstance.modalHeader = 'Large Modal';
     }
-    else{
+    else {
       window.confirm('Please Select a Course')
     }
   }

@@ -40,7 +40,12 @@ export class SemesterCourseAssociationComponent implements OnInit {
   CourseIds: string;
   selBrcArr = [];
   objBrc = {};
-
+  selectobj = {};
+  selectProgramobj = {};
+  selectBranchobj = {};
+  selectSemesterobj = {};
+  IsSelected = {};
+  
   ngOnInit() {
     this.batchService.getActiveBatches()
       .subscribe(data => {
@@ -87,6 +92,7 @@ export class SemesterCourseAssociationComponent implements OnInit {
 
   IscheckedSemesters(obj) {
     debugger
+    this.CourseIds = '';
     if (obj.IsSelected == true) {
       this.CourseIds = obj.CourseId;
       this.selBrcArr.push(this.CourseIds);
@@ -105,6 +111,7 @@ export class SemesterCourseAssociationComponent implements OnInit {
   }
 
   removeSemesterfrmMapping() {
+    if(this.CourseIds!=null){
     this.objBrc = {};
     this.objBrc = {
       "SetAction": "DELETE",
@@ -114,9 +121,14 @@ export class SemesterCourseAssociationComponent implements OnInit {
     this.semesterCourseService.AssignOrRemoveCourse(this.objBrc)
     .subscribe(data => {
       this.semestercourseMappedList = data.results; 
+      this.CourseIds = '';
+      this.selBrcArr = []; 
     })
   }
-
+  else{
+    window.confirm('Please Select a Course')
+  }
+  }
 
 
   onClick() {

@@ -10,16 +10,19 @@ import { CourseChapterService } from '../../data/course-chapter.service';
 })
 export class CourseChapterModelComponent implements OnInit {
   CourseNotMappedList = [];
-  CourseIds: string;
+  ChapterIds: string = '';
   selCouArr = [];
   objCou = {};
+  course = {};
 
   @Input() CourseId;
   @Output() emitService: EventEmitter<any[]> = new EventEmitter();
 
-  constructor(private activeModal: NgbActiveModal, private courseChapterService: CourseChapterService) { }
+  constructor(private activeModal: NgbActiveModal, 
+    private courseChapterService: CourseChapterService) { }
 
   ngOnInit() {
+    debugger
     this.getCourseNotMappedYet(this.CourseId);
   }
   getCourseNotMappedYet(id) {
@@ -31,31 +34,31 @@ export class CourseChapterModelComponent implements OnInit {
         }
       });
   }
-  IscheckedCourses(obj) {
+  IscheckedCourse(obj) {
     debugger
     if (obj.IsSelected == true) {
-      this.CourseIds = obj.CourseId;
-      this.selCouArr.push(this.CourseIds);
+      this.ChapterIds = obj.ChapterId;
+      this.selCouArr.push(this.ChapterIds);
     }
     else if (obj.IsSelected == false) {
       var array = this.selCouArr;
       this.selCouArr.forEach(function (value, key) {
         console.log(value);
-        if (value == obj.CourseId) {
+        if (value == obj.ChapterId) {
           array.splice(key, 1);
         }
       });
       this.selCouArr = array;
     }
-    this.CourseIds = this.selCouArr.toString();
+    this.ChapterIds = this.selCouArr.toString();
   }
   saveDetails() {
     debugger
     this.objCou = {};
     this.objCou = {
       "SetAction": "INSERT",
-      "CourseIds": this.CourseIds,
-      "CourseId": this.CourseId
+      "CourseId": this.CourseId,
+      "ChapterIds": this.ChapterIds
     }
     this.courseChapterService.AssignOrRemoveCourse(this.objCou)
       .subscribe(data => {

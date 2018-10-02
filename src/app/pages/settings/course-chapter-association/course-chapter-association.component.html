@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading" style="background: #40dc83;">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <h4 class="w3-allerta"><b>Course- Chapter Mapping Screen</b></h4>
       </div>
     </div>
@@ -25,7 +25,7 @@
           </label>
           <div style="width:250px;">
             <select class="form-control" aria-placeholder="Select Program" [(ngModel)]="selectProgramobj" (change)="programselOnChange(selectProgramobj)">
-              <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramName}}</option>
+              <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramCode}}</option>
             </select>
           </div>
         </div>
@@ -35,7 +35,7 @@
           </label>
           <div style="width:250px;left: 60px;">
             <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectobjBranch" (change)="branchselOnChange(selectobjBranch)">
-              <option [value]="branch.BranchId" *ngFor="let branch of branchSemesterMappedList">{{branch.BranchName}}</option>
+              <option [value]="branch.BranchId" *ngFor="let branch of progarmBranchMappedList">{{branch.BranchCode}}</option>
             </select>
           </div>
         </div>
@@ -45,7 +45,7 @@
           </label>
           <div style="width:250px;">
             <select class="form-control" aria-placeholder="Select Semester" [(ngModel)]="selectSemesterobj" (change)="semesterselOnChange(selectSemesterobj)">
-              <option [value]="semester.SemesterId" *ngFor="let semester of semestercourseMappedList">{{semester.SemesterName}}</option>
+              <option [value]="semester.SemesterId" *ngFor="let semester of branchSemesterMappedList">{{semester.SemesterCode}}</option>
             </select>
           </div>
         </div>
@@ -59,7 +59,7 @@
             </select>
           </div>
         </div>
-        <div class="col-lg-1" style="margin-left: 1%;">
+        <div class="col-lg-1" style="margin-top: 2%;">
           <button class="btn btn-outline-success btn-icon" (click)="getChaptereGrid()">
             <span style="font-size: 1.7rem;font-weight: italic;">Go </span><i _ngcontent-c19="" style="font-size: 1.8rem;font-weight: bold;"
               class="nb-arrow-right"></i>
@@ -113,7 +113,7 @@
                     <td> {{chapter.ChapterCode}}</td>
                     <td> {{chapter.ChapterName}}</td>
                  
-                    <td><input type="checkbox" [(ngModel)]="chapter.IsSelected" (change)="IscheckedCourses(chapter)"></td>
+                    <td><input type="checkbox" [(ngModel)]="chapter.IsSelected" (change)="IscheckedChapters(chapter)"></td>
                   </tr>
                 </tbody>
               </table>

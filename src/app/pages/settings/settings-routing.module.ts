@@ -114,14 +114,14 @@ const routes: Routes = [{
   {
     path: 'branch-semester-association',
     component: BranchSemesterAssociationComponent,
+  },  
+  {
+    path: 'semester-course-association',
+    component: SemesterCourseAssociationComponent,
   },
   {
     path: 'course-chapter-association',
     component: CourseChapterAssociationComponent,
-  },
-  {
-    path: 'semester-course-association',
-    component: SemesterCourseAssociationComponent,
   },
    {
     path: 'popupbranch',

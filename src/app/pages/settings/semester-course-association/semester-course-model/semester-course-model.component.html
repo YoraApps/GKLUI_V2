@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-    Assign Semester To The Selected Group
+     Select Semester To Assign
     <button class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -21,18 +21,19 @@ td, th {
 }
 </style>
   <table>
-    <thead class="col-md-12" style="background-color: #3f5163;">
+    <thead class="col-md-12" style="background-color: #3f5163; color: white;">
       <th> SL </th>
       <th> CourseCode </th>
       <th> CourseName </th>
-      <th> <input type="checkbox">Select All </th>
+      <th> Action </th>
     </thead>
     <tbody>
       <tr *ngFor="let semester of SemesterNotMappedList;let i = index;">
         <td> {{i+1}} </td>
         <td> {{semester.CourseCode}} </td>
         <td> {{semester.CourseName}} </td>
-        <td><input type="checkbox" [(ngModel)]="semester.IsSelected" (change)="IscheckedCourses(semester)"></td>
+        <td><input type="checkbox" [(ngModel)]="semester.IsSelected" 
+          (change)="IscheckedCourses(semester)"></td>
       </tr>
     </tbody>
   </table>
@@ -43,8 +44,7 @@ td, th {
     </div>
     <div class="form-group row">
       <div class="offset-sm-3 col-sm-9">
-        <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">ADD
-          DETAILS</button>
+        <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">SAVE</button>
       </div>
     </div>
   </nb-card-footer>
