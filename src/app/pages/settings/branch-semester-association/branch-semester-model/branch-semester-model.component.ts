@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BranchSemesterService } from '../../data/branch-semester-service';
 @Component({
@@ -7,7 +7,7 @@ import { BranchSemesterService } from '../../data/branch-semester-service';
   styleUrls: ['./branch-semester-model.component.scss']
 })
 export class BranchSemesterModelComponent implements OnInit {
-  BranchId: number = 0;
+  //BranchId: number = 0;
   branchSemesterMappedList = [];
   branchSemesterNotMappedmodalList = [];
   IsSelected = false;
@@ -16,11 +16,14 @@ export class BranchSemesterModelComponent implements OnInit {
   SemesterIds: string = '';
   selSemArr = [];
   
+  @Input() BranchId;
+  @Output() emitService : EventEmitter<any[]> = new EventEmitter();
+
   constructor(private activeModal: NgbActiveModal, private branchSemesterService:BranchSemesterService) { }
 
   ngOnInit() {
-   this.BranchId = this.branchSemesterService.getSelectedBranchId();
-   console.log(this.BranchId);
+  //  this.BranchId = this.branchSemesterService.getSelectedBranchId();
+  //  console.log(this.BranchId);
    this.getSemesterNotMappedYet(this.BranchId); 
   }
   getSemesterNotMappedYet(id) {
@@ -53,7 +56,6 @@ export class BranchSemesterModelComponent implements OnInit {
   saveDetails() {
     debugger
     this.objSem  = {};
-    this.BranchId = this.branchSemesterService.getSelectedBranchId();
     this.objSem = {
       "SetAction":"INSERT",
       "SemesterIds":this.SemesterIds,
@@ -61,7 +63,7 @@ export class BranchSemesterModelComponent implements OnInit {
     }
     this.branchSemesterService.AssignOrRemoveSemester(this.objSem)
     .subscribe(data => {
-      this.branchSemesterService.setresponseList(data.results);
+      this.emitService.next(data.results);
     })
     this.activeModal.close();
   }

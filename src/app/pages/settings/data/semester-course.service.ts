@@ -1,50 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SemesterCourseService {
 
   constructor(private http: HttpClient) { }
-  SemesterId:number=0;
+
   baseUrl: string = 'http://localhost:53312/api/SemesterCourseAssociation';
-  ProgramId:number = 0;
-    getMappedSemesterByCourse(SemesterId) {
-        return this.http.get<CourseSemesterObject>(this.baseUrl + '/GetCourseBySemester?SemesterId='+SemesterId);
-    }
-    getNotMappedSemesterByCourse(SemesterId) {
-      return this.http.get<CourseSemesterObject>(this.baseUrl + '/GetSemesterCourseNotMapped?SemesterId='+ SemesterId);
-    }
+  SemesterId: number = 0;
+  CourseSemesterObjectList = [];
+  getMappedSemesterByCourse(SemesterId) {
+    return this.http.get<CourseSemesterObject>(this.baseUrl + '/GetCourseBySemester?SemesterId=' + SemesterId);
+  }
+  getNotMappedSemesterByCourse(SemesterId) {
+    return this.http.get<CourseSemesterObject>(this.baseUrl + '/GetSemesterCourseNotMapped?SemesterId=' + SemesterId);
+  }
 
-    AssignOrRemoveCourse(data) {
-      debugger
-      this.http.post(this.baseUrl + "/UpdateSemesterCourseAssociation", data)
-      .subscribe(
-      success => {
-          console.log('POST Request is successful ' + success);
-      },
-      error => {
-          console.log('Error' + error);
-      },
-      );
-  }    
+  AssignOrRemoveCourse(data) {
+    return this.http.post<CourseSemesterObject>(this.baseUrl + "/UpdateSemesterCourseAssociation", data);
+  }
 
-    setSelectedSemesterId(id) {
-      this.SemesterId = id;
+  setSelectedSemesterId(id) {
+    this.SemesterId = id;
   }
 
   getSelectedSemesterId() {
-      return this.SemesterId;
+    return this.SemesterId;
+  }
+
+  setresponseList(dataList) {
+    this.CourseSemesterObjectList = dataList;
+    if (this.CourseSemesterObjectList.length > 0) {
+      this.getUpdatedList();
+    }
+  }
+
+  getUpdatedList() {
+    return this.CourseSemesterObjectList
   }
 
 }
-
 export interface coursesemester {
-  SetAction?: any;   
-  SemesterId:number;
-  SemesterCode:string;
-  SemesterName:string;   
+  SetAction?: any;
+  SemesterId: number;
+  SemesterCode: string;
+  SemesterName: string;
   CourseId: number;
   CourseCode: string;
   CourseName: string;
@@ -53,3 +56,9 @@ export interface coursesemester {
 export interface CourseSemesterObject {
   results: coursesemester[];
 }
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};

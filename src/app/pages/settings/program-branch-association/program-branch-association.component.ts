@@ -30,10 +30,15 @@ export class ProgramBranchAssociationComponent implements OnInit {
   BranchIds:string;  
   //public data : any
   ngOnInit() {
-    this.batchService.getActiveBatches()
-    .subscribe(data => {
-      this.activeBatchList = data.results;
-    });   
+    this.onLoadBatchList();
+  }
+    onLoadBatchList() {
+      this.batchService.getActiveBatches()
+      .subscribe(data => {
+        this.activeBatchList = data.results;
+      }); 
+    }
+
   //   this.data = [
   //   {'name':'Anil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
   //   {'name':'Sunil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
@@ -44,32 +49,28 @@ export class ProgramBranchAssociationComponent implements OnInit {
   //   {'name':'erer', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },
   //   {'name':'jhjh', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' }
   //  ]
-   } 
+   
 
-  batchselOnChange(id) {    
+  batchselOnChange(id) {      
     this.batchId = id;  
     this.batchprogramService.getMappedProgramByBatch(this.batchId)
     .subscribe(data => {
       this.batchProgramMappedList = data.results;    
-    })
-    this.programService.getData()
-    .subscribe(data => { 
-      debugger     
-      this.programList = data.results;
-    }); 
+    })   
   }
   
   programselOnChange(Id) {
+    debugger
     this.ProgramId=Id;
     // this.programBranchService.getMappedBranchByProgram(this.ProgramId)
     // .subscribe(data => {
     //   this.progarmBranchMappedList = data.results;
     // })
-    if(this.ProgramId > 0){
-    this.programBranchService.setSelectedProgramId(this.ProgramId);
-    }
+    // if(this.ProgramId > 0){
+    // this.programBranchService.setSelectedProgramId(this.ProgramId);
+    // }
   }
-  getBranchGrid() {
+  getBranchGrid() {  
     debugger
     this.programBranchService.getMappedBranchByProgram(this.ProgramId)
     .subscribe(data => {
@@ -108,24 +109,26 @@ export class ProgramBranchAssociationComponent implements OnInit {
     }    
     this.programBranchService.AssignOrRemoveBranch(this.objBrc)    
     .subscribe(data => {
-      console.log(data.results);
+      this.progarmBranchMappedList = data.results; 
+      this.selBrcArr=[];
     })
-    var array = this.progarmBranchMappedList;
-    this.progarmBranchMappedList.forEach(function (value,key) {
-      console.log(value);
-      if(value.IsSelected == true){
-        array.splice(key, 1);
-      }
-    });
-    this.progarmBranchMappedList= array;
   }
-  getUpdatedList(dataList) {
-    this.progarmBranchMappedList = dataList;    
-  }
+  //   var array = this.progarmBranchMappedList;
+  //   this.progarmBranchMappedList.forEach(function (value,key) {
+  //     console.log(value);
+  //     if(value.IsSelected == true){
+  //       array.splice(key, 1);
+  //     }
+  //   });
+  //   this.progarmBranchMappedList= array;
+  // }
+  // getUpdatedList(dataList) {
+  //   this.progarmBranchMappedList = dataList;    
+  // }
   onClick() {
     if(this.ProgramId>0){
     const activeModal = this.modalService.open(ProgramBranchModelComponent, { size: 'lg', container: 'nb-layout' });
-
+    activeModal.componentInstance.ProgramId = this.ProgramId;
     activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
       this.progarmBranchMappedList = emmitedValue;
     });

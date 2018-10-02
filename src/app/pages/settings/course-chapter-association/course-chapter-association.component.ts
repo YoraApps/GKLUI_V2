@@ -83,7 +83,7 @@ export class CourseChapterAssociationComponent implements OnInit {
     this.branchSemesterService.getMappedSemesterByBranch(this.BranchId)
       .subscribe(data => {
         this.branchSemesterMappedList = data.results;
-      })    
+      })  
   }
 
   semesterselOnChange(Id) {

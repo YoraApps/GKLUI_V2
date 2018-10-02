@@ -31,6 +31,7 @@ export class BatchProgramModelComponent implements OnInit {
   }
   //Get Program List Not Associated With The Selected Batch
   getProgramsNotMappedYet(id) {
+    debugger
     this.batchprogramService.getNotMappedProgramByBatch(id)
     .subscribe(data=>{
       if(data.results.length > 0){
