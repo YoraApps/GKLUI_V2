@@ -39,10 +39,11 @@ export class BatchModalComponent implements OnInit {
     .subscribe(data => {
       this.emitService.next(data.results);
     })
+    this.activeModal.close();
   }
-
   closeModal() {
     this.activeModal.close();
   }
 
 }
+

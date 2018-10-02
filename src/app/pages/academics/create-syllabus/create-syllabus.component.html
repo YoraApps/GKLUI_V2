@@ -1,102 +1,215 @@
 <div class="panel panel-default">
   <div class="panel-heading" style="background: #40dc83;">
     <div class="row">
-      <div class="col-lg-12">
-        <h4 class="w3-allerta">
-          <b>Program - Branch Mapping Screen</b>
-        </h4>
+      <div class="col-lg-4">
+        <h4 class="w3-allerta"><b>SYLLABUS</b></h4>
       </div>
     </div>
   </div>
   <div class="panel-body" style="background-color:white">
-    <div class="row show-grid">
-      <div class="col-md-3">
-        <label for="userName">Batch
-          <span class="text-danger">*</span>
-        </label>
-        <div style="width:250px;left: 60px;">
-          <select class="form-control" aria-placeholder="Select Batch" [(ngModel)]="selectobj" (change)="batchselOnChange(selectobj)">
-            <option [value]="batch.BatchId" *ngFor="let batch of activeBatchList">{{batch.AcademicYear}}</option>
-          </select>
+    <div class="row">
+      <div class="row show-grid">
+        <div class="col-md-3" style="margin-left: 1%;">
+          <label for="userName">Batch
+            <span class="text-danger">*</span>
+          </label>
+          <div style="width:250px;left: 60px;">
+            <select class="form-control" aria-placeholder="Select Batch" [(ngModel)]="selectobj" (change)="batchselOnChange(selectobj)">
+              <option [value]="batch.BatchId" *ngFor="let batch of activeBatchList"></option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3" style="margin-left: 2%;">
-        <label for="userName">Program
-          <span class="text-danger">*</span>
-        </label>
-        <div style="width:250px;">
-          <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectProgramobj" (change)="programselOnChange(selectProgramobj)">
-            <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramName}}</option>
-          </select>
+        <div class="col-md-3" style="margin-left: 1%;">
+          <label for="userName">Program
+            <span class="text-danger">*</span>
+          </label>
+          <div style="width:250px;">
+            <select class="form-control" aria-placeholder="Select Program" [(ngModel)]="selectProgramobj" (change)="programselOnChange(selectProgramobj)">
+              <option [value]="Program.ProgramId" *ngFor="let Program of batchProgramMappedList">{{Program.ProgramName}}</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3" style="margin-left: 3%;margin-top: 25px;">
-        <div>
-          <button class="btn btn-outline-success btn-icon" (click)="getBranchGrid()">
-            <span style="font-size: 1.7rem;font-weight: italic;">Go </span>
-            <i _ngcontent-c19="" style="font-size: 2rem;font-weight: bold;" class="nb-arrow-right"></i>
+        <div class="col-md-3">
+          <label for="userName">Branch
+            <span class="text-danger">*</span>
+          </label>
+          <div style="width:250px;left: 60px;">
+            <select class="form-control" aria-placeholder="Select Branch" [(ngModel)]="selectBranchobj" (change)="branchselOnChange(selectBranchobj)">
+              <option [value]="branch.BranchId" *ngFor="let branch of progarmBranchMappedList"></option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3" style="margin-left: 1%;">
+          <label for="userName">Semester
+            <span class="text-danger">*</span>
+          </label>
+          <div style="width:250px;">
+            <select class="form-control" aria-placeholder="Select Semester" [(ngModel)]="selectSemesterobj" (change)="semesterselOnChange(selectSemesterobj)">
+              <option [value]="semester.SemesterId" *ngFor="let semester of branchSemesterMappedList"></option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="col-lg-1" style="margin-left: 1%;">
+          <button class="btn btn-outline-success btn-icon" (click)="getCourseGrid()">
+            <span style="font-size: 1.7rem;font-weight: italic;">Go </span><i _ngcontent-c19="" style="font-size: 1.8rem;font-weight: bold;"
+              class="nb-arrow-right"></i>
           </button>
         </div>
       </div>
-      
-    </div>
+      <div class="col-lg-9">
 
-    <br />
-    <br />
-    <div class="col-lg-12" style="margin-left: 720px;">
-      <div class="row">
-        <div>
-          <!-- <button class="btn btn-success float-right" (click)="onClick()">
-                ASSIGN
-            </button> -->
-          <button class="btn btn-success" (click)="onClick()">
-            ASSIGN
-          </button>
-        </div>
-        <div>
-          <!-- <button class="btn btn-success" (click)="removeBranchfrmMapping()" style="background-color: #dc91b4;" 
-            *ngIf="isdatathere" style='margin-right:16px'>REMOVE</button> -->
-          <button class="btn btn-success float-right" style="
-                        background-color: #dc91b4;" (click)="removeBranchfrmMapping()">
-            REMOVE
-          </button>
-        </div>
       </div>
     </div>
-    <br />
-    <div class="row" class="table-responsive">
-      <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed table-colored table-inverse">
-        <thead>
-          <th>
-            SL
-          </th>
-          <th>
-            BranchCode
-          </th>
-          <th>
-            BranchName
-          </th>
-          <th>
-            Action
-          </th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let branch of progarmBranchMappedList;let i = index">
-            <td>{{i+1}}</td>
-            <td> {{branch.BranchCode}}</td>
-            <td> {{branch.BranchName}}</td>
-            <td>
-              <input type="checkbox" [(ngModel)]="branch.IsSelected" (change)="IscheckedBranches(branch)">
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <br /><br />
+   
+    <div class="row">   
+      <div class="col-md-12">       
+            <div class="table-responsive">               
+              <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed table-colored table-inverse">                
+                <thead class="col-md-12">
+                  <tr class="col-md-12">
+                      <th colspan="5" style="height: 60px;;background-color:slategrey">                       
+                         <span style="text-align: center;margin-left: 434px;">SYLLABUS</span>
+                      </th>
+                  </tr>
+                  <tr class="col-md-12">
+                      <th class="col-md-0">                       
+                          S.No.
+                      </th>
+                      <th class="col-md-1">
+                          Course Title 
+                      </th>
+                      <th class="col-md-5">
+                          Course Code
+                      </th>
+                      <th class="col-md-2">
+                        Credits 
+                      </th> 
+                      <th class="col-md-2">
+                        Max Marks 
+                      </th> 
+                    </tr>               
+                </thead> 
+                <tbody class="col-md-12">
+                  <tr class="col-md-12">
+                    <td class="col-md-12" colspan="5" style="height: 70px;background-color:slategrey;">
+                        <span style="text-align: center;margin-left: 434px;">THEORY</span>
+                    </td>
+                    
+                    <!-- <td> {{i+1}} </td>
+                    <td> {{course.CourseCode}}</td>
+                    <td> {{course.CourseName}}</td>
+                 
+                    <td><input type="checkbox" [(ngModel)]="course.IsSelected" (change)="IscheckedSemesters(course)"></td> -->
+                  </tr>
+                  <tr>
+                      <td class="col-md-0">                       
+                          S.No.
+                      </td>
+                      <td class="col-md-3">
+                          Learning and Teaching  
+                      </td>
+                      <td class="col-md-3">
+                          BED 102
+                      </td>
+                      <td class="col-md-2">
+                          <input type="text">
+                          <input type="text">
+                      </td> 
+                      <td class="col-md-2">
+                         <input type="text">
+                         <input type="text">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="col-md-0">                       
+                          S.No.
+                      </td>
+                      <td class="col-md-3">
+                          Learning and Teaching  
+                      </td>
+                      <td class="col-md-3">
+                          BED 102
+                      </td>
+                      <td class="col-md-2">
+                          <input type="text">
+                          <input type="text">
+                      </td> 
+                      <td class="col-md-2">
+                          <input type="text">
+                          <input type="text">
+                      </td>
+                  </tr>
+                  <tr class="col-md-12" rowspan="2">
+                      <td class="col-md-12"  colspan="5" style="height: 70px;background-color: slategrey">
+                        <span style="text-align: center;margin-left: 434px;">PRACTICAL</span>
+                      </td>
+                    </tr>                   
+                    <tr>
+                        <td class="col-md-0">                       
+                            S.No.
+                        </td>
+                        <td class="col-md-3">
+                            Learning and Teaching  
+                        </td>
+                        <td class="col-md-3">
+                            BED 102
+                        </td>
+                        <td class="col-md-2">
+                            <input type="text">
+                          <input type="text">
+                        </td> 
+                        <td class="col-md-2">
+                            <input type="text">
+                            <input type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-0">                       
+                            S.No.
+                        </td>
+                        <td class="col-md-3">
+                            Learning and Teaching  
+                        </td>
+                        <td class="col-md-3">
+                            BED 102
+                        </td>
+                        <td class="col-md-2">
+                            <input type="text">
+                            <input type="text">
+                        </td> 
+                        <td class="col-md-2">
+                            <input type="text">
+                          <input type="text">
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>          
+      </div>      
     </div>
   </div>
   <div class="panel-footer" style="background: #40dc83;">
-
+      <div class="col-lg-12" style="margin-left: 720px;">
+          <div class="row">
+            <div>              
+              <button class="btn btn-success" (click)="onClick()">
+                Save
+              </button>
+            </div>
+            <div>            
+              <button class="btn btn-success float-right" style="
+                            background-color: #dc91b4;" (click)="removeBranchfrmMapping()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
   </div>
 </div>
+
+
 <style>
   .w3-allerta {
     font-family: "Allerta Stencil", Sans-serif;
@@ -584,57 +697,3 @@
     display: none;
   }
 </style>
-<!-- </div> 
-  <style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-  }
-  th {
-      border: 1px solid #ecf00d;
-      color:white;
-      text-align: left;
-      padding: 8px;
-  }
-  td {
-    border: 1px solid #ecf00d;
-    color:rgb(14, 13, 13);
-    text-align: left;
-    padding: 8px;
-    background-color: white;
-  }
-  </style>
-  <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
-    <thead>
-    <tr>
-        <th style="width: 20%">
-            <mfDefaultSorter by="name">UserName</mfDefaultSorter>
-        </th>
-        <th style="width: 50%">
-            <mfDefaultSorter by="email">UserEmail</mfDefaultSorter>
-        </th>
-        <th style="width: 10%">
-            <mfDefaultSorter by="age">Age</mfDefaultSorter>
-        </th>
-        <th style="width: 20%">
-            <mfDefaultSorter by="city">User City</mfDefaultSorter>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of mf.data">
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td class="text-right">{{user.age}}</td>
-        <td>{{user.city | uppercase}}</td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="4">
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-        </td>
-    </tr>
-    </tfoot>
-  </table> -->

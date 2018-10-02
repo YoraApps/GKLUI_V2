@@ -17,6 +17,7 @@ import { StudentDairyService } from '../academics/data/studentDairy.service';
 import { ExaminationComponent } from './examination/examination.component';
 import { ExaminationService } from './data/examination.service';
 import { AsssignExamToStudentComponent } from './asssign-exam-to-student/asssign-exam-to-student.component';
+import { CreateSyllabusComponent } from './create-syllabus/create-syllabus.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { AsssignExamToStudentComponent } from './asssign-exam-to-student/asssign
     StudentDairyComponent,
     ExaminationComponent,
     AsssignExamToStudentComponent,
+    CreateSyllabusComponent,
   ],
   providers: [
     SmartTableService,
