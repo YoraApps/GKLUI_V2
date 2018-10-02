@@ -43,6 +43,7 @@ import { ProgramBranchModelComponent } from './pages/settings/program-branch-ass
 import { FeeAssociationModelComponent } from './pages/settings/fee-association/fee-association-model/fee-association-model.component';
 import { BranchSemesterModelComponent } from './pages/settings/branch-semester-association/branch-semester-model/branch-semester-model.component';
 import { SemesterCourseModelComponent } from './pages/settings/semester-course-association/semester-course-model/semester-course-model.component';
+import { CourseChapterModelComponent } from './pages/settings/course-chapter-association/course-chapter-model/course-chapter-model.component';
 
 @NgModule({
   declarations: [AppComponent, 
@@ -71,6 +72,7 @@ import { SemesterCourseModelComponent } from './pages/settings/semester-course-a
     ProgramBranchModelComponent,
     BranchSemesterModelComponent,
     SemesterCourseModelComponent,
+    CourseChapterModelComponent,
     FeeAssociationModelComponent,
   ],
   imports: [
@@ -117,6 +119,7 @@ import { SemesterCourseModelComponent } from './pages/settings/semester-course-a
     ProgramBranchModelComponent,
     BranchSemesterModelComponent,
     SemesterCourseModelComponent,
+    CourseChapterModelComponent,
     FeeAssociationModelComponent,
   ],
 })

@@ -13,6 +13,7 @@ export class SemesterCourseModelComponent implements OnInit {
   @Output() emitService : EventEmitter<any[]> = new EventEmitter();
   SemesterNotMappedList = [];
   IsSelected = false;
+  semester = {};
   objBrc = {};  
   CourseIds: string = '';
   selBrcArr = [];

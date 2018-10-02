@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header>
-      Assign Course To The Selected Group
+      Select  Course To Assign
       <button class="close" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,27 +21,19 @@ td, th {
 }
 </style>
 <table>
- <thead class="col-md-12" style="background-color: #3f5163;">
-    <th>
-        SL
-      </th>
-   <th>
-    ChapterCode
-   </th>
-   <th>
-    ChapterName
-   </th>
-   <th>
-      <input type="checkbox">Select All
-  </th>
+ <thead class="col-md-12" style="background-color: #3f5163;color: white;">
+    <th> SL </th>
+   <th> ChapterCode </th>
+   <th> ChapterName </th>
+   <th> Action </th>
  </thead> 
  <tbody>
    <tr *ngFor="let course of CourseNotMappedList;let i = index;">
-      <td> {{i+2}} </td>
-      <td>{{chapter.ChapterCode}}</td>
-      <td>{{chapter.ChapterName}}</td>        
-      <td><input type="checkbox" [(ngModel)]="chapter.IsSelected" 
-        (change)="IscheckedChapters(chapter)"></td> 
+      <td> {{i+1}} </td>
+      <td>{{course.ChapterCode}}</td>
+      <td>{{course.ChapterName}}</td>        
+      <td><input type="checkbox" [(ngModel)]="course.IsSelected" 
+        (change)="IscheckedCourse(course)"></td> 
     </tr>     
  </tbody>
 </table>
@@ -52,7 +44,7 @@ td, th {
         </div>
         <div class="form-group row">
           <div class="offset-sm-3 col-sm-9">
-            <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">ADD DETAILS</button>
+            <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">SAVE</button>
           </div>
         </div>
     </nb-card-footer>
