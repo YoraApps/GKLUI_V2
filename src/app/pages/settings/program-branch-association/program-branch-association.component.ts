@@ -77,7 +77,7 @@ export class ProgramBranchAssociationComponent implements OnInit {
       this.progarmBranchMappedList = data.results;    
     })
     if(this.progarmBranchMappedList.length > 0){
-      this.isdatathere = true;
+      //this.isdatathere = true;
     }
   }
   IscheckedBranches(obj){

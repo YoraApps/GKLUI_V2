@@ -47,7 +47,7 @@ export class BatchComponent implements OnInit {
     const activeModal = this.modalService.open(BatchModalComponent, { size: 'sm', container: 'nb-layout' });
     activeModal.componentInstance.emitService.subscribe((emmitedValue) => {      
       this.data = emmitedValue;
-      this.source.load(this.data);
+      this.academicYearOnload();
     });
     activeModal.componentInstance.modalHeader = 'Large Modal';
   }

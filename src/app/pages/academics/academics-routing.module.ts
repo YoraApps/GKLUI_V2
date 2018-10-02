@@ -10,6 +10,7 @@ import { TeacherNotesComponent } from "./teacher-notes/teacher-notes.component";
 import { StudentDairyComponent } from './student-dairy/student-dairy.component';
 import { ExaminationComponent } from './examination/examination.component';
 import { AsssignExamToStudentComponent } from './asssign-exam-to-student/asssign-exam-to-student.component';
+import { CreateSyllabusComponent } from './create-syllabus/create-syllabus.component';
 
 const routes: Routes = [{
   path: '',
@@ -41,6 +42,10 @@ const routes: Routes = [{
     path: 'AsssignExamToStudent',
     component: AsssignExamToStudentComponent,
   },
+  {
+    path: 'createSyllabus',
+    component: CreateSyllabusComponent,
+  },
 ],
 }];
 
@@ -63,4 +68,5 @@ export const routedComponents = [
   CampaignManagementComponent,
   ApproveDeputationComponent,
   TeacherNotesComponent,
+  CreateSyllabusComponent
 ];

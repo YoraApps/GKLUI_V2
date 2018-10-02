@@ -81,6 +81,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Asssign Exam',
         link: '/pages/academics/AsssignExamToStudent',
       },
+      {
+        title: 'Create Syllabus',
+        link: '/pages/academics/createSyllabus',
+      },
     ],
   },
   {
