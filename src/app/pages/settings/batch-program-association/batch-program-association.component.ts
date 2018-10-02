@@ -72,6 +72,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   }
   //Remove Program From Associated Batch
   removeProgramFrmMapping() {
+    if(this.ProgramIds!=null){
     this.objPrgm  = {};
     this.objPrgm = {
       "SetAction":"DELETE",
@@ -85,6 +86,10 @@ export class BatchProgramAssociationComponent implements OnInit {
       this.ProgramIds = '';
       this.selPrgmArr = [];
     })
+  }
+  else{
+    window.confirm('Please Select a program')
+  }
   }
   //Modal Events Goes Here...
   onClick() {

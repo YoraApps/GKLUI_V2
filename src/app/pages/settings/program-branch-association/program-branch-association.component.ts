@@ -100,6 +100,7 @@ export class ProgramBranchAssociationComponent implements OnInit {
   }
 
   removeBranchfrmMapping() {
+    if(this.BranchIds!=null){
     debugger
     this.objBrc  = {};
     this.objBrc = {
@@ -112,6 +113,10 @@ export class ProgramBranchAssociationComponent implements OnInit {
       this.progarmBranchMappedList = data.results; 
       this.selBrcArr=[];
     })
+  }
+    else{
+      window.confirm('Please Select a Batch')
+   }
   }
   //   var array = this.progarmBranchMappedList;
   //   this.progarmBranchMappedList.forEach(function (value,key) {
