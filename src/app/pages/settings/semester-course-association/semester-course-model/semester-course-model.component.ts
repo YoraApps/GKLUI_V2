@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter,Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SemesterCourseService } from '../../data/semester-course.service';
 
@@ -9,23 +9,23 @@ import { SemesterCourseService } from '../../data/semester-course.service';
 })
 export class SemesterCourseModelComponent implements OnInit {
 
-  SemesterId:number = 0;
-  CourseId : number = 0;
+  @Input() semesterId;
+  @Output() emitService : EventEmitter<any[]> = new EventEmitter();
   SemesterNotMappedList = [];
   IsSelected = false;
   objBrc = {};  
-  SemesterIds: string = '';
+  CourseIds: string = '';
   selBrcArr = [];
 
-  constructor(private activeModal: NgbActiveModal,private semesterCourseService:SemesterCourseService,) { }
+  constructor(private activeModal: NgbActiveModal,
+    private semesterCourseService:SemesterCourseService,) { }
 
   ngOnInit() {
-    this.SemesterId = this.semesterCourseService.getSelectedSemesterId();
-    console.log(this.SemesterId);
-    this.getSemesterNotMappedYet(this.SemesterId);
+    debugger
+    this.getCourseNotMappedYet(this.semesterId);
   }
 
-  getSemesterNotMappedYet(id) {
+  getCourseNotMappedYet(id) {
     this.semesterCourseService.getNotMappedSemesterByCourse(id)
     .subscribe(data=>{
       if(data.results.length > 0){
@@ -35,32 +35,35 @@ export class SemesterCourseModelComponent implements OnInit {
   }
 
   IscheckedCourses(obj){
+    debugger
     if(obj.IsSelected == true) {
-      this.SemesterIds = obj.SemesterId;
-      this.selBrcArr.push(this.SemesterIds);
+      this.CourseIds = obj.CourseId;
+      this.selBrcArr.push(this.CourseIds);
     }
     else if (obj.IsSelected == false) {
       var array = this.selBrcArr;
       this.selBrcArr.forEach(function (value,key) {
         console.log(value);
-        if(value == obj.SemesterId){
+        if(value == obj.CourseId){
           array.splice(key, 1);
         }
       }); 
       this.selBrcArr = array;
     }
-    this.SemesterIds = this.selBrcArr.toString();
+    this.CourseIds = this.selBrcArr.toString();
   }
 
   saveDetails() {   
     this.objBrc  = {};
-    this.SemesterId = this.semesterCourseService.getSelectedSemesterId();
     this.objBrc = {
       "SetAction":"INSERT",
-      "SemesterIds":this.SemesterIds,
-      "CourseId":this.CourseId
+      "SemesterId":this.semesterId,
+      "CourseIds":this.CourseIds
     }
-    this.semesterCourseService.AssignOrRemoveCourse(this.objBrc);
+    this.semesterCourseService.AssignOrRemoveCourse(this.objBrc)
+    .subscribe(data => {
+      this.emitService.next(data.results);
+    })
     this.activeModal.close();
   }
 

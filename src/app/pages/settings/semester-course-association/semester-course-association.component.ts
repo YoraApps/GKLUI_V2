@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BatchService } from '../data/batch.service';
-import { ProgramService } from '../data/program.service';
 import { SemesterCourseService } from '../data/semester-course.service';
 import { BatchProgramService } from '../data/batch-program.service';
 import { SemesterCourseModelComponent } from './semester-course-model/semester-course-model.component';
-import { CourseService } from '../data/course.service';
-import { SemesterService } from '../data/semester.service';
 import { ProgramBranchService } from '../data/program-branch.service';
 import { BranchSemesterService } from '../data/branch-semester-service';
 
@@ -19,9 +16,6 @@ export class SemesterCourseAssociationComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
     private batchService: BatchService,
-    private programService: ProgramService,
-    private courseservice: CourseService,
-    private service: SemesterService,
     private programBranchService: ProgramBranchService,
     private batchprogramService: BatchProgramService,
     private branchSemesterService: BranchSemesterService,
@@ -40,15 +34,14 @@ export class SemesterCourseAssociationComponent implements OnInit {
   batchId: number = 0;
   ProgramId: number = 0;
   CourseId: number = 0;
-  SemesterId: number = 0;
+  semesterId: number = 0;
   semestercourseMappedList = [];
   BranchId: number = 0;
-  SemesterIds: string;
+  CourseIds: string;
   selBrcArr = [];
   objBrc = {};
 
   ngOnInit() {
-    debugger
     this.batchService.getActiveBatches()
       .subscribe(data => {
         this.activeBatchList = data.results;
@@ -79,56 +72,69 @@ export class SemesterCourseAssociationComponent implements OnInit {
       })
   }
   semesterselOnChange(id) {
-    this.SemesterId = id;
+    this.semesterId = id;
   }
 
   getCourseGrid() {
-    debugger
-    if (this.SemesterId > 0) {
-      this.semesterCourseService.getMappedSemesterByCourse(this.SemesterId)
+      this.semesterCourseService.getMappedSemesterByCourse(this.semesterId)
       .subscribe(data => {
         this.semestercourseMappedList = data.results;
       })
-      this.isdatathere = true;
-    }
+      if(this.semestercourseMappedList.length > 0){
+        this.isdatathere = true;
+      }    
   }
 
   IscheckedSemesters(obj) {
     debugger
     if (obj.IsSelected == true) {
-      this.SemesterId = obj.BranchId;
-      this.selBrcArr.push(this.SemesterId);
+      this.CourseIds = obj.CourseId;
+      this.selBrcArr.push(this.CourseIds);
     }
     else if (obj.IsSelected == false) {
       var array = this.selBrcArr;
       this.selBrcArr.forEach(function (value, key) {
         console.log(value);
-        if (value == obj.BranchId) {
+        if (value == obj.CourseId) {
           array.splice(key, 1);
         }
       });
       this.selBrcArr = array;
     }
-    this.SemesterIds = this.selBrcArr.toString();
+    this.CourseIds = this.selBrcArr.toString();
   }
 
   removeSemesterfrmMapping() {
     this.objBrc = {};
     this.objBrc = {
       "SetAction": "DELETE",
-      "SemesterIds": this.SemesterIds,
-      "CourseId": this.CourseId
+      "SemesterId": this.semesterId,
+      "CourseIds": this.CourseIds
     }
-    this.semesterCourseService.AssignOrRemoveCourse(this.objBrc);
-    this.semesterselOnChange(this.SemesterId);
+    this.semesterCourseService.AssignOrRemoveCourse(this.objBrc)
+    .subscribe(data => {
+      this.semestercourseMappedList = data.results; 
+    })
   }
 
 
 
   onClick() {
+    debugger
+    if(this.semesterId > 0){
     const activeModal = this.modalService.open(SemesterCourseModelComponent, { size: 'lg', container: 'nb-layout' });
+    activeModal.componentInstance.semesterId = this.semesterId;
+
+    activeModal.componentInstance.emitService.subscribe((emmitedValue) => {
+      console.log(emmitedValue);
+      this.semestercourseMappedList = emmitedValue;
+    });
 
     activeModal.componentInstance.modalHeader = 'Large Modal';
   }
+  else{
+    window.confirm('Please Select a Semester')
+  }
 
+}
 }

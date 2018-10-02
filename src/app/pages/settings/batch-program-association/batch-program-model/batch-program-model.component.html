@@ -3,12 +3,12 @@
         Assign Batch To The Selected Group
         <button class="close" aria-label="Close" (click)="closeModal()">
             <span aria-hidden="true">&times;</span>
-          </button>
-      </nb-card-header>
+        </button>
+    </nb-card-header>
 
-      <br/>
-<style>
-table {
+    <br />
+    <style>
+        table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -20,33 +20,32 @@ td, th {
     padding: 8px;
 }
 </style>
- <table>
-   <thead class="col-md-12" style="background-color: #3f5163;">
-    <th> SL </th>
-    <th> ProgramCode </th>
-    <th> ProgramName </th>
-    <th> Action </th>
-   </thead> 
-   <tbody>
-    <tr *ngFor="let batch of batchProgramNotMappedList;let i = index;">
-      <td> {{i+1}} </td>
-      <td> {{batch.ProgramCode}} </td>
-      <td> {{batch.ProgramName}} </td>
-      <td><input type="checkbox" [(ngModel)]="batch.IsSelected" 
-          (change)="IscheckedPrograms(batch)"></td> 
-  </tr>
-   </tbody>
-</table> 
+    <table>
+        <thead class="col-md-12" style="background-color: #3f5163;">
+            <th> SL </th>
+            <th> ProgramCode </th>
+            <th> ProgramName </th>
+            <th> Action </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let batch of batchProgramNotMappedList;let i = index;">
+                <td> {{i+1}} </td>
+                <td> {{batch.ProgramCode}} </td>
+                <td> {{batch.ProgramName}} </td>
+                <td><input type="checkbox" [(ngModel)]="batch.IsSelected" (change)="IscheckedPrograms(batch)"></td>
+            </tr>
+        </tbody>
+    </table>
 
-<nb-card-footer>  
-    <div>
-      <button (click)="closeModal()" style="right: 0px;" class="btn btn-danger btn-rectangle btn-demo float-right">CLOSE</button>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-3 col-sm-9">
-        <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">ADD DETAILS</button>
-      </div>
-    </div>
-</nb-card-footer>
+    <nb-card-footer>
+        <div>
+            <button (click)="closeModal()" style="right: 0px;" class="btn btn-danger btn-rectangle btn-demo float-right">CLOSE</button>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+                <button type="submit" class="btn btn-success float-right" style="right: 0px;" (click)="saveDetails();">ADD
+                    DETAILS</button>
+            </div>
+        </div>
+    </nb-card-footer>
 </nb-card>
-
