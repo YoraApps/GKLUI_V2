@@ -20,24 +20,7 @@ export class BranchSemesterService {
         debugger
         return this.http.post<BranchSemesterObject>(this.baseUrl + "/UpdateBranchSemesterAssociation", data);
         
-    }
-    setSelectedBranchId(Id){
-        this.BranchId=Id;
-      }
-      getSelectedBranchId() {
-        return this.BranchId;
-    }
-
-    setresponseList(dataList) {
-        this.BranchSemesterObjectList = dataList;
-        if(this.BranchSemesterObjectList.length > 0){
-            this.getUpdatedList();
-        }
-    }
-
-    getUpdatedList() {
-        return this.BranchSemesterObjectList
-    }
+    }  
 
 }
 

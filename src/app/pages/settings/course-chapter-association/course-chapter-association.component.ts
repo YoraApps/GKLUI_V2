@@ -74,7 +74,7 @@ export class CourseChapterAssociationComponent implements OnInit {
         this.branchSemesterMappedList = data.results;
       })
       if(this.BranchId > 0){
-        this.branchSemesterService.setSelectedBranchId(this.BranchId);
+        // this.branchSemesterService.setSelectedBranchId(this.BranchId);
       }
   }
 
