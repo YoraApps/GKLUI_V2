@@ -18,6 +18,11 @@ import { ExaminationComponent } from './examination/examination.component';
 import { ExaminationService } from './data/examination.service';
 import { AsssignExamToStudentComponent } from './asssign-exam-to-student/asssign-exam-to-student.component';
 import { CreateSyllabusComponent } from './create-syllabus/create-syllabus.component';
+import { SemesterCourseService } from '../settings/data/semester-course.service';
+import { BranchSemesterService } from '../settings/data/branch-semester-service';
+import { BatchProgramService } from '../settings/data/batch-program.service';
+import { ProgramBranchService } from '../settings/data/program-branch.service';
+import { BatchService } from '../settings/data/batch.service';
 
 @NgModule({
   imports: [
@@ -40,7 +45,12 @@ import { CreateSyllabusComponent } from './create-syllabus/create-syllabus.compo
     MemoCircularNoticeService,
     TeacherNotesService,
     StudentDairyService,
-    ExaminationService
+    ExaminationService,
+    BatchService,
+    ProgramBranchService,
+    BatchProgramService,
+    BranchSemesterService,
+    SemesterCourseService,
   ],
 })
 export class AcademicsModule { }
