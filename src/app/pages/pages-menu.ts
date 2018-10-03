@@ -32,6 +32,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/admission/admission-criteria',
       }, 
       {
+        title: 'Admission Criteria Association',
+        link: '/pages/admission/admission-criteria-association',
+      },
+      {
         title: 'Applicant Course Fee',
         link: '/pages/admission/applicant-course-fee-status',
       },
