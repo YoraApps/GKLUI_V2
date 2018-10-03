@@ -54,6 +54,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-tables',
     children: [
       {
+        title: 'Create Syllabus',
+        link: '/pages/academics/createSyllabus',
+      },
+      {
         title: 'Memo-Circular-Notice',
         link: '/pages/academics/memo-circular-notice',
       },
@@ -84,11 +88,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Asssign Exam',
         link: '/pages/academics/AsssignExamToStudent',
-      },
-      {
-        title: 'Create Syllabus',
-        link: '/pages/academics/createSyllabus',
-      },
+      },     
     ],
   },
   {
