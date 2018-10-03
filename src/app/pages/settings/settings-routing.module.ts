@@ -31,6 +31,9 @@ import { AcademicSetupComponent } from './academic-setup/academic-setup.componen
 import { BranchSemesterAssociationComponent } from './branch-semester-association/branch-semester-association.component';
 import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
 import { SemesterCourseAssociationComponent } from './semester-course-association/semester-course-association.component';
+import { FeeCreationComponent } from './fee-creation/fee-creation.component';
+import { FeeCategoryComponent } from './fee-category/fee-category.component';
+import { FeeTypeComponent } from './fee-type/fee-type.component';
 
 const routes: Routes = [{
   path: '',
@@ -122,6 +125,18 @@ const routes: Routes = [{
   {
     path: 'course-chapter-association',
     component: CourseChapterAssociationComponent,
+  },
+  {
+    path: 'Fee-Category',
+    component: FeeCategoryComponent,
+  },
+  {
+    path: 'Fee-Type',
+    component: FeeTypeComponent,
+  },
+  {
+    path: 'FeeCreation',
+    component: FeeCreationComponent,
   },
    {
     path: 'popupbranch',

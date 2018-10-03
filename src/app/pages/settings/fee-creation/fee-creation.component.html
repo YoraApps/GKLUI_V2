@@ -1,0 +1,58 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">Fee Category
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control" [(ngModel)]="selectobj" (change)="filterChanged(selectobj)">
+          <option [value]="obj.FeeCategoryId" *ngFor="let obj of FeeCategoryList">{{obj.FeeCategoryName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="userName">Fee Type
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+        <select class="form-control" [(ngModel)]="selectobj" (change)="filterChanged(selectobj)">
+          <option [value]="obj.FeeTypeId" *ngFor="let obj of FeeTypeList">{{obj.FeeTypeName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">
+      <div style="width:250px;margin-top: 25px;">
+        <button type="submit" (click)="getFeeCategoryGrid(selectobj)" class="btn btn-success">GO</button>
+      </div>
+    </div>
+    </div>
+
+    <!-- <div class="col-sm-7">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="row">
+            <table>
+              <thead>
+                <tr>
+                  <th>SL</th>
+                  <th>FeeCategoryName</th>
+                  <th>FeeCategoryDescription</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let fee of FeeCategoryList;let i = index">
+                  <td>{{i+1}}</td>
+                  <td> {{fee.FeeCategoryName}}</td>
+                  <td> {{fee.FeeCategoryDescription}}</td>
+                  <td>
+                    <input type="checkbox" [(ngModel)]="fee.IsSelected" (change)="IscheckedFees(fee)">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</nb-card-body>

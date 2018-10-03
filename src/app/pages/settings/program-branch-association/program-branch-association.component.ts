@@ -27,17 +27,20 @@ export class ProgramBranchAssociationComponent implements OnInit {
   isdatathere: boolean;
   batchId: number = 0;
   ProgramId:number = 0;
-  BranchIds:string;  
+  BranchIds:string;
+  selectObj = {};
+  selectProgramObj = {}; 
   //public data : any
   ngOnInit() {
     this.onLoadBatchList();
   }
-    onLoadBatchList() {
-      this.batchService.getActiveBatches()
-      .subscribe(data => {
-        this.activeBatchList = data.results;
-      }); 
-    }
+
+  onLoadBatchList() {
+    this.batchService.getActiveBatches()
+    .subscribe(data => {
+      this.activeBatchList = data.results;
+    }); 
+  }
 
   //   this.data = [
   //   {'name':'Anil', 'email' :'anil.singh581@gmail.com', 'age' :'34', 'city':'Noida' },

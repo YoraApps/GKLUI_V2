@@ -33,8 +33,8 @@ export class BranchSemesterAssociationComponent implements OnInit {
   selSemArr = [];
   selectobj ={};
   selectobjProgram ={};
-  selectobjBranch = {};    
-
+  selectobjBranch = {};
+  
   ngOnInit() {
     this.onLoadBatchList();      
   }

@@ -233,10 +233,23 @@ export const MENU_ITEMS: NbMenuItem[] = [
             title: 'Semester',
           link: '/pages/settings/semester',
         },
+        {
+          title: 'Fee Category',
+          link: '/pages/settings/Fee-Category',
+        },
+        {
+          title: 'Fee Type',
+          link: '/pages/settings/Fee-Type',
+        },
+        {
+          title: 'Fee Creation',
+          link: '/pages/settings/FeeCreation',
+        },
       {
         title: 'Fee Association',
         link: '/pages/settings/feeassociation',
       },
+
       // {
       //   title: 'Student Profile',
       //   link: '/pages/settings/studentprofile',
