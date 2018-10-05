@@ -13,6 +13,7 @@ export class BatchModalComponent implements OnInit {
   AcademicYearId:number=0;
   batch = { };
   reponseArray = [];
+  selectobj = {};
 
   @Output() emitService : EventEmitter<any[]> = new EventEmitter();
 

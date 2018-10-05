@@ -57,6 +57,7 @@ export class DegreeTypeComponent {
   DegreeCategoryList: any[];
   degreetypeList: any[];
   DegreeCategoryId: number;
+  selectobj: {};
 
   constructor(private service: DegreeTypeService, private _Dservice: DegreeCategoryService) {
 

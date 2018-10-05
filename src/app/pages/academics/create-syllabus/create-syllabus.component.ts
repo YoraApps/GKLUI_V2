@@ -40,6 +40,11 @@ export class CreateSyllabusComponent implements OnInit {
   CourseIds: string;
   selBrcArr = [];
   objBrc = {};
+  selectobj = {};
+  selectProgramobj = {};
+  selectBranchobj = {};
+  selectSemesterobj = {};
+
   ngOnInit() {
     this.batchService.getActiveBatches()
     .subscribe(data => {
@@ -74,5 +79,8 @@ export class CreateSyllabusComponent implements OnInit {
   }
   getCourseGrid() {
         
+ }
+ onClick(){
+   
  }
 }

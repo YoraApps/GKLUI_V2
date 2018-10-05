@@ -44,6 +44,7 @@ const SERVICES = [
   providers: [
     ...SERVICES,
   ],
+  declarations: [],
 })
 export class SettingDataModule {
   static forRoot(): ModuleWithProviders {

@@ -44,6 +44,10 @@ import { BranchSemesterAssociationComponent } from './branch-semester-associatio
 import { CourseChapterAssociationComponent } from './course-chapter-association/course-chapter-association.component';
 import { CourseChapterService } from './data/course-chapter.service';
 import { SemesterCourseAssociationComponent } from './semester-course-association/semester-course-association.component';
+import { FeeCreationComponent } from './fee-creation/fee-creation.component';
+import { FeeCreationService } from './data/fee-creation.service';
+import { FeeCategoryComponent } from './fee-category/fee-category.component';
+import { FeeTypeComponent } from './fee-type/fee-type.component';
 
 @NgModule({
   imports: [
@@ -71,6 +75,9 @@ import { SemesterCourseAssociationComponent } from './semester-course-associatio
     BranchSemesterAssociationComponent,
     CourseChapterAssociationComponent,
     SemesterCourseAssociationComponent,
+    FeeCreationComponent,
+    FeeCategoryComponent,
+    FeeTypeComponent,
   ],
   providers: [
     DegreeTypeService,
@@ -95,6 +102,7 @@ import { SemesterCourseAssociationComponent } from './semester-course-associatio
     ProgramBranchService,
     BranchSemesterService,
     CourseChapterService,
+    FeeCreationService,
   ],
   entryComponents: [
   ],
