@@ -10,44 +10,42 @@ import { FeeCreationService } from '../data/fee-creation.service';
 })
 export class FeeCreationComponent implements OnInit {
 
-    SetAction: string;
-    FeeCategoryId :number;
-    FeeCategoryList = [];
-    FeeTypeList = [];
-    activefcList = [];
-    activeftList = [];
-    FeeTypeId :number;
-    selectfcobj = {};
-    selectftobj = {};
+  SetAction: string;
+  FeeCategoryId: number;
+  FeeCategoryList = [];
+  FeeTypeList = [];
+  activefcList = [];
+  activeftList = [];
+  FeeTypeId: number;
+  selectfcobj = {};
+  selectftobj = {};
+  data;
 
 
   constructor(private fcservice: FeeCategoryService,
     private feeTypeService: FeeTypeService,
-    private feeCreationService : FeeCreationService) { }
+    private feeCreationService: FeeCreationService) { }
 
   ngOnInit() {
-    debugger
     this.fcservice.getData()
-    .subscribe(data => {
-      this.FeeCategoryList = data.results;
-    });
+      .subscribe(data => {
+        this.FeeCategoryList = data.results;
+      });
 
     this.feeTypeService.getData()
-    .subscribe(data => {
-      this.FeeTypeList = data.results;
-    });
+      .subscribe(data => {
+        this.FeeTypeList = data.results;
+      });
 
     this.getActiveFeeCategory();
 
     this.getActiveFeeType();
-    
+
   }
 
   getActiveFeeCategory() {
-    debugger
     this.feeCreationService.getCategoryData()
       .subscribe(data => {
-        debugger
         this.activefcList = data.results;
 
       })
@@ -66,6 +64,31 @@ export class FeeCreationComponent implements OnInit {
 
   ftlOnChange(data) {
     this.FeeTypeId = data.FeeTypeId;
+  }
+
+  // deleteFeeCategory(data): void {
+  //   data.SetAction = 'DELETE',
+  //   this.feeCreationService.updateData(data.id),
+  //    .subscribe(data => {
+  //     this.activefcList = this.activefcList.filter(u => u !== data);
+  //   })
+  // }
+
+
+  editFeeCategory(data): void {
+    if (window.confirm('Are you sure you want to save?')) {
+      data.newData['name'] += ' + added in code';
+      data.newData.SetAction = 'UPDATE';
+      this.feeCreationService.updateData(data.newData);
+    } else {
+      data.confirm.reject();
+    }
+  }
+
+  addFeeCategory(data): void {
+    data.newData.FeeCategoryId = this.FeeCategoryId;
+    data.newData.SetAction = 'INSERT';
+    this.feeCreationService.updateData(data.newData);
   }
 
 }
