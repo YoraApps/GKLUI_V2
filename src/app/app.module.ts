@@ -44,7 +44,7 @@ import { FeeAssociationModelComponent } from './pages/settings/fee-association/f
 import { BranchSemesterModelComponent } from './pages/settings/branch-semester-association/branch-semester-model/branch-semester-model.component';
 import { SemesterCourseModelComponent } from './pages/settings/semester-course-association/semester-course-model/semester-course-model.component';
 import { CourseChapterModelComponent } from './pages/settings/course-chapter-association/course-chapter-model/course-chapter-model.component';
-
+import { AdmissionCriteriaModelComponent } from './pages/admission/admission-criteria-association/admission-criteria-model/admission-criteria-model.component';
 @NgModule({
   declarations: [AppComponent, 
     ButtonViewComponent,
@@ -74,6 +74,7 @@ import { CourseChapterModelComponent } from './pages/settings/course-chapter-ass
     SemesterCourseModelComponent,
     CourseChapterModelComponent,
     FeeAssociationModelComponent,
+    AdmissionCriteriaModelComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +122,7 @@ import { CourseChapterModelComponent } from './pages/settings/course-chapter-ass
     SemesterCourseModelComponent,
     CourseChapterModelComponent,
     FeeAssociationModelComponent,
+    AdmissionCriteriaModelComponent,
   ],
 })
 export class AppModule {
