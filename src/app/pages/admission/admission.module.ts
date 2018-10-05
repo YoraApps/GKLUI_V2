@@ -24,6 +24,8 @@ import { ScheduleExaminationComponent } from './scheduleexamination/scheduleexam
 import { IdCardComponent } from './id-card/id-card.component';
 import { ExamResultUploadComponent } from './exam-result-upload/exam-result-upload.component';
 import { AdmissionCriteriaComponent } from './admission-criteria/admission-criteria.component';
+import { AdmissionCriteriaAssociationComponent } from './admission-criteria-association/admission-criteria-association.component';
+import { AdmissionCriteriaAssociationService } from './data/admission-criteria-association.service';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { AdmissionCriteriaComponent } from './admission-criteria/admission-crite
     IdCardComponent,
     ExamResultUploadComponent,
     AdmissionCriteriaComponent,
+    AdmissionCriteriaAssociationComponent,
   ],
   entryComponents: [
     ApplicantDetailModelComponent
@@ -60,6 +63,7 @@ import { AdmissionCriteriaComponent } from './admission-criteria/admission-crite
     AdmissionFeeStatusService,
     ReviewandApproveService,
     ProgramStudyService,
+    AdmissionCriteriaAssociationService,
   ],
 })
 export class AdmissionModule { }

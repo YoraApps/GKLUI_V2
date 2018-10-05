@@ -32,6 +32,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/admission/admission-criteria',
       }, 
       {
+        title: 'Admission Criteria Association',
+        link: '/pages/admission/admission-criteria-association',
+      },
+      {
         title: 'Applicant Course Fee',
         link: '/pages/admission/applicant-course-fee-status',
       },
@@ -53,6 +57,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Academics',
     icon: 'nb-tables',
     children: [
+      {
+        title: 'Create Syllabus',
+        link: '/pages/academics/createSyllabus',
+      },
       {
         title: 'Memo-Circular-Notice',
         link: '/pages/academics/memo-circular-notice',
@@ -84,11 +92,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Asssign Exam',
         link: '/pages/academics/AsssignExamToStudent',
-      },
-      {
-        title: 'Create Syllabus',
-        link: '/pages/academics/createSyllabus',
-      },
+      },     
     ],
   },
   {
