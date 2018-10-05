@@ -20,6 +20,8 @@ export class CreateSyllabusComponent implements OnInit {
     private branchSemesterService: BranchSemesterService,
     private semesterCourseService: SemesterCourseService,
   ) { }
+   // //this.date = new Date();}
+    date:any;
   getMappedSemesterByBranch = [];
   progarmBranchMappedList = [];
   batchProgramMappedList = [];
