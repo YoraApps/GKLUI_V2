@@ -23,6 +23,7 @@ export class BatchProgramAssociationComponent implements OnInit {
   ProgramIds: string;
   selPrgmArr = [];
   objPrgm  = {};
+  selectobj = {};
 
   //InIt Func
   ngOnInit() {
