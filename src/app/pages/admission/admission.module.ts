@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { AdmissionRoutingModule, routedComponents } from './admission-routing.module';
@@ -26,6 +27,10 @@ import { ExamResultUploadComponent } from './exam-result-upload/exam-result-uplo
 import { AdmissionCriteriaComponent } from './admission-criteria/admission-criteria.component';
 import { AdmissionCriteriaAssociationComponent } from './admission-criteria-association/admission-criteria-association.component';
 import { AdmissionCriteriaAssociationService } from './data/admission-criteria-association.service';
+import { NbCalendarModule } from '@nebular/theme';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 @NgModule({
@@ -33,7 +38,13 @@ import { AdmissionCriteriaAssociationService } from './data/admission-criteria-a
     ThemeModule,
     AdmissionRoutingModule,
     Ng2SmartTableModule,
-
+    NbCalendarModule,
+    //BrowserAnimationsModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   declarations: [
     ...routedComponents,
