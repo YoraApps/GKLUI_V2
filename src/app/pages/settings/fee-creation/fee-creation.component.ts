@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FeeCreationService } from '../data/fee-creation.service';
-import { LocalDataSource } from 'ng2-smart-table';
 import { FeeCategoryService } from '../data/fee-category.service';
 import { FeeTypeService } from '../data/fee-type.service';
+import { FeeCreationService } from '../data/fee-creation.service';
 
 @Component({
   selector: 'ngx-fee-creation',
@@ -11,50 +10,85 @@ import { FeeTypeService } from '../data/fee-type.service';
 })
 export class FeeCreationComponent implements OnInit {
 
-  source: LocalDataSource = new LocalDataSource();
-  data;
+  SetAction: string;
+  FeeCategoryId: number;
   FeeCategoryList = [];
   FeeTypeList = [];
-  FeeCategoryId: number;
+  activefcList = [];
+  activeftList = [];
+  FeeTypeId: number;
+  selectfcobj = {};
+  selectftobj = {};
+  data;
 
 
-  constructor(private feeCreationService: FeeCreationService,
-    private service: FeeCategoryService,
-    private feeTypeService: FeeTypeService) { }
+  constructor(private fcservice: FeeCategoryService,
+    private feeTypeService: FeeTypeService,
+    private feeCreationService: FeeCreationService) { }
 
   ngOnInit() {
-    this.service.getData()
+    this.fcservice.getData()
       .subscribe(data => {
-        this.data = data.results;
         this.FeeCategoryList = data.results;
       });
 
-      this.feeTypeService.getData()
+    this.feeTypeService.getData()
       .subscribe(data => {
-        this.data = data.results;
         this.FeeTypeList = data.results;
       });
+
+    this.getActiveFeeCategory();
+
+    this.getActiveFeeType();
+
   }
 
-  filterChanged(selectobj) {
-    console.log('value is ', selectobj);
-    this.FeeCategoryId = selectobj;
+  getActiveFeeCategory() {
+    this.feeCreationService.getCategoryData()
+      .subscribe(data => {
+        this.activefcList = data.results;
+
+      })
+  }
+
+  getActiveFeeType() {
     this.feeCreationService.getTypeData()
       .subscribe(data => {
-        this.FeeTypeList = data.results;
-      });
+        this.activeftList = data.results;
+      })
   }
 
+  fclOnChange(data) {
+    this.FeeCategoryId = data.FeeCategoryId;
+  }
 
-  getFeeCategoryGrid(selectobj) {
-    console.log('grid ', selectobj);
-    if (selectobj != null) {
-      this.feeCreationService.getTypeData()
-        .subscribe(data => {
-          this.data = data.results;
-          this.source.load(this.data);
-        });
+  ftlOnChange(data) {
+    this.FeeTypeId = data.FeeTypeId;
+  }
+
+  // deleteFeeCategory(data): void {
+  //   data.SetAction = 'DELETE',
+  //   this.feeCreationService.updateData(data.id),
+  //    .subscribe(data => {
+  //     this.activefcList = this.activefcList.filter(u => u !== data);
+  //   })
+  // }
+
+
+  editFeeCategory(data): void {
+    if (window.confirm('Are you sure you want to save?')) {
+      data.newData['name'] += ' + added in code';
+      data.newData.SetAction = 'UPDATE';
+      this.feeCreationService.updateData(data.newData);
+    } else {
+      data.confirm.reject();
     }
+  }
+
+  addFeeCategory(data): void {
+    data.newData.FeeCategoryId = this.FeeCategoryId;
+    data.newData.SetAction = 'INSERT';
+    this.feeCreationService.updateData(data.newData);
   }
 
 }

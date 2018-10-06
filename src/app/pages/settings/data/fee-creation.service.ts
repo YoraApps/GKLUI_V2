@@ -10,25 +10,29 @@ export class FeeCreationService {
 
   baseUrl: string = 'http://localhost:53312';
 
+  
+  getCategoryData() {       
+    debugger
+    return this.http.get<feeCategoryobj>(this.baseUrl + '/api/FeeCategory/GetActiveFeeCategory');
+  }
+
   getTypeData() {       
-      return this.http.get<feetypeobj>(this.baseUrl + '/api/FeeType/Get');
+      return this.http.get<feetypeobj>(this.baseUrl + '/api/FeeType/GetActiveFeeType');
     }
 
-    getCategoryData() {       
-      return this.http.get<feeCategoryobj>(this.baseUrl + '/api/FeeCategory/Get');
-    }
-}
+    updateData(data) {
+      debugger
+      this.http.post(this.baseUrl + "/api/FeeCategory/UpdateFeeCategory", data)
+          .subscribe(
+          data1 => {
+              console.log('POST Request is successful ' + data1);
+          },
+          error => {
+              console.log('Error' + error);
+          },
+          );
+  }
 
-export interface FeeType {
-  SetAction?: any;
-  FeeTypeId: number;
-  FeeTypeName: string;
-  FeeTypeDescription: string;
-  Active: boolean;
-}
-
-export interface feetypeobj {
-  results: FeeType[];
 }
 
 export interface FeeCategory {
@@ -36,10 +40,21 @@ export interface FeeCategory {
   FeeCategoryId: number;
   FeeCategoryName: string;
   FeeCategoryDescription: string;
-  Active: boolean;
 }
 
 export interface feeCategoryobj {
   results: FeeCategory[];
+}
+
+
+export interface FeeType {
+  SetAction?: any;
+  FeeTypeId: number;
+  FeeTypeName: string;
+  FeeTypeDescription: string;
+}
+
+export interface feetypeobj {
+  results: FeeType[];
 }
 
