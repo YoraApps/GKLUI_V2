@@ -13,6 +13,9 @@
 
 @import './bootstrap-rtl';
 
+/* angular-cli file: src/styles.css */
+@import "~angular-calendar/css/angular-calendar.css";
+
 // install the framework and custom global styles
 @include nb-install() {
 
