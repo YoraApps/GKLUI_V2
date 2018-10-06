@@ -11,8 +11,7 @@ export class FeeCreationService {
   baseUrl: string = 'http://localhost:53312';
 
   
-  getCategoryData() {       
-    debugger
+  getCategoryData() {     
     return this.http.get<feeCategoryobj>(this.baseUrl + '/api/FeeCategory/GetActiveFeeCategory');
   }
 

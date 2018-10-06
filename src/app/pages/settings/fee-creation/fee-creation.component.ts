@@ -20,6 +20,7 @@ export class FeeCreationComponent implements OnInit {
   selectfcobj = {};
   selectftobj = {};
   data;
+  getFeeListOnGrid:any;
 
 
   constructor(private fcservice: FeeCategoryService,
@@ -85,7 +86,8 @@ export class FeeCreationComponent implements OnInit {
     }
   }
 
-  addFeeCategory(data): void {
+  addFeeCategory(): void {
+    var data:any;
     data.newData.FeeCategoryId = this.FeeCategoryId;
     data.newData.SetAction = 'INSERT';
     this.feeCreationService.updateData(data.newData);
