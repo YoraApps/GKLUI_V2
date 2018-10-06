@@ -36,3 +36,31 @@
     <ngx-user-activity></ngx-user-activity>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class='table-container'>
+        <ngx-data-table 
+          [data]="data"
+          [columnTitles]="columnTitles"
+          (onTitlesChange)="updateTitles($event)"
+          (onValuesChange)="updateDataset($event)">
+        </ngx-data-table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <ngx-graph-data 
+        [data]="data"
+        [columnTitles]="columnTitles">
+      </ngx-graph-data>
+    </div>
+    <div class="row">
+      <div class='center'>
+        <ngx-prediction [data]="data"></ngx-prediction>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -16,7 +16,8 @@ export class AdmissionCriteriaAssociationComponent implements OnInit {
   private batchService:BatchService,
   private batchprogramService:BatchProgramService,
   private modalService: NgbModal,) { }
-   
+  selectobj: any;
+  selectobjProgram:any;
   activeBatchList = []; 
   admissionCriteriaList =[];
   admissionCriteriaAssociationList=[];

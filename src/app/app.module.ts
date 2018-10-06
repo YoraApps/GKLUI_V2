@@ -3,6 +3,7 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,6 +46,9 @@ import { BranchSemesterModelComponent } from './pages/settings/branch-semester-a
 import { SemesterCourseModelComponent } from './pages/settings/semester-course-association/semester-course-model/semester-course-model.component';
 import { CourseChapterModelComponent } from './pages/settings/course-chapter-association/course-chapter-model/course-chapter-model.component';
 import { AdmissionCriteriaModelComponent } from './pages/admission/admission-criteria-association/admission-criteria-model/admission-criteria-model.component';
+import { DataTableComponent } from './pages/machine-learning/data-table/data-table.component';
+import { GraphComponent } from './pages/machine-learning/graph/graph.component';
+import { PredictionComponent } from './pages/machine-learning/prediction/prediction.component';
 @NgModule({
   declarations: [AppComponent, 
     ButtonViewComponent,
@@ -74,7 +78,7 @@ import { AdmissionCriteriaModelComponent } from './pages/admission/admission-cri
     SemesterCourseModelComponent,
     CourseChapterModelComponent,
     FeeAssociationModelComponent,
-    AdmissionCriteriaModelComponent
+    AdmissionCriteriaModelComponent,   
   ],
   imports: [
     BrowserModule,
@@ -123,7 +127,7 @@ import { AdmissionCriteriaModelComponent } from './pages/admission/admission-cri
     CourseChapterModelComponent,
     FeeAssociationModelComponent,
     AdmissionCriteriaModelComponent,
-  ],
+  ]
 })
 export class AppModule {
 }
