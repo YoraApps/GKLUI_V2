@@ -14,14 +14,14 @@ export class FeeCreationComponent implements OnInit {
   FeeCategoryId: number;
   FeeCategoryList = [];
   FeeTypeList = [];
-  activefcList = [];
+  activefcList : any = [];
   activeftList = [];
   FeeTypeId: number;
   selectfcobj = {};
   selectftobj = {};
+  objFc = {};
   data;
   getFeeListOnGrid:any;
-
 
   constructor(private fcservice: FeeCategoryService,
     private feeTypeService: FeeTypeService,
@@ -67,30 +67,14 @@ export class FeeCreationComponent implements OnInit {
     this.FeeTypeId = data.FeeTypeId;
   }
 
-  // deleteFeeCategory(data): void {
-  //   data.SetAction = 'DELETE',
-  //   this.feeCreationService.updateData(data.id),
-  //    .subscribe(data => {
-  //     this.activefcList = this.activefcList.filter(u => u !== data);
-  //   })
-  // }
-
-
-  editFeeCategory(data): void {
-    if (window.confirm('Are you sure you want to save?')) {
-      data.newData['name'] += ' + added in code';
-      data.newData.SetAction = 'UPDATE';
-      this.feeCreationService.updateData(data.newData);
-    } else {
-      data.confirm.reject();
+  deleteFeeCategory(data) {
+    this.objFc = { 
+      "FeeCategoryId":data.FeeCategoryId,
+      "SetAction" :"DELETE"
     }
+    this.fcservice.updateData(this.objFc)
+     .subscribe(data => {
+      this.FeeCategoryList.push(data.results[0]);
+    })
   }
-
-  addFeeCategory(): void {
-    var data:any;
-    data.newData.FeeCategoryId = this.FeeCategoryId;
-    data.newData.SetAction = 'INSERT';
-    this.feeCreationService.updateData(data.newData);
-  }
-
 }

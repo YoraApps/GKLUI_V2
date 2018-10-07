@@ -1,7 +1,8 @@
+<nb-card>
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color:darkcyan; color:white;">
+      <div class="panel-heading" style="background-color:#a4abb3; color:white;">
         Fee Category
         <i class="fas fa-plus" style="margin-left: 365px;" (click)="addFeeCategory()"></i>
       </div>
@@ -20,8 +21,8 @@
               <td>{{fc.FeeCategoryName}}</td>
               <td>{{fc.FeeCategoryDescription}}</td>
               <td>{{fc.Active}}</td>
-              <td><i class="nb-edit" (click)="editFeeCategory(data)" style="font-size:30px"></i>
-                <i class="fa fa-trash" (click)="deleteFeeCategory(data)" style="font-size:25px"></i></td>
+              <td><i class="nb-edit" (click)="editFeeCategory(fc)" style="font-size:30px;color: darkcyan"></i>
+                <i class="fa fa-trash" (click)="deleteFeeCategory(fc)" style="font-size:20px;color: indianred"></i></td>
             </tr>
           </tbody>
         </table>
@@ -30,7 +31,7 @@
   </div>
   <div class="col-md-6">
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color:darkcyan; color:white;">
+      <div class="panel-heading" style="background-color:#a4abb3; color:white;">
         Fee Type
         <i class="fas fa-plus" style="margin-left: 380px;"></i>
       </div>
@@ -49,7 +50,8 @@
               <td>{{ft.FeeTypeName}}</td>
               <td>{{ft.FeeTypeDescription}}</td>
               <td>{{ft.Active}}</td>
-              <td><i class="nb-edit" style="font-size:30px"></i> <i class="fa fa-trash" style="font-size:25px"></i></td>
+              <td><i class="nb-edit" style="font-size:30px;color: darkcyan;"></i>
+                <i class="fa fa-trash" style="font-size:20px;color: indianred"></i></td>
             </tr>
           </tbody>
         </table>
@@ -79,6 +81,9 @@
 
   </div>
 </div>
+
+
+</nb-card>
 
 
 <style>

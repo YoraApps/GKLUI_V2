@@ -48,6 +48,7 @@ import { FeeCreationComponent } from './fee-creation/fee-creation.component';
 import { FeeCreationService } from './data/fee-creation.service';
 import { FeeCategoryComponent } from './fee-category/fee-category.component';
 import { FeeTypeComponent } from './fee-type/fee-type.component';
+import { FeeCreationModelComponent } from './fee-creation/fee-creation-model/fee-creation-model.component';
 
 @NgModule({
   imports: [
@@ -78,6 +79,7 @@ import { FeeTypeComponent } from './fee-type/fee-type.component';
     FeeCreationComponent,
     FeeCategoryComponent,
     FeeTypeComponent,
+    FeeCreationModelComponent,
   ],
   providers: [
     DegreeTypeService,

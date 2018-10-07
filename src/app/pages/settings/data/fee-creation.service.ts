@@ -19,19 +19,6 @@ export class FeeCreationService {
       return this.http.get<feetypeobj>(this.baseUrl + '/api/FeeType/GetActiveFeeType');
     }
 
-    updateData(data) {
-      debugger
-      this.http.post(this.baseUrl + "/api/FeeCategory/UpdateFeeCategory", data)
-          .subscribe(
-          data1 => {
-              console.log('POST Request is successful ' + data1);
-          },
-          error => {
-              console.log('Error' + error);
-          },
-          );
-  }
-
 }
 
 export interface FeeCategory {
