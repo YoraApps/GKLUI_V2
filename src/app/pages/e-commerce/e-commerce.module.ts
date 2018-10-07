@@ -45,6 +45,9 @@ import { EarningCardBackComponent } from './earning-card/back-side/earning-card-
 import { EarningPieChartComponent } from './earning-card/back-side/earning-pie-chart.component';
 import { EarningCardFrontComponent } from './earning-card/front-side/earning-card-front.component';
 import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earning-live-update-chart.component';
+import { PredictionComponent } from '../machine-learning/prediction/prediction.component';
+import { GraphComponent } from '../machine-learning/graph/graph.component';
+import { DataTableComponent } from '../machine-learning/data-table/data-table.component';
 
 @NgModule({
   imports: [
@@ -87,6 +90,8 @@ import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earni
     EarningCardBackComponent,
     EarningPieChartComponent,
     EarningLiveUpdateChartComponent,
+    PredictionComponent,GraphComponent,DataTableComponent
+
   ],
   providers: [
     CountryOrdersMapService,

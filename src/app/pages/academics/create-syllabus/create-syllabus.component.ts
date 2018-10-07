@@ -21,6 +21,7 @@ export class CreateSyllabusComponent implements OnInit {
     private semesterCourseService: SemesterCourseService,
   ) { }
    // //this.date = new Date();}
+   getFeeListOnGrid:any;
     date:any;
   getMappedSemesterByBranch = [];
   progarmBranchMappedList = [];

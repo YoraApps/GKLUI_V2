@@ -21,6 +21,7 @@ export class FeeCreationComponent implements OnInit {
   selectftobj = {};
   objFc = {};
   data;
+  getFeeListOnGrid:any;
 
   constructor(private fcservice: FeeCategoryService,
     private feeTypeService: FeeTypeService,
@@ -76,5 +77,4 @@ export class FeeCreationComponent implements OnInit {
       this.FeeCategoryList.push(data.results[0]);
     })
   }
-
 }

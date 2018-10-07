@@ -8,6 +8,8 @@ import { AdmissionCriteriaAssociationService } from '../../data/admission-criter
   styleUrls: ['./admission-criteria-model.component.scss']
 })
 export class AdmissionCriteriaModelComponent implements OnInit {
+  selectobj:any;
+  selectobjProgram:any;
   objBrc = {};
   ProgramId: number = 0;
   BatchId: number = 0;
