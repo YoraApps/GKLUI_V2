@@ -15,15 +15,7 @@ export class FeeCategoryService {
 
   updateData(data) {
       debugger
-      this.http.post(this.baseUrl + "/api/FeeCategory/UpdateFeeCategory", data)
-          .subscribe(
-          data1 => {
-              console.log('POST Request is successful ' + data1);
-          },
-          error => {
-              console.log('Error' + error);
-          },
-          );
+     return this.http.post<FeeCategoryObject>(this.baseUrl + "/api/FeeCategory/UpdateFeeCategory", data);
   }
 }
 
