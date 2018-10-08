@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from "ng2-smart-table";
 import { SemesterService } from "../data/semester.service";
+import { BranchService } from '../data/branch.service';
 
 @Component({
   selector: 'ngx-semester',
@@ -52,13 +53,19 @@ export class SemesterComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   data;
   dataArray: any = [];
-
-  constructor(private service: SemesterService) {
+  SetAction: string;
+  selectedDegree:{}; 
+  BranchList:any[]; 
+  SemList:any[];
+  selectobj: {};
+  BranchId:number;
+  constructor(private service: SemesterService,private bService:BranchService) {
 
    }
     onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve(event.data);
+      event.newData.BranchId = this.BranchId;
       event.data.SetAction = 'DELETE';
       this.service.saveData(event.data);
       this.service.getData();
@@ -66,28 +73,59 @@ export class SemesterComponent implements OnInit {
       event.confirm.reject();
     }
   }
+  
   ngOnInit() {
-    this.service.getData()
+    this.bService.getData()
           .subscribe( data => {
-            this.data = data.results;
-            this.source.load(this.data);
+            this.BranchList= data.results;
           });
+  }
+  filterChanged(selectobj){      
+   
+    this.BranchId=selectobj;
+    this.service.getSemByBranch(this.BranchId)
+        .subscribe( data => {
+          this.SemList= data.results;
+    });
+  }
+
+  getSemGrid(selectobj){
+    debugger
+    console.log('grid ',selectobj);
+    if (selectobj!= null) {      
+    this.service.getSemByBranch(this.BranchId)
+    .subscribe( data => {
+      this.data = data.results;
+      if(this.data!=null){
+        this.source.load(this.data);
+      }else{
+        window.confirm('There is No semester created yet for the selected branch');
+      }
+      
+    });
+  }
   }
   onSaveConfirm(event): void {
     if (window.confirm('Are you sure you want to save?')) {
       event.newData['name'] += ' + added in code';
       event.confirm.resolve(event.newData); 
+      event.newData.BranchId = this.BranchId;
       event.newData.SetAction = 'UPDATE';     
       this.service.saveData(event.newData);
     } else {
       event.confirm.reject();
     }
-
    }
-    onCreateConfirm(event): void {
+   
+   onCreateConfirm(event): void {
+    if(this.BranchId > 0){
       event.confirm.resolve(event.newData);
+      event.newData.BranchId = this.BranchId;
       event.newData.SetAction = 'INSERT';
-    this.service.saveData(event.newData);
-  }
-
+      this.service.saveData(event.newData);
+    }
+    else{
+      window.confirm('Please Select the Degree Type');
+    }
+  } 
 }
