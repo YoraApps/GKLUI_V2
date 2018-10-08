@@ -1,5 +1,15 @@
 <nb-card-body>
   <div class="row show-grid">
+      <div class="col-md-3">
+          <label for="userName">Semester
+            <span class="text-danger">*</span>
+          </label>
+          <div style="width:250px;left: 60px;">
+              <select class="form-control">  
+                    <option [value]="obj.SemesterId" *ngFor="let obj of ActiveSemesterList">{{obj.SemesterName}}</option>  
+             </select> 
+          </div>
+        </div>
     <div class="col-md-3">
       <label for="userName">CourseType
         <span class="text-danger">*</span>
