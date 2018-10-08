@@ -74,7 +74,7 @@ export class ProgramComponent implements OnInit {
   ngOnInit() {
     this.dservice.getData()
           .subscribe( data => {
-            this.DegreeTypeList= data.results;
+            this.DegreeTypeList= data.results; 
           });
       }
 

@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { CourseService } from '../../../pages/settings/data/course.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseModalComponent } from './course-modal/course-modal.component';
+import { SemesterService } from '../data/semester.service';
 @Component({
   selector: 'ngx-course',
   templateUrl: './course.component.html',
@@ -55,8 +56,10 @@ export class CourseComponent implements OnInit {
   CourseTypeList:any[];
   selectobj: {};
   CourseTypeId:number;
-
-  constructor( private service: CourseService,private modalService: NgbModal) {
+  SemesterList: any[];
+  SemesterId:number;
+  ActiveSemesterList = [];
+  constructor( private service: CourseService,private modalService: NgbModal,private semesterService: SemesterService) {
   }
   onClick() {
     const activeModal = this.modalService.open(CourseModalComponent, { size: 'lg', container: 'nb-layout' });
@@ -64,14 +67,6 @@ export class CourseComponent implements OnInit {
     activeModal.componentInstance.modalHeader = 'Large Modal';
   }
 
-  filterChanged(selectobj){
-    console.log('value is ',selectobj);
-    this.CourseTypeId=selectobj;
-    this.service.getCourseType()
-        .subscribe( data => {
-          this.CourseList= data.results;
-    });
-  }
 
   getcourseGrid(selectobj){
     console.log('grid ',selectobj);
@@ -83,7 +78,7 @@ export class CourseComponent implements OnInit {
     });
   }
   }
-
+ 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve(event.data);
@@ -94,13 +89,18 @@ export class CourseComponent implements OnInit {
       event.confirm.reject();
     }
   }
+
   ngOnInit() {
-    debugger
-    this.service.getCourseType()
-    .subscribe(data => {
-      this.CourseList = data.results;
-    });
+    this.getActiveSemester();
   }
+
+  getActiveSemester() {
+    this.semesterService.getData()
+    .subscribe( data => {
+      this.ActiveSemesterList = data.results;
+    })
+  }
+  
 
   onSaveConfirm(event): void {
    if (window.confirm('Are you sure you want to save?')) {
