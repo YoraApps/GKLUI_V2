@@ -1,12 +1,32 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">Program
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+          <select class="form-control" [(ngModel)]="selectobj"  (change)="filterChanged(selectobj)">  
+              <option >Program</option> 
+                <option [value]="program.ProgramId" *ngFor="let program of ProgramList">{{program.ProgramCode}}</option>  
+         </select> 
+         <!-- {{selectedProgram}}              -->
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">            
+        <div style="width:250px;margin-top: 25px;">
+            <button type="submit" (click)="getBranchGrid(selectobj)"  class="btn btn-success">GO</button> 
+        </div>
+      </div>
+  </div>
+</nb-card-body>
 
 <nb-card>
   <nb-card-header>
-       Branch
-  </nb-card-header>
-  <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"
-        (editConfirm)="onSaveConfirm($event)"
-        (createConfirm)="onCreateConfirm($event)">
-    </ng2-smart-table>
-  </nb-card-body>
+    <h2>Branch</h2>
+  </nb-card-header>  
+<nb-card-body>      
+<ng2-smart-table [settings]="settings" [source]="source.data" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)"
+(createConfirm)="onCreateConfirm($event)">
+</ng2-smart-table>
+</nb-card-body>
 </nb-card>
