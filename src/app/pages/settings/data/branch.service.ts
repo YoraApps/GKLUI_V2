@@ -11,6 +11,9 @@ export class BranchService {
   getData() {
     return this.http.get<BranchObject>(this.baseUrl + '/api/Branch/Get');
   }
+  getBranchByProgram(ProgramId:number) {               
+    return this.http.get<BranchObject>(this.baseUrl + '/api/Branch/GetBranchByProgram?ProgramId='+ProgramId);
+}
 
   saveData(data) {
     debugger
@@ -33,6 +36,9 @@ export interface Branch {
   BranchCode: string;
   BranchName: string;
   Active: boolean;
+  ProgramId: number;
+  ProgramCode: string;
+  ProgramName: string;
 }
 
 export interface BranchObject {

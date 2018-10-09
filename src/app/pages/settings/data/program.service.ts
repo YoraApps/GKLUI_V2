@@ -10,8 +10,8 @@ export class ProgramService{
 
     constructor(private http: HttpClient) { }
     baseUrl: string = 'http://localhost:53312';
+    
     getData() { 
-             
         return this.http.get<ProgramObject>(this.baseUrl + '/api/Program/Get');
     } 
     getProgramByDegree(DegreeTypeId:number) {               
