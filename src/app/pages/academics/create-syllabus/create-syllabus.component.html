@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-2">
         <select class="form-control" aria-placeholder="Select Batch" [(ngModel)]="selectobj" (change)="batchselOnChange(selectobj)">
-            <option value="" class="">Select A Program Study</option>
+            <option>select batch</option>
             <option [value]="batch.BatchId" *ngFor="let batch of activeBatchList">{{batch.AcademicYear}}</option>
           </select>
     </div>

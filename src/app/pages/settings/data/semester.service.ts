@@ -12,6 +12,9 @@ export class SemesterService {
   getData() {
     return this.http.get<SemesterObject>(this.baseUrl + '/api/Semester/Get');
   }
+  getSemByBranch(BranchId:number) {               
+    return this.http.get<SemesterObject>(this.baseUrl + '/api/Semester/GetSeesterByBranch?BranchId='+BranchId);
+} 
 
    saveData(data) {
     debugger
@@ -34,6 +37,7 @@ export interface Semester{
   SemesterCode: string;
   SemesterName: string;
   Active: boolean;
+  BranchId:number;
 }
   export interface SemesterObject {
   results: Semester[];

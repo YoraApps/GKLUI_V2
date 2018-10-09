@@ -1,3 +1,26 @@
+<nb-card-body>
+  <div class="row show-grid">
+    <div class="col-md-3">
+      <label for="userName">Branch
+        <span class="text-danger">*</span>
+      </label>
+      <div style="width:250px;left: 60px;">
+          <select class="form-control" [(ngModel)]="selectobj"  (change)="filterChanged(selectobj)">  
+              <option >Branch</option> 
+                <option [value]="branch.BranchId" *ngFor="let branch of BranchList">{{branch.BranchCode}}</option>  
+         </select>         
+      </div>
+    </div>
+    <div class="col-md-3" style="margin-left: 1%;">            
+        <div style="width:250px;margin-top: 25px;">
+            <button type="submit" (click)="getSemGrid(selectobj)"  class="btn btn-success">GO</button> 
+        </div>
+      </div>
+  </div>
+</nb-card-body>
+
+
+
 <nb-card>
   <nb-card-header>
     <h2>Semester</h2>   
@@ -9,3 +32,6 @@
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>
+
+
+
